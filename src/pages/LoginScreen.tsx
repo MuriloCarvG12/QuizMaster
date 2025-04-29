@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../index.css"
 
 export default function LoginScreen() {
@@ -40,7 +41,7 @@ export default function LoginScreen() {
                     </div>
 
                     <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
-                      <button className="App_Button" style={{width:"60%", height: "200%"}}> Entrar </button>
+                        <Link to={"http://localhost:5173/Home"} style={{width: "100%", display:"flex",justifyContent: "center", textDecoration:"None"}}><button className="App_Button" style={{width:"60%", height: "200%"}} > Entrar </button></Link>
                     </div>
 
                     <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>

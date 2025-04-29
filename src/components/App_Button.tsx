@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
 
-interface app_button
+interface AppButtonProps
 {
     bgcolor: string
     bordercolor : string
@@ -12,7 +12,7 @@ interface app_button
 }
 
 
-export default function App_Button({bgcolor,bghovercolor, bordercolor, borderhovercolor, link, message }:app_button)
+export default function App_Button({bgcolor,bghovercolor, bordercolor, borderhovercolor, link, message }:AppButtonProps)
 {
     const [isHovered, setIsHovered] = useState(false);
     return (
@@ -21,7 +21,7 @@ export default function App_Button({bgcolor,bghovercolor, bordercolor, borderhov
             onMouseEnter={() => setIsHovered(true)} 
             onMouseLeave={() => setIsHovered(false)}>
 
-                        <Link to={`http://localhost:5173${link}`} style={{width: "100%", display:"flex",justifyContent: "center", textDecoration:"None"}}>
+                        <Link to={`http://localhost:5173${link}`} style={{width: "100%", display:"flex",justifyContent: "center", textDecoration:"none"}}>
                             <button className="App_Button" 
                             style={{
                                 fontSize:"150%", 

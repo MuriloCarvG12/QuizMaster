@@ -49,11 +49,11 @@ export default function LoginScreen() {
                     </div>
 
                     <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                        <App_Button bgcolor="94D3A2"  bghovercolor="89C095" bordercolor="7AAD85" borderhovercolor="7eb68a" link="/Home" message="Entrar!" > </App_Button>
+                        <App_Button bgcolor="94D3A2"  bghovercolor="89C095" bordercolor="7AAD85" borderhovercolor="7eb68a" link="/Home" message="Entrar!"/>
                     </div>
 
                     <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                        <App_Button bgcolor="FFF3CD" bordercolor="F9DE87" link="" bghovercolor="EDE1BD" borderhovercolor="F9DE87" message="Cadastre-se aqui!" > </App_Button>
+                        <App_Button bgcolor="FFF3CD" bordercolor="F9DE87" link="" bghovercolor="EDE1BD" borderhovercolor="F9DE87" message="Cadastre-se aqui!" /> 
                     </div>
                     
                 </div>

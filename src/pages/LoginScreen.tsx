@@ -7,7 +7,7 @@ export default function LoginScreen() {
       <div id="container">
 
         <div className="Header">
-
+            
 
         </div>
 
@@ -21,7 +21,7 @@ export default function LoginScreen() {
                     <h1>Image</h1>
                 </div>
 
-                <h1 style={{textAlign: 'center', color: "#000000"}}>Frase Aleatoria Teste</h1>
+                <h1 style={{textAlign: 'center', color: "#333333", fontSize: "40px"}}>Frase Aleatória Teste</h1>
 
             </div>
 

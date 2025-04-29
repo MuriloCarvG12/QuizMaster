@@ -108,3 +108,9 @@
   color: #333333;
   font-size: 200%;
 }
+
+.App_Button:hover
+{
+  cursor: pointer;
+  background-color: #7eb68a;
+}

@@ -41,6 +41,9 @@
   height: 10%;
   background-color: blue;
   margin-bottom: 5%;
+  text-align: center;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
 }
 .login_card_head
 {
@@ -101,9 +104,9 @@
 {
   width: 50%;
   height: 150%;
-  background-color: #94D3A2;
+ 
   border-style: solid;
-  border-color: #75a57f;
+
   border-width: 5px;
   color: #333333;
   font-size: 200%;
@@ -112,5 +115,5 @@
 .App_Button:hover
 {
   cursor: pointer;
-  background-color: #7eb68a;
+
 }

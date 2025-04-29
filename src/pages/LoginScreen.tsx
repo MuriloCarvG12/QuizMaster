@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import "../index.css"
+import App_Button from "../components/App_Button"
 
 export default function LoginScreen() {
   return (
@@ -7,7 +8,14 @@ export default function LoginScreen() {
       <div id="container">
 
         <div className="Header">
-            
+            <h1 style={{marginBottom: "2%"}}> Quiz Master !</h1>
+            <div style={{display:"flex", justifyContent: "center", width: "100%", gap: "10%"}}>
+                <h2>pag</h2>
+                <h2>pag</h2>
+                <h2>pag</h2>
+                <h2>pag</h2>
+                <h2>pag</h2>
+            </div>
 
         </div>
 
@@ -40,14 +48,14 @@ export default function LoginScreen() {
                         <input className="Text_Field" placeholder="Insira a sua senha"></input>
                     </div>
 
-                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
-                        <Link to={"http://localhost:5173/Home"} style={{width: "100%", display:"flex",justifyContent: "center", textDecoration:"None"}}><button className="App_Button" style={{width:"60%", height: "200%"}} > Entrar </button></Link>
+                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
+                        <App_Button bgcolor="94D3A2"  bghovercolor="89C095" bordercolor="7AAD85" borderhovercolor="7eb68a" link="/Home" message="Entrar!" > </App_Button>
                     </div>
 
                     <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                      <button className="App_Button" style={{fontSize:"150%", backgroundColor: "#FFF3CD", borderColor:"#e4cf8b"}}> Não possui conta? Cadastre-se aqui!</button>
+                        <App_Button bgcolor="FFF3CD" bordercolor="F9DE87" link="" bghovercolor="EDE1BD" borderhovercolor="F9DE87" message="Cadastre-se aqui!" > </App_Button>
                     </div>
-
+                    
                 </div>
 
               </div>

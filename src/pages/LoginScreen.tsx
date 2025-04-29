@@ -20,7 +20,7 @@ export default function LoginScreen() {
                     <h1>Image</h1>
                 </div>
 
-                <h1 style={{textAlign: 'center'}}>Frase Aleatoria Teste</h1>
+                <h1 style={{textAlign: 'center', color: "#000000"}}>Frase Aleatoria Teste</h1>
 
             </div>
 
@@ -31,7 +31,7 @@ export default function LoginScreen() {
 
                 <div className="login_card_body">
 
-                <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
+                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
                         <input className="Text_Field" placeholder="Insira o seu nome"></input>
                     </div>
 
@@ -39,7 +39,13 @@ export default function LoginScreen() {
                         <input className="Text_Field" placeholder="Insira a sua senha"></input>
                     </div>
 
+                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
+                      <button className="App_Button" style={{width:"60%", height: "200%"}}> Entrar </button>
+                    </div>
 
+                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
+                      <button className="App_Button" style={{fontSize:"150%", backgroundColor: "#FFF3CD", borderColor:"#e4cf8b"}}> Não possui conta? Cadastre-se aqui!</button>
+                    </div>
 
                 </div>
 

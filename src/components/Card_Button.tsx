@@ -12,7 +12,7 @@ export default function Card_button({width, height, link, bgcolor, text}: Card_b
     return(
     <>
         <div className="Home_Card" style={{width: `${width}%`, height: `${height}%`}}>
-            <div style={{width: `100%`, height: `20%`, backgroundColor: `#${bgcolor}`}}>
+            <div style={{width: `100%`, height: `20%`, backgroundColor: `#${bgcolor}`, alignContent:"center"}}>
                 <h1 style={{textAlign: "center", color: "#333333"}}>{text}</h1>
             </div>
             

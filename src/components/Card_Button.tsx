@@ -13,10 +13,10 @@ export default function Card_button({width, height, link, bgcolor, text}: Card_b
     <>
         <div className="Home_Card" style={{width: `${width}%`, height: `${height}%`}}>
             <div style={{width: `100%`, height: `20%`, backgroundColor: `#${bgcolor}`}}>
-                <h1>{text}</h1>
+                <h1 style={{textAlign: "center", color: "#333333"}}>{text}</h1>
             </div>
             
-                <Link to={`http://localhost:5173${link}`} style={{width: "100%", height: "100%", display:"flex",justifyContent: "center", textDecoration:"none"}}></Link>
+            <Link to={`http://localhost:5173${link}`} style={{width: "100%", height: "100%", display:"flex",justifyContent: "center", textDecoration:"none"}}></Link>
             
             
         </div>

@@ -17,7 +17,7 @@ export default function App_Button({bgcolor,bghovercolor, bordercolor, borderhov
     const [isHovered, setIsHovered] = useState(false);
     return (
         <>
-            <div style={{width: "100%", height: "100%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}  
+            <div style={{width: "50%", height: "100%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}  
             onMouseEnter={() => setIsHovered(true)} 
             onMouseLeave={() => setIsHovered(false)}>
 

@@ -121,16 +121,19 @@
 
 .Home_Card
 {
-  width: 500px;
-  height: 700px;
+  width: 100%;
+  height: 20%;
   background-color: aqua;
 }
 
 .User-Options
 {
   width: 50%;
-  height: 30%;
-  background-color: red;
+  height: 25%;
+  background-color: #FFFFFF;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

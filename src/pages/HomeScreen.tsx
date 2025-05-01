@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
-import Header from "../components/Header"
 
+import Header from "../components/Header"
+import Card_button from "../components/Card_Button"
 
 export default function HomeScreen() {
     return (
@@ -23,9 +23,14 @@ export default function HomeScreen() {
 
             </div>
 
-            <div id="HOME-USER-OPTIONS" className="User-Options">               
-                  <Link to={`http://localhost:5173/UserScreen`} style={{width: "100%", display:"flex",justifyContent: "center", textDecoration:"none"}}><button>Click me</button></Link>               
-           </div>
+
+          <div id="HOME-USER-OPTIONS-HEAD" style={{width: "50%", height: "5%", backgroundColor: "#FFF3CD", marginLeft: "auto", marginRight: "auto"}}>
+              <h1 style={{color:"#333333", textAlign: "center", alignContent: "center"}}> Area do Usuario</h1>
+          </div>
+          <div id="HOME-USER-OPTIONS" className="User-Options">
+                  <Card_button width={25}  height={60} link="/UserScreen"  bgcolor="FFF3CD"  text="Test"  />
+                            
+          </div>
 
         </div>
       </>

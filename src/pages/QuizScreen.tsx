@@ -28,7 +28,7 @@ export default function QuizScreen() {
 
             </div>
 
-            <div style={{width:"100%", height:"5%",display:"flex", justifyContent:"center"}}>
+            <div style={{width:"100%", height:"6%",display:"flex", justifyContent:"center"}}>
                 <App_Button bgcolor={"A8E6CF"} bordercolor={"99D2BD"} link={""} borderhovercolor={"7EAF9D"} bghovercolor={"99D2BD"} message={"CRIAR NOVO QUIZ"}/>
             </div>
             

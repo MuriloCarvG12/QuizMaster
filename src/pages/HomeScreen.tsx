@@ -6,7 +6,7 @@ export default function HomeScreen() {
     return (
       <>
         <div id="container">
-            <Header header_mode={0} Username={""} User_Completed_Quizes={0} User_Completed_Questions={0} User_Completed_Exams={0} User_Favorite_Topic={0}  />
+            <Header Username={""} User_Completed_Quizes={0} User_Completed_Questions={0} User_Completed_Exams={0} User_Favorite_Topic={0}  />
 
             <div id="HOME-CARDS" style={{width: "100%", height: "35%", display: "flex", flexDirection: "row", justifyContent: "center", gap: "12.5%", marginBottom: "10%"}}>
                 <Card_button width={20}  height={100} link="/QuizScreen"  bgcolor="FDE4CF"  text="Quizes"  />

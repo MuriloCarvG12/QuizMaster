@@ -22,9 +22,9 @@ export default function ExamScreen() {
           case 0:
             return <>
                 <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => Select_Length(25)} message={"Curto 25 perguntas"}/>
-                <App_Button bgcolor={"D4EDDA"} bordercolor={"ACCAB3"}  borderhovercolor={""} bghovercolor={"b3c7b8"} onClick={() => Select_Length(45)} message={"Médio 45 perguntas"}/>
-                <App_Button bgcolor={"D1ECF1"} bordercolor={"B7D8DE"}  borderhovercolor={""} bghovercolor={"b0cacf"} onClick={() => Select_Length(90)} message={"Longo 90 perguntas"}/>
-                <App_Button bgcolor={"FFF3CD"} bordercolor={"D5C799"}  borderhovercolor={""} bghovercolor={"ccc2a3"} onClick={() => Select_Length(1)} message={"Customizado"}/>;
+                <App_Button bgcolor={"D4EDDA"} bordercolor={"ACCAB3"}  borderhovercolor={"93ad99"} bghovercolor={"b3c7b8"} onClick={() => Select_Length(45)} message={"Médio 45 perguntas"}/>
+                <App_Button bgcolor={"D1ECF1"} bordercolor={"B7D8DE"}  borderhovercolor={"a3c4c9"} bghovercolor={"b2d4db"} onClick={() => Select_Length(90)} message={"Longo 90 perguntas"}/>
+                <App_Button bgcolor={"FFF3CD"} bordercolor={"D5C799"}  borderhovercolor={"c4b88d"} bghovercolor={"d6cba7"} onClick={() => Select_Length(1)} message={"Customizado"}/>;
             </>
           case 1:
             return <>

@@ -2,10 +2,30 @@
 import "../index.css"
 import App_Button from "../components/App_Button"
 import logo from '../images/QuizMasterLogo.png';
+import { useNavigate } from "react-router-dom";
 
 
 export default function LoginScreen() {
+    function Navigate(Page:string) {
+        const navigate = useNavigate();  
+
+        const handleLoginClick = () => {
+            navigate(`/${Page}`); // Capital "H" if your route is "/Home"
+        };
+      
+        return (
+          <App_Button
+            bgcolor="94D3A2"
+            bghovercolor="89C095"
+            bordercolor="7AAD85"
+            borderhovercolor="7eb68a"
+            message="Entrar!"
+            onClick={handleLoginClick}
+          />
+        
+        )};
   return (
+
     <>
       <div id="container">
 
@@ -45,11 +65,11 @@ export default function LoginScreen() {
                     </div>
 
                     <div style={{width: "100%", height: "8%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                        <App_Button bgcolor="94D3A2"  bghovercolor="89C095" bordercolor="7AAD85" borderhovercolor="7eb68a" link="/Home" message="Entrar!"/>
+                        {Navigate("Home")}
                     </div>
 
                     <div style={{width: "50%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                        <App_Button bgcolor="FFF3CD" bordercolor="F9DE87" link="" bghovercolor="EDE1BD" borderhovercolor="F9DE87" message="Cadastre-se aqui!" /> 
+                        {Navigate("Cadastrar")} 
                     </div>
                     
                 </div>

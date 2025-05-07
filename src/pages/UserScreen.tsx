@@ -17,7 +17,7 @@ export default function UserScreen() {
                 {
                     return (<>
                         <div style={{width:"100%", height:"20%", display:"flex", justifyContent:"center"}}>
-                            <App_Button bgcolor={""} bordercolor={""} borderhovercolor={""} bghovercolor={""} onClick={() => set_edit_profile(edit_profile + 1)} message={""}/>
+                            <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => set_edit_profile(edit_profile + 1)} message={"Editar meu perfil"}/>
                         </div>
                     </>)
                     
@@ -46,7 +46,7 @@ export default function UserScreen() {
                 {
                     return (<>
                         <div style={{width:"100%", height:"20%", display:"flex", justifyContent:"center"}}>
-                            <App_Button bgcolor={""} bordercolor={""} borderhovercolor={""} bghovercolor={""} onClick={() => set_see_history(see_history + 1)} message={""}/>
+                            <App_Button bgcolor={"E3D4F3"} bordercolor={"cbb3e6"} borderhovercolor={"b59fcf"} bghovercolor={"d1bfe3"} onClick={() => set_see_history(see_history + 1)} message={"Ver meu histórico"}/>
                         </div>
                     </>)
                     
@@ -74,7 +74,7 @@ export default function UserScreen() {
                 {
                     return (<>
                         <div style={{width:"100%", height:"20%", display:"flex", justifyContent:"center"}}>
-                            <App_Button bgcolor={""} bordercolor={""} borderhovercolor={""} bghovercolor={""} onClick={() => set_see_details(see_details + 1)} message={""}/>
+                            <App_Button bgcolor={"B4FFFB"} bordercolor={"82D0D5"} borderhovercolor={"73b8bd"} bghovercolor={"a1e6e2"} onClick={() => set_see_details(see_details + 1)} message={"Ver meus detalhes"}/>
                         </div>
                     </>)
                     
@@ -98,16 +98,16 @@ export default function UserScreen() {
     <div id="container">
         <Header Username={""} />
 
-        <div style={{width: "100%", height: "80%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-                <div style={{width:"50%", height: "50%", marginBottom:"2%"}}>
+        <div style={{width: "100%", height: "80%", display:"flex", flexDirection:"column", justifyContent:"space-evenly", alignItems:"center"}}>
+                <div style={{width:"50%", height: "50%", marginBottom:"1%", marginTop:"2%"}}>
                     {edit_controller(edit_profile)}
                 </div>
 
-                <div style={{width:"50%", height: "50%", marginBottom:"2%"}}>
+                <div style={{width:"50%", height: "50%", marginBottom:"5%"}}>
                     {history_controller(see_history)}
                 </div>
 
-                <div style={{width:"50%", height: "50%", marginBottom:"2%"}}>
+                <div style={{width:"50%", height: "50%"}}>
                     {detail_controller(see_details)}
                 </div>     
 

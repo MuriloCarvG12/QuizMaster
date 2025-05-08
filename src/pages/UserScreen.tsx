@@ -29,10 +29,23 @@ export default function UserScreen() {
                     <div id="HOME-USER-OPTIONS-HEAD" 
                         style={{width: "100%", height: "10%", backgroundColor: "#D3EAF2", marginLeft: "auto", marginRight: "auto", borderStyle:"solid", borderWidth:"5px", borderColor:"#b7dbe8"}}>
                         <h1>Editar Perfil</h1>
-                    </div>
-                    <div className="User-Options" style={{width: "100%", height:"100%"}}>
+                </div>
+                <div className="User-Options" style={{width: "100%", height:"100%"}}>
+                        <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Nome"}/>
+                        </div>
+                        <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Nome"}/>
+                        </div>
+                        
+                        <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Nome"}/>
+                        </div>
+                        
+                        
                     </div>
                 </div>
+                
                 </>
                 }
         }
@@ -60,7 +73,14 @@ export default function UserScreen() {
                     <h1>Ver Histórico</h1>
                     </div>
                     <div className="User-Options" style={{width: "100%", height:"100%"}}>
+                        <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Ver historico"}/>
+                        </div>
+                        
+                        
+                        
                     </div>
+                    
                 </>
             }
         }
@@ -87,6 +107,16 @@ export default function UserScreen() {
                     <h1>Detalhes do Usuário</h1>
                     </div>
                     <div className="User-Options" style={{width: "100%", height:"100%"}}>
+                    <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Total quizzes taken"}/>
+                        </div>
+                        <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Best score"}/>
+                        </div>
+                        
+                        <div style={{width: "80%", height:"50%", display:"flex",justifyItems:"center", alignItems:"center"}}>
+                                <App_Button bgcolor={"D3EAF2"} bordercolor={"b7dbe8"} borderhovercolor={"a1c2cf"} bghovercolor={"bdd1d9"} onClick={() => console.log("Editar meu perfil")} message={"Weakest/strongest subjects"}/>
+                        </div>
                     </div>
                 </>
                 }

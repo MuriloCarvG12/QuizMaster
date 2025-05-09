@@ -147,7 +147,33 @@
   padding-top: 4%;
   background-color: blue;
   text-align: center;
- 
+}
+.question_screen_head
+{
+  width: 90%;
+  height: 9%;
+  background-color:#D9F2E6;
+  text-align: center;
+  color: #666666; 
+  padding-top:  1%; 
+  border-style: solid;
+  border-width: 5px; 
+  border-color:#aacabb
+}
+
+.question_screen_body
+{
+  width: 90%;
+  height: 90%;
+  background-color: #FFFFFF;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   
- 
+  justify-content: center;
+  
+  gap: 12.5%;
+  padding-top: 5%;
+  padding-bottom: 2%;
 }

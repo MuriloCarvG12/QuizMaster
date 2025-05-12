@@ -38,8 +38,105 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                             </>)
 }
 
-export function test()
+interface topics_screen_interface
 {
-    console.log("BEAR")
+    handle_picked_question_topics: (event:any) => void
+    handle_picked_question_source: (event:any) => void
+    set_current_option: (option: number) => void
+}
+
+
+export function Topics_screen({handle_picked_question_topics, handle_picked_question_source, set_current_option}:topics_screen_interface)
+{
+    return(
+                        <>
+                             <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+                                
+                                
+                                <div id="USER Questions HEAD" className="question_screen_head">
+                                    <h1>Topicos</h1>
+                                </div>
+                    
+                    
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>
+                                        <h1 style={{color:"black"}}> Selecione o topico </h1>
+                                        <select onChange={handle_picked_question_topics} multiple={true}>
+                                            <option value="someOption">Some option</option>
+                                            <option value="otherOption">Other option</option>
+                                        </select>
+                                        <h1 style={{color:"black"}}> Selecione a fonte </h1>
+                                        <select onChange={handle_picked_question_source}>
+                                            <option value="someOption">Some option</option>
+                                            <option value="otherOption">Other option</option>
+                                        </select>
+    
+                                    </div>
+                                    <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_option(0)}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )
+}
+
+interface i_saved_question_screen
+{
+    set_current_option: (option :number) => void
+}
+
+export function Saved_question_screen({set_current_option}: i_saved_question_screen)
+{
+    return(
+                        <>
+                        <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+                           
+                           
+                           <div id="USER Questions HEAD" className="question_screen_head">
+                               <h1>Perguntas Salvas</h1>
+                           </div>
+               
+               
+                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
+                                    <h1 style={{color:"black"}}> Retrieve Saved Questions</h1>
+                                </div>
+                               <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                   <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_option(0)}/>
+                               </div>
+                           </div>
+                       </div>
+                   </>
+                    )
+}
+
+interface i_community_question_screen
+{
+    set_current_option: (option :number) => void
+}
+
+export function Community_question_screen({set_current_option}: i_community_question_screen)
+{
+    return(
+                    <>
+                    <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+                           
+                           
+                           <div id="USER Questions HEAD" className="question_screen_head">
+                               <h1>Perguntas Comunidade</h1>
+                           </div>
+               
+               
+                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
+                                    <h1 style={{color:"black"}}> GOTO COMMUNITY QUESTIONS PAGE</h1>
+                                </div>
+                               <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                   <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_option(0)}/>
+                               </div>
+                           </div>
+                       </div>
+                    </>) 
 }
 

@@ -177,3 +177,16 @@
   padding-top: 5%;
   padding-bottom: 2%;
 }
+
+.question_screen_selection_box
+{
+  background-color: #c6e5fa;
+  width: 60%;
+  height: 40%;
+  border-style: solid;
+  border-color: #DCCFF9;
+  border-width: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  text-align: center;
+}

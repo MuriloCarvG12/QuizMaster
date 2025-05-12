@@ -61,13 +61,13 @@ export function Topics_screen({handle_picked_question_topics, handle_picked_ques
                                 <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>
                                         <h1 style={{color:"black"}}> Selecione o topico </h1>
-                                        <select onChange={handle_picked_question_topics} multiple={true}>
+                                        <select onChange={handle_picked_question_topics} multiple={true} className="question_screen_selection_box">
                                             <option value="someOption">Some option</option>
                                             <option value="otherOption">Other option</option>
                                         </select>
                                         <h1 style={{color:"black"}}> Selecione a fonte </h1>
-                                        <select onChange={handle_picked_question_source}>
-                                            <option value="someOption">Some option</option>
+                                        <select onChange={handle_picked_question_source} className="question_screen_selection_box" >
+                                            <option value="someOption" >Some option</option>
                                             <option value="otherOption">Other option</option>
                                         </select>
     

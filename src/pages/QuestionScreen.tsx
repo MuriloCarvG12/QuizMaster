@@ -1,8 +1,8 @@
 
-import Card_button from "../components/Card_Button";
+
 import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
-import App_Button from "../components/App_Button";
+
 import { useState } from "react";
 import { Control_menu, Saved_question_screen, Topics_screen, Community_question_screen } from "../components/Page_Question_Screen";
 
@@ -48,7 +48,7 @@ export default function QuestionScreen() {
             {
                 return(
                 <Community_question_screen set_current_option={set_current_option}/>
-            )   
+                )   
             }
         }
        

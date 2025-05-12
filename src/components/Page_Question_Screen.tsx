@@ -70,14 +70,19 @@ export function Topics_screen({handle_picked_question_topics, handle_picked_ques
 
                                         <div className="question_screen_selection_grid">
                                             {topics.map(topic => (
-                                            <label key={topic} style={{ display: 'block', width:"5%", height:"2%", color:"black"}}>
+                                            
+                                                <label key={topic} style={{ display: 'block', width:"5%", height:"2%", color:"black"}} >
+                                            
+                                                    
                                                 <input
-                                                type="checkbox"
-                                                value={topic}
-                                                
+                                                    type="checkbox"
+                                                    value={topic}
+                                                    className="question_screen_selection_checkbox"
+                                                    
                                                 />
-                                                {topic}
-                                            </label>                         
+                                                    {topic}
+                                                </label>  
+                                                                  
                                         ))}
                                         </div>
 

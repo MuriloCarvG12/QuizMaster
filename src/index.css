@@ -190,3 +190,13 @@
   cursor: pointer;
   text-align: center;
 }
+
+.question_screen_selection_grid
+{
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  gap: 16px;
+  height: 60%;
+  width: 90%;
+  overflow-y: auto ;
+}

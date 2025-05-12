@@ -1,3 +1,4 @@
+import { useState } from "react";
 import App_Button from "./App_Button";
 
 type ControlMenuProps = {
@@ -45,6 +46,11 @@ interface topics_screen_interface
     set_current_option: (option: number) => void
 }
 
+const topics = ["Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia"];
+
+
+
+
 
 export function Topics_screen({handle_picked_question_topics, handle_picked_question_source, set_current_option}:topics_screen_interface)
 {
@@ -61,10 +67,20 @@ export function Topics_screen({handle_picked_question_topics, handle_picked_ques
                                 <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>
                                         <h1 style={{color:"black"}}> Selecione o topico </h1>
-                                        <select onChange={handle_picked_question_topics} multiple={true} className="question_screen_selection_box">
-                                            <option value="someOption">Some option</option>
-                                            <option value="otherOption">Other option</option>
-                                        </select>
+
+                                        <div className="question_screen_selection_grid">
+                                            {topics.map(topic => (
+                                            <label key={topic} style={{ display: 'block', width:"5%", height:"2%", color:"black"}}>
+                                                <input
+                                                type="checkbox"
+                                                value={topic}
+                                                
+                                                />
+                                                {topic}
+                                            </label>                         
+                                        ))}
+                                        </div>
+
                                         <h1 style={{color:"black"}}> Selecione a fonte </h1>
                                         <select onChange={handle_picked_question_source} className="question_screen_selection_box" >
                                             <option value="someOption" >Some option</option>

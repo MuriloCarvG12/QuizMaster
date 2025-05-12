@@ -1,39 +1,68 @@
 
-import Card_button from "../components/Card_Button";
+
 import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
+import { useState } from "react";
+import { Control_menu, Saved_question_screen, Topics_screen, Community_question_screen } from "../components/Page_Question_Screen";
+
 
 export default function QuestionScreen() {
+    const [current_option, set_current_option] = useState(0)
+    const [picked_question_source, set_picked_question_source] = useState("")
+    const[picked_question_topics, set_picked_question_topics] = useState([])
+    
+    const handle_picked_question_source = (event) => {
+        set_picked_question_source(event.target.value);
+        console.log("PICKED OPTION -> " + picked_question_source)
+      };
+
+    function handle_picked_question_topics(event)  {
+        const values = Array.from(event.target.selectedOptions, option => option.value);
+        set_picked_question_topics(values);
+        console.log("PICKED TOPICS ->", values);
+      };
+
+    function control_menu(current_option:number)
+    {
+        switch(current_option)
+        {
+            case 0:
+                {
+                    return(
+                        <Control_menu set_current_option={set_current_option} />)
+                }
+            case 1:
+            {
+                return(
+                    <Topics_screen handle_picked_question_topics={handle_picked_question_topics} handle_picked_question_source={handle_picked_question_source} set_current_option={set_current_option}/>
+                )
+            }
+            case 2:
+            {
+                return(
+                    <Saved_question_screen set_current_option={set_current_option}/>
+                )
+            }
+            case 3:
+            {
+                return(
+                <Community_question_screen set_current_option={set_current_option}/>
+                )   
+            }
+        }
+       
+    }
+
+
+
     return (
     <>
     
             <div id="container">
                 <Header Username={""}/>
     
-    
-                        <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
-            
-            
-                            <div id="USER Questions HEAD" 
-                            style={{width:"80%", height: "9%", backgroundColor:"#FFF3CD", textAlign:"center", color:"#666666", paddingTop: "1%", borderStyle:"solid",borderWidth:"5px", borderColor:"#FFE5B4"}
-                            }>
-                                <h1>Minhas Perguntas</h1>
-                            </div>
-            
-            
-                            <div id="HOME-Questions" 
-                                style={{width: "80%", height: "80%", display: "flex", flexDirection: "row", justifyContent: "center", gap: "12.5%", paddingTop: "5%", paddingBottom: "2%", backgroundColor:"#FFFFFF"}
-                            }>
-                                
-                                            <Card_button width={20}  height={100} link="/QuizScreen"  bgcolor="9FF9FF"  text="Tópico"/>
-                                            <Card_button width={20}  height={100} link="/ExamScreen"  bgcolor="A8E6CF"  text="Perguntas Salvas"/>
-                                            <Card_button width={20}  height={100} link="/QuestionScreen"  bgcolor="A6BED0"  text="Perguntas da Comunidade"/>
-                            
-                            </div>
-            
-                            
-                        </div>     
+                {control_menu(current_option)}          
                 
                 <Quiz_master_footer/>    
                 

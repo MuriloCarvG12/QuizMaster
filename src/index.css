@@ -147,7 +147,73 @@
   padding-top: 4%;
   background-color: blue;
   text-align: center;
- 
+}
+.question_screen_head
+{
+  width: 90%;
+  height: 9%;
+  background-color:#D9F2E6;
+  text-align: center;
+  color: #666666; 
+  padding-top:  1%; 
+  border-style: solid;
+  border-width: 5px; 
+  border-color:#aacabb
+}
+
+.question_screen_body
+{
+  width: 90%;
+  height: 90%;
+  background-color: #FFFFFF;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   
- 
+  justify-content: center;
+  
+  gap: 12.5%;
+  padding-top: 5%;
+  padding-bottom: 2%;
+}
+
+.question_screen_selection_box
+{
+  background-color: #c6e5fa;
+  width: 60%;
+  height: 40%;
+  border-style: solid;
+  border-color: #afc9da;
+  border-width: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.question_screen_selection_grid
+{
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  gap: 16px;
+  height: 60%;
+  width: 90%;
+  overflow-y: auto ;
+  margin-left: auto;
+}
+input.question_screen_selection_checkbox
+{
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #B0D6FB;
+  background-color: #ffffff;
+  cursor: pointer;
+  
+  
+}
+
+input.question_screen_selection_checkbox:checked {
+  background-color: #7AA9E4;
+  border-color: #B0D6FB;
 }

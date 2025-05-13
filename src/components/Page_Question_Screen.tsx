@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import App_Button from "./App_Button";
 
@@ -41,19 +42,20 @@ export function Control_menu({set_current_option}:ControlMenuProps)
 
 interface topics_screen_interface
 {
-    handle_picked_question_topics: (event:any) => void
-    
+    set_picked_question_topics: (array: Array) => void
+    set_current_topic_state: (option: number) => void
     set_current_option: (option: number) => void
 }
 
-const topics = ["Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia"];
+const topics = ["Matemática", "História", "Biologia"];
 
 
 
 
 
-export function Topics_screen_MainTopicSelection({handle_picked_question_topics, set_current_option}:topics_screen_interface)
+export function Topics_screen_MainTopicSelection({set_picked_question_topics, set_current_option, set_current_topic_state}:topics_screen_interface)
 {
+    const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
     return(
                         <>
                              <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
@@ -78,17 +80,30 @@ export function Topics_screen_MainTopicSelection({handle_picked_question_topics,
                                                     type="checkbox"
                                                     value={topic}
                                                     className="question_screen_selection_checkbox"
+                                                    checked={selectedTopics.includes(topic)}
+                                                    onChange={(e) => {
+                                                        if (e.target.checked) {
+                                                        setSelectedTopics(prev => [...prev, topic]);
+                                                        } else {
+                                                        setSelectedTopics(prev => prev.filter(t => t !== topic));
+                                                        }
+                                                    }}
                                                     
                                                 />
                                                     {topic}
                                                 </label>  
                                                                   
                                         ))}
-
+                                        
                                         
                                         </div>
-                                        <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                            <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => handle_picked_question_topics}/>
+
+                                        <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                            <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedTopics); set_current_topic_state(1); console.log("PICKED TOPICS ->", selectedTopics);}}/>
+                                        </div>
+
+                                        <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                            <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_option(0)}/>
                                         </div>
 
                                         
@@ -105,7 +120,7 @@ export function Topics_screen_MainTopicSelection({handle_picked_question_topics,
 
 export function Topics_screen_SubTopicSelection({handle_picked_question_topics , set_current_option}:topics_screen_interface){}
 
-export function Topics_screen_QuestionSourceSelection({handle_picked_question_source , set_current_option}:topics_screen_interface)
+export function Topics_screen_QuestionSourceSelection({set_picked_question_topics, set_current_option, set_current_topic_state}:topics_screen_interface)
 {
     return(
                         <>
@@ -120,7 +135,7 @@ export function Topics_screen_QuestionSourceSelection({handle_picked_question_so
                                 <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>                                                                                             
                                         <h1 style={{color:"black"}}> Selecione a fonte </h1>
-                                        <select onChange={handle_picked_question_source} className="question_screen_selection_box" >
+                                        <select onChange={set_picked_question_topics} className="question_screen_selection_box" >
                                             <option value="someOption" >Some option</option>
                                             <option value="otherOption">Other option</option>
                                         </select>
@@ -129,7 +144,7 @@ export function Topics_screen_QuestionSourceSelection({handle_picked_question_so
     
                                     </div>
                                     <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_option(0)}/>
+                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_topic_state(0)}/>
                                     </div>
                                 </div>
                             </div>

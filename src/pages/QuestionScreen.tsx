@@ -4,7 +4,7 @@ import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
 import { useState } from "react";
-import { Control_menu, Saved_question_screen, Community_question_screen, Topics_screen_MainTopicSelection } from "../components/Page_Question_Screen";
+import { Control_menu, Saved_question_screen, Community_question_screen, Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection } from "../components/Page_Question_Screen";
 
 
 export default function QuestionScreen() {
@@ -18,8 +18,8 @@ export default function QuestionScreen() {
         console.log("PICKED OPTION -> " + picked_question_source)
       };
 
-    function handle_picked_question_topics(event)  {
-        const values = Array.from(event.target.selectedOptions, option => option.value);
+    function handle_picked_question_topics()  {
+        
         set_picked_question_topics(values);
         console.log("PICKED TOPICS ->", values);
       };
@@ -42,10 +42,12 @@ export default function QuestionScreen() {
                     {
                         case 0:
                             return(
-                                <Topics_screen_MainTopicSelection handle_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} />
+                                <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} />
                             )
                         case 1:
-                            return 
+                            return (
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                            )
                         default:
                             return null;
                             

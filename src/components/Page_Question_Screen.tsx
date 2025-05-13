@@ -2,6 +2,31 @@
 import { useState } from "react";
 import App_Button from "./App_Button";
 
+
+/***
+ *       This file contains all the code necessary for the question screen 
+ *      Control menu works as a switch receiving a control use state and rendering the proper funciton according to it
+ *          
+ *      Topics_screen_MainTopicSelection is the first screen if the user chooses topics
+ * 
+ *      Topics_screen_SubTopicSelection is the seconds screen if the user selects the topics they want this is where they take the sub topics
+ * 
+ * 
+ *      Topics_screen_QuestionSourceSelection is the final screen of the topics section where they choose the sources for their exam a specific book or college
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 type ControlMenuProps = {
   set_current_option: (option: number) => void;
 };
@@ -157,7 +182,7 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                 
                                 
                                 <div id="USER Questions HEAD" className="question_screen_head">
-                                    <h1>Topicos</h1>
+                                    <h1>Fontes</h1>
                                 </div>
                     
                     
@@ -197,7 +222,7 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                     </div>
 
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {console.log("PICKED TOPICS ->", selectedSources);}}/>
+                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedSources); console.log("PICKED TOPICS ->", selectedSources);}}/>
                                     </div>
                                     
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>

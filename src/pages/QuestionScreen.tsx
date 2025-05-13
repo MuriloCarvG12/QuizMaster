@@ -8,15 +8,12 @@ import { Control_menu, Saved_question_screen, Community_question_screen, Topics_
 
 
 export default function QuestionScreen() {
-    const [current_option, set_current_option] = useState(0)
-    const [picked_question_source, set_picked_question_source] = useState("")
-    const[picked_question_topics, set_picked_question_topics] = useState([])
-    const [current_topic_state, set_current_topic_state] = useState(0)
+    const [current_option, set_current_option] = useState(0) // variable controls the sub menu shown
+    const [picked_question_source, set_picked_question_source] = useState("") // variable that stores the exam sources selected
+    const[picked_question_topics, set_picked_question_topics] = useState([]) // variable that stores the topics selected
+    const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
     
-    const handle_picked_question_source = (event) => {
-        set_picked_question_source(event.target.value);
-        console.log("PICKED OPTION -> " + picked_question_source)
-      };
+
 
 
 
@@ -44,9 +41,13 @@ export default function QuestionScreen() {
                             return (
                                 <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
                             )
-                        default:
+                        case 2:
                             return (
-                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                            )
+                        default:
+                            return(
+                                console.log("this is broken!")
                             )
                             
                     }

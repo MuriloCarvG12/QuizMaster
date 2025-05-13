@@ -11,7 +11,7 @@ export default function QuestionScreen() {
     const [current_option, set_current_option] = useState(0) // variable controls the sub menu shown
     const [picked_question_source, set_picked_question_source] = useState("") // variable that stores the exam sources selected
     const[picked_question_topics, set_picked_question_topics] = useState([]) // variable that stores the topics selected
-    const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shown
+    const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
     
 
 

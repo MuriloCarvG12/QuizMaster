@@ -4,7 +4,7 @@ import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
 import { useState } from "react";
-import { Control_menu, Saved_question_screen, Community_question_screen, Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection } from "../components/Page_Question_Screen";
+import { Control_menu, Saved_question_screen, Community_question_screen, Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection, Topics_screen_SubTopicSelection } from "../components/Page_Question_Screen";
 
 
 export default function QuestionScreen() {
@@ -18,11 +18,7 @@ export default function QuestionScreen() {
         console.log("PICKED OPTION -> " + picked_question_source)
       };
 
-    function handle_picked_question_topics()  {
-        
-        set_picked_question_topics(values);
-        console.log("PICKED TOPICS ->", values);
-      };
+
 
     function control_menu(current_option:number)
     {
@@ -46,10 +42,12 @@ export default function QuestionScreen() {
                             )
                         case 1:
                             return (
-                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
                             )
                         default:
-                            return null;
+                            return (
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                            )
                             
                     }
             }

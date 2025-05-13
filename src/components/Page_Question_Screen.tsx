@@ -96,21 +96,15 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                                         ))}
                                         
                                         
-                                        </div>
-
-                                        <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                            <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedTopics); set_current_topic_state(1); console.log("PICKED TOPICS ->", selectedTopics);}}/>
+                                        </div>                                                                                          
+                                    </div>
+                                       <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedTopics); set_current_topic_state(1); console.log("PICKED TOPICS ->", selectedTopics);}}/>
                                         </div>
 
                                         <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
                                             <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_option(0)}/>
                                         </div>
-
-                                        
-                                        
-
-    
-                                    </div>
                                     
                                 </div>
                             </div>
@@ -118,9 +112,42 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                     )
 }
 
-export function Topics_screen_SubTopicSelection({handle_picked_question_topics , set_current_option}:topics_screen_interface){}
+export function Topics_screen_SubTopicSelection({ set_current_topic_state}:topics_screen_interface)
+{
+    return(
+                        <>
+                             <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+                                
+                                
+                                <div id="USER Questions HEAD" className="question_screen_head">
+                                    <h1>Sub-Topicos</h1>
+                                </div>
+                    
+                    
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>                                                                                             
+                                        <h1 style={{color:"black"}}> Selecione os subtopicos </h1>
+                                        <h1 style={{color:"black"}}>TODO IMPLEMENT BACKEND TO FETCH SUBTOPICS</h1>
+                                        
 
-export function Topics_screen_QuestionSourceSelection({set_picked_question_topics, set_current_option, set_current_topic_state}:topics_screen_interface)
+    
+                                    </div>
+                                    <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => set_current_topic_state(2)}/>
+                                    </div>
+                                    <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_topic_state(0)}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    ) 
+}
+
+
+
+
+export function Topics_screen_QuestionSourceSelection({set_picked_question_topics, set_current_topic_state}:topics_screen_interface)
 {
     return(
                         <>
@@ -143,8 +170,13 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
 
     
                                     </div>
-                                    <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_topic_state(0)}/>
+
+                                    <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedTopics); set_current_topic_state(1); console.log("PICKED TOPICS ->", selectedTopics);}}/>
+                                    </div>
+                                    
+                                    <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_topic_state(1)}/>
                                     </div>
                                 </div>
                             </div>

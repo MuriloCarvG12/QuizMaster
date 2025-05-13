@@ -13,10 +13,7 @@ export default function QuestionScreen() {
     const[picked_question_topics, set_picked_question_topics] = useState([])
     const [current_topic_state, set_current_topic_state] = useState(0)
     
-    const handle_picked_question_source = (event) => {
-        set_picked_question_source(event.target.value);
-        console.log("PICKED OPTION -> " + picked_question_source)
-      };
+
 
 
 
@@ -44,9 +41,13 @@ export default function QuestionScreen() {
                             return (
                                 <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
                             )
-                        default:
+                        case 2:
                             return (
-                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                            )
+                        default:
+                            return(
+                                console.log("this is broken!")
                             )
                             
                     }

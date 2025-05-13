@@ -197,7 +197,7 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                     </div>
 
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {console.log("PICKED TOPICS ->", selectedSources);}}/>
+                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedSources); console.log("PICKED TOPICS ->", selectedSources);}}/>
                                     </div>
                                     
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>

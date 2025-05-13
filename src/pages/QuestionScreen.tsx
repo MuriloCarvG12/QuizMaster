@@ -4,13 +4,14 @@ import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
 import { useState } from "react";
-import { Control_menu, Saved_question_screen, Topics_screen, Community_question_screen } from "../components/Page_Question_Screen";
+import { Control_menu, Saved_question_screen, Community_question_screen, Topics_screen_MainTopicSelection } from "../components/Page_Question_Screen";
 
 
 export default function QuestionScreen() {
     const [current_option, set_current_option] = useState(0)
     const [picked_question_source, set_picked_question_source] = useState("")
     const[picked_question_topics, set_picked_question_topics] = useState([])
+    const [current_topic_state, set_current_topic_state] = useState(0)
     
     const handle_picked_question_source = (event) => {
         set_picked_question_source(event.target.value);
@@ -30,13 +31,25 @@ export default function QuestionScreen() {
             case 0:
                 {
                     return(
-                        <Control_menu set_current_option={set_current_option} />)
+                    <Control_menu set_current_option={set_current_option}/>
+                )
+                    
                 }
+            
             case 1:
             {
-                return(
-                    <Topics_screen handle_picked_question_topics={handle_picked_question_topics} handle_picked_question_source={handle_picked_question_source} set_current_option={set_current_option}/>
-                )
+                switch(current_topic_state)
+                    {
+                        case 0:
+                            return(
+                                <Topics_screen_MainTopicSelection handle_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} />
+                            )
+                        case 1:
+                            return 
+                        default:
+                            return null;
+                            
+                    }
             }
             case 2:
             {

@@ -42,7 +42,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
 interface topics_screen_interface
 {
     handle_picked_question_topics: (event:any) => void
-    handle_picked_question_source: (event:any) => void
+    
     set_current_option: (option: number) => void
 }
 
@@ -52,7 +52,7 @@ const topics = ["Matemática", "História", "Biologia","Matemática", "História
 
 
 
-export function Topics_screen({handle_picked_question_topics, handle_picked_question_source, set_current_option}:topics_screen_interface)
+export function Topics_screen_MainTopicSelection({handle_picked_question_topics, set_current_option}:topics_screen_interface)
 {
     return(
                         <>
@@ -84,13 +84,48 @@ export function Topics_screen({handle_picked_question_topics, handle_picked_ques
                                                 </label>  
                                                                   
                                         ))}
+
+                                        
+                                        </div>
+                                        <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                            <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => handle_picked_question_topics}/>
                                         </div>
 
+                                        
+                                        
+
+    
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </>
+                    )
+}
+
+export function Topics_screen_SubTopicSelection({handle_picked_question_topics , set_current_option}:topics_screen_interface){}
+
+export function Topics_screen_QuestionSourceSelection({handle_picked_question_source , set_current_option}:topics_screen_interface)
+{
+    return(
+                        <>
+                             <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+                                
+                                
+                                <div id="USER Questions HEAD" className="question_screen_head">
+                                    <h1>Topicos</h1>
+                                </div>
+                    
+                    
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>                                                                                             
                                         <h1 style={{color:"black"}}> Selecione a fonte </h1>
                                         <select onChange={handle_picked_question_source} className="question_screen_selection_box" >
                                             <option value="someOption" >Some option</option>
                                             <option value="otherOption">Other option</option>
                                         </select>
+                                        
+
     
                                     </div>
                                     <div style={{width:"100%", height:"10%", display:"flex", alignContent:"center", justifyContent:"center"}}>
@@ -99,7 +134,7 @@ export function Topics_screen({handle_picked_question_topics, handle_picked_ques
                                 </div>
                             </div>
                         </>
-                    )
+                    ) 
 }
 
 interface i_saved_question_screen

@@ -2,6 +2,31 @@
 import { useState } from "react";
 import App_Button from "./App_Button";
 
+
+/***
+ *       This file contains all the code necessary for the question screen 
+ *      Control menu works as a switch receiving a control use state and rendering the proper funciton according to it
+ *          
+ *      Topics_screen_MainTopicSelection is the first screen if the user chooses topics
+ * 
+ *      Topics_screen_SubTopicSelection is the seconds screen if the user selects the topics they want this is where they take the sub topics
+ * 
+ * 
+ *      Topics_screen_QuestionSourceSelection is the final screen of the topics section where they choose the sources for their exam a specific book or college
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 type ControlMenuProps = {
   set_current_option: (option: number) => void;
 };

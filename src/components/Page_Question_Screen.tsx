@@ -92,15 +92,13 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                     
                     
                                 <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
-                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"100%",height:"100%", flexDirection:"column"}}>
                                         <h1 style={{color:"black"}}> Selecione o topico </h1>
 
                                         <div className="question_screen_selection_grid">
                                             {topics.map(topic => (
                                             
-                                                <label key={topic} style={{ display: 'block', width:"5%", height:"2%", color:"black"}} >
-                                            
-                                                    
+                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", width:"20%", height:"20%", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
                                                 <input
                                                     type="checkbox"
                                                     value={topic}
@@ -112,12 +110,10 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                                                         } else {
                                                         setSelectedTopics(prev => prev.filter(t => t !== topic));
                                                         }
-                                                    }}
-                                                    
-                                                />
-                                                    {topic}
+                                                    }}/>
+                                                    <h3 style={{textAlign:"center"}}>{topic}</h3>
                                                 </label>  
-                                                                  
+                                                                 
                                         ))}
                                         
                                         

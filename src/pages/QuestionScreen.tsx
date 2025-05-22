@@ -21,15 +21,15 @@ export default function QuestionScreen() {
     {
         switch(current_option)
         {
-            case 0:
+            case 0: // sub-tela inicial da pagina perguntas
                 {
                     return(
                     <Control_menu set_current_option={set_current_option}/>
                 )
                     
                 }
-            
-            case 1:
+            // sub-tela Topicos  da pagina perguntas 
+            case 1: 
             {
                 switch(current_topic_state)
                     {
@@ -52,12 +52,14 @@ export default function QuestionScreen() {
                             
                     }
             }
+            // sub-tela Perguntas Salvas  da pagina perguntas 
             case 2:
             {
                 return(
                     <Saved_question_screen set_current_option={set_current_option}/>
                 )
             }
+            // sub-tela Perguntas Comunidade da pagina perguntas 
             case 3:
             {
                 return(

@@ -151,20 +151,24 @@
 .question_screen_head
 {
   width: 90%;
-  height: 9%;
+  min-height: 15%;
   background-color:#D9F2E6;
   text-align: center;
   color: #666666; 
   padding-top:  1%; 
   border-style: solid;
   border-width: 5px; 
-  border-color:#aacabb
+  border-color:#aacabb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20%;
 }
 
 .question_screen_body
 {
   width: 90%;
-  height: 90%;
+  height: 80%;
   background-color: #FFFFFF;
 
   display: flex;
@@ -176,13 +180,16 @@
   gap: 12.5%;
   padding-top: 5%;
   padding-bottom: 2%;
+  border-style: solid;
+  border-width: 5px; 
+  border-color:#aacabb
 }
 
 .question_screen_selection_box
 {
   background-color: #c6e5fa;
-  width: 60%;
-  height: 40%;
+  width: 80%;
+  height: 60%;
   border-style: solid;
   border-color: #afc9da;
   border-width: 5px;
@@ -196,20 +203,21 @@
   display: grid;
   grid-template-columns: repeat(3, 3fr);
   gap: 16px;
-  height: 60%;
-  width: 90%;
+  max-height: 400px;
+  width: 100%;
   overflow-y: auto ;
-  margin-left: auto;
+  justify-items: center;
+
 }
 input.question_screen_selection_checkbox
 {
   appearance: none;
-  width: 20px;
-  height: 20px;
+  min-width: 40px;
+  min-height: 30px;
   border: 2px solid #B0D6FB;
   background-color: #ffffff;
   cursor: pointer;
-  
+  align-self: center;
   
 }
 

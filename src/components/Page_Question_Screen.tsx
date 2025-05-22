@@ -72,7 +72,7 @@ interface topics_screen_interface
     set_current_option: (option: number) => void
 }
 
-const topics = ["Matemática", "História", "Biologia"];
+const topics = ["Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia", "História", "Biologia13","Matemática", "História", "Biologia","Matemática", "História", "Biologia1","Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia", "História", "Biologia13","Matemática", "História", "Biologia","Matemática", "História", "Biologia1"];
 
 
 
@@ -87,20 +87,20 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                                 
                                 
                                 <div id="USER Questions HEAD" className="question_screen_head">
-                                    <h1>Topicos</h1>
+                                    <h1>Tópicos</h1>
+                                    <h2 style={{fontSize: 28}}> Selecione o topico</h2>
                                 </div>
                     
-                    
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
-                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>
-                                        <h1 style={{color:"black"}}> Selecione o topico </h1>
+                              
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>
+                                    
 
                                         <div className="question_screen_selection_grid">
+                                            {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
                                             {topics.map(topic => (
                                             
-                                                <label key={topic} style={{ display: 'block', width:"5%", height:"2%", color:"black"}} >
-                                            
-                                                    
+                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
                                                 <input
                                                     type="checkbox"
                                                     value={topic}
@@ -112,12 +112,10 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                                                         } else {
                                                         setSelectedTopics(prev => prev.filter(t => t !== topic));
                                                         }
-                                                    }}
-                                                    
-                                                />
-                                                    {topic}
+                                                    }}/>
+                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{topic}</h3>
                                                 </label>  
-                                                                  
+                                                                 
                                         ))}
                                         
                                         
@@ -146,12 +144,13 @@ export function Topics_screen_SubTopicSelection({ set_current_topic_state}:topic
                                 
                                 <div id="USER Questions HEAD" className="question_screen_head">
                                     <h1>Sub-Topicos</h1>
+                                    <h2 style={{fontSize: 28}}> Selecione os subtopicos</h2>
                                 </div>
                     
                     
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
-                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>                                                                                             
-                                        <h1 style={{color:"black"}}> Selecione os subtopicos </h1>
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
+                                        
                                         <h1 style={{color:"black"}}>TODO IMPLEMENT BACKEND TO FETCH SUBTOPICS</h1>
                                         
 
@@ -183,16 +182,17 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                 
                                 <div id="USER Questions HEAD" className="question_screen_head">
                                     <h1>Fontes</h1>
+                                    <h2 style={{fontSize: 28}}> Selecione a fonte</h2>
                                 </div>
                     
                     
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
-                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column"}}>                                                                                             
-                                        <h1 style={{color:"black"}}> Selecione a fonte </h1>
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%"}}>
+                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
+                                        
                                         <div className="question_screen_selection_grid">
                                             {sources.map(source => (
                                             
-                                                <label key={source} style={{ display: 'block', width:"5%", height:"2%", color:"black"}} >
+                                                <label key={source} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}}  >
                                             
                                                     
                                                 <input
@@ -209,7 +209,7 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                                     }}
                                                     
                                                 />
-                                                    {source}
+                                                    <h3 style={{textAlign:"center"}}>{source}</h3>
                                                 </label>  
                                                                   
                                         ))}

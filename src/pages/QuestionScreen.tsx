@@ -4,7 +4,7 @@ import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
 import { useState } from "react";
-import { Control_menu, Saved_question_screen, Community_question_screen, Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection, Topics_screen_SubTopicSelection } from "../components/Page_Question_Screen";
+import { Control_menu, Saved_question_screen, Community_question_screen, Saved_source_question_subtopics_screen, Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection, Topics_screen_SubTopicSelection, Saved_question_subtopics_screen } from "../components/Page_Question_Screen";
 
 
 export default function QuestionScreen() {
@@ -12,6 +12,7 @@ export default function QuestionScreen() {
     const [picked_question_source, set_picked_question_source] = useState("") // variable that stores the exam sources selected
     const[picked_question_topics, set_picked_question_topics] = useState([]) // variable that stores the topics selected
     const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
+    const [current_saved_topic_state, set_current_saved_topic_state] = useState(0) // variable that controles the saved questions submenu
     
 
 
@@ -55,15 +56,34 @@ export default function QuestionScreen() {
             // sub-tela Perguntas Salvas  da pagina perguntas 
             case 2:
             {
-                return(
-                    <Saved_question_screen set_current_option={set_current_option}/>
-                )
+                switch(current_saved_topic_state)
+                {
+                    case 0:
+                        return(
+                            <Saved_question_screen set_current_option={set_current_option} set_current_saved_topic_state={set_current_saved_topic_state}/>
+                        )
+                    case 1: 
+                        return(
+                            <Saved_question_subtopics_screen set_current_saved_topic_state={set_current_saved_topic_state}/>
+                        )
+
+                    case 2:
+                        return(
+                            <Saved_source_question_subtopics_screen  set_current_saved_topic_state={set_current_saved_topic_state}/>
+                        )
+                    default:{
+                        return(console.log("this is broken"))
+                    }
+                }
+                
             }
             // sub-tela Perguntas Comunidade da pagina perguntas 
             case 3:
             {
                 return(
-                <Community_question_screen set_current_option={set_current_option}/>
+                    <Community_question_screen set_current_option={function (option: number): void {
+                        throw new Error("Function not implemented.");
+                    } } />
                 )   
             }
         }

@@ -88,13 +88,13 @@ export function Topics_screen_MainTopicSelection({set_picked_question_topics, se
                              <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                                 
                                 
-                                <div id="USER Questions HEAD" className="question_screen_head">
+                                <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: "#aadaf2", borderColor:"#96c1d6"}}>
                                     <h1>Tópicos</h1>
                                     <h2 style={{fontSize: 28}}> Selecione o topico</h2>
                                 </div>
                     
                               
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%"}}>
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%",  borderColor:"#96c1d6"}}>
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>
                                     
 
@@ -144,13 +144,13 @@ export function Topics_screen_SubTopicSelection({ set_current_topic_state}:topic
                              <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                                 
                                 
-                                <div id="USER Questions HEAD" className="question_screen_head">
+                                <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: "#aadaf2", borderColor:"#96c1d6"}}>
                                     <h1>Sub-Topicos</h1>
                                     <h2 style={{fontSize: 28}}> Selecione os subtopicos</h2>
                                 </div>
                     
                     
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%"}}>
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%", borderColor:"#96c1d6"}}>
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
                                         
                                         <h1 style={{color:"black"}}>TODO IMPLEMENT BACKEND TO FETCH SUBTOPICS</h1>
@@ -182,13 +182,13 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                              <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                                 
                                 
-                                <div id="USER Questions HEAD" className="question_screen_head">
+                                <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: "#aadaf2", borderColor:"#96c1d6"}}>
                                     <h1>Fontes</h1>
                                     <h2 style={{fontSize: 28}}> Selecione a fonte</h2>
                                 </div>
                     
                     
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%"}}>
+                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%", borderColor:"#96c1d6"}}>
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
                                         
                                         <div className="question_screen_selection_grid">
@@ -255,13 +255,13 @@ export function Saved_question_screen({set_current_option, set_current_saved_top
                         <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                            
                            
-                           <div id="USER Questions HEAD" className="question_screen_head">
+                           <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: "#DCCFF9", borderColor:"#bdafdb"}}>
                                     <h1>Tópicos Salvos</h1>
                                     <h2 style={{fontSize: 28}}> Selecione o topico salvo</h2>
                                 </div>
                
                
-                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", borderColor:"#bdafdb"}}>
                                 <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
                                     
                                         <div className="question_screen_selection_grid">
@@ -317,13 +317,13 @@ export function Saved_question_subtopics_screen({set_current_saved_topic_state}:
                         <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                            
                            
-                           <div id="USER Questions HEAD" className="question_screen_head">
+                           <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: "#DCCFF9", borderColor:"#bdafdb"}}>
                                     <h1>Sub - Tópicos </h1>
                                     <h2 style={{fontSize: 28}}> Selecione o sub-topico </h2>
                                 </div>
                
                
-                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", borderColor:"#bdafdb"}}>
                                 <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
                                     
                                         <div className="question_screen_selection_grid">
@@ -380,13 +380,13 @@ export function Saved_source_question_subtopics_screen({ set_current_saved_topic
                         <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                            
                            
-                           <div id="USER Questions HEAD" className="question_screen_head">
+                           <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: "#DCCFF9", borderColor:"#bdafdb"}}>
                                     <h1>Fontes </h1>
                                     <h2 style={{fontSize: 28}}> Selecione a fonte </h2>
                                 </div>
                
                
-                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column"}}>
+                           <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", borderColor:"#bdafdb"}}>
                                 <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
                                     
                                         <div className="question_screen_selection_grid">

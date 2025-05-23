@@ -5,6 +5,8 @@ import Header from "../components/Header_navigation";
 
 import { useState } from "react";
 import { Control_menu, Saved_question_screen, Community_question_screen, Saved_source_question_subtopics_screen, Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection, Topics_screen_SubTopicSelection, Saved_question_subtopics_screen } from "../components/Page_Question_Screen";
+import App_Button from "../components/App_Button";
+import { useNavigate } from "react-router-dom";
 
 
 export default function QuestionScreen() {
@@ -80,11 +82,25 @@ export default function QuestionScreen() {
             // sub-tela Perguntas Comunidade da pagina perguntas 
             case 3:
             {
-                return(
-                    <Community_question_screen set_current_option={function (option: number): void {
-                        throw new Error("Function not implemented.");
-                    } } />
-                )   
+                
+                function CommunityButton() {
+                    const navigate = useNavigate();
+
+                    return (
+                        <App_Button
+                            bgcolor={"FFDACC"}
+                            bordercolor={"e3c0b3"}
+                            borderhovercolor={"d1b1a5"}
+                            bghovercolor={"e3c2b6"}
+                            message={"Perguntas da Comunidade"}
+                            onClick={() => navigate('/CommunityScreen')}
+                        />
+                    );
+                }  
+            
+                return (
+                    CommunityButton     
+                );
             }
         }
        

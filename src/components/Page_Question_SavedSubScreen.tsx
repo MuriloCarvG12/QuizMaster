@@ -27,7 +27,7 @@ export function Saved_question_screen({set_current_option, set_current_saved_top
                
                
                            <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", borderColor:"#bdafdb"}}>
-                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
+                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%" , borderStyle:"none"}}>
                                     
                                         <div className="question_screen_selection_grid">
                                             {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
@@ -89,7 +89,7 @@ export function Saved_question_subtopics_screen({set_current_saved_topic_state}:
                
                
                            <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", borderColor:"#bdafdb"}}>
-                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
+                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", borderStyle:"none"}}>
                                     
                                         <div className="question_screen_selection_grid">
                                             {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
@@ -152,7 +152,7 @@ export function Saved_source_question_subtopics_screen({ set_current_saved_topic
                
                
                            <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", borderColor:"#bdafdb"}}>
-                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%"}}>
+                                <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", borderStyle:"none"}}>
                                     
                                         <div className="question_screen_selection_grid">
                                             {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}

@@ -17,7 +17,7 @@ export default function Card_button({width, height, link, bgcolor, text, img_sou
                 <h1 style={{textAlign: "center", color: "#333333"}}>{text}</h1>
             </div>
             
-            <div style={{width: `100%`, height: `100%`,backgroundImage:`url(${img_source})`}}><Link to={`http://localhost:5173${link}`} style={{width: "100%", height: "100%", display:"flex",justifyContent: "center", textDecoration:"none"}}></Link></div>
+            <div style={{width: `100%`, height: `100%`,backgroundImage:`url(${img_source})`, backgroundSize: "cover",}}><Link to={`http://localhost:5173${link}`} style={{width: "100%", height: "100%", display:"flex",justifyContent: "center", textDecoration:"none"}}></Link></div>
             
             
         </div>

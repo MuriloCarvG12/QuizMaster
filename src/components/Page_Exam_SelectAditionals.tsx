@@ -4,11 +4,11 @@ import App_Button from "./App_Button"
 export default function Page_Exam_SelectAditionals({set_current_step, set_current_step_option, set_current_option_start}:any)
 {
   const [current_option, set_current_option] = useState(0)
-return (
-  
+  const [show_score_during_exam, set_show_score_during_exam] = useState(0)
+  return (
             <div style={{width: "100%" , height: "100%", display: "flex", flexDirection:"column"}}>
               <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_current_option(1)}} message={"Tempo"}/>
-              <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_current_option(2)}} message={"Exibir Pontuacao"}/>
+              <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_show_score_during_exam(1); console.log("pontuacao exibida durante a prova")}} message={"Exibir pontuacao durante a prova"}/>
               <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_current_step(set_current_option_start)}} message={"Iniciar"}/>
               <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_current_step(set_current_step_option)}} message={"Voltar"}/>
             </div>

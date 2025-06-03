@@ -2,6 +2,7 @@ import Header from "../components/Header_navigation";
 import App_Button from "../components/App_Button";
 import { useState } from "react";
 import { Topics_screen_MainTopicSelection, Topics_screen_SubTopicSelection, Topics_screen_QuestionSourceSelection } from "../components/Page_Question_Screen";
+import Page_Exam_SelectAditionals from "../components/Page_Exam_SelectAditionals";
 
 
 export default function ExamScreen() {
@@ -37,16 +38,18 @@ export default function ExamScreen() {
                           switch(current_topic_state)
                               {
                                   case 0:
-                                      return(
-                                          <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} />
+                                      return(<>
+                                          <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} />
+                                          
+                                            </>
                                       )
                                   case 1:
                                       return (
-                                          <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                          <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state}/>
                                       )
                                   case 2:
                                       return (
-                                          <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} set_current_page_status={set_current_step} set_current_page_status_value={2}/>
+                                          <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} set_current_page_status={set_current_step} set_current_page_status_value={2}/>
                                       )
                                   default:
                                       return(
@@ -56,10 +59,14 @@ export default function ExamScreen() {
                               }
                       }
           case 2:
-            return (
-            <div style={{width: "100%" , height: "50%" }}
-            ><h1>Success!</h1>
-            </div>)
+            return(
+            <Page_Exam_SelectAditionals set_current_step={set_current_step} set_current_step_option={1} set_current_option_start={3}/>
+          )
+          case 3:
+            return(
+              <h1>Sucesso!</h1>
+            )
+           
           default:
             return <p>Unknown status</p>;
         }

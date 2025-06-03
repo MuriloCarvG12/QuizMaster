@@ -1,39 +1,105 @@
 
-import Card_button from "../components/Card_Button";
+
 import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
+import { useState } from "react";
+import { Control_menu,  Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection, Topics_screen_SubTopicSelection } from "../components/Page_Question_Screen";
+
+import { Saved_question_screen, Saved_question_subtopics_screen, Saved_source_question_subtopics_screen } from "../components/Page_Question_SavedSubScreen";
+import { CommunityButton } from "../components/Page_Question_Community_Button";
+
 
 export default function QuestionScreen() {
+    const [current_option, set_current_option] = useState(0) // variable controls the sub menu shown
+    const [picked_question_source, set_picked_question_source] = useState("") // variable that stores the exam sources selected
+    const[picked_question_topics, set_picked_question_topics] = useState([]) // variable that stores the topics selected
+    const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
+    const [current_saved_topic_state, set_current_saved_topic_state] = useState(0) // variable that controles the saved questions submenu
+    
+
+
+
+
+    function control_menu(current_option:number)
+    {
+        switch(current_option)
+        {
+            case 0: // sub-tela inicial da pagina perguntas
+                {
+                    return(
+                    <Control_menu set_current_option={set_current_option}/>
+                )
+                    
+                }
+            // sub-tela Topicos  da pagina perguntas 
+            case 1: 
+            {
+                switch(current_topic_state)
+                    {
+                        case 0:
+                            return(
+                                <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} />
+                            )
+                        case 1:
+                            return (
+                                <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                            )
+                        case 2:
+                            return (
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                            )
+                        default:
+                            return(
+                                console.log("this is broken!")
+                            )
+                            
+                    }
+            }
+            // sub-tela Perguntas Salvas  da pagina perguntas 
+            case 2:
+            {
+                switch(current_saved_topic_state)
+                {
+                    case 0:
+                        return(
+                            <Saved_question_screen set_current_option={set_current_option} set_current_saved_topic_state={set_current_saved_topic_state}/>
+                        )
+                    case 1: 
+                        return(
+                            <Saved_question_subtopics_screen set_current_saved_topic_state={set_current_saved_topic_state}/>
+                        )
+
+                    case 2:
+                        return(
+                            <Saved_source_question_subtopics_screen  set_current_saved_topic_state={set_current_saved_topic_state}/>
+                        )
+                    default:{
+                        return(console.log("this is broken"))
+                    }
+                }
+                
+            }
+            // sub-tela Perguntas Comunidade da pagina perguntas 
+            case 3:
+            {           
+                return (
+                    CommunityButton     
+                );
+            }
+        }
+       
+    }
+
+
+
     return (
     <>
     
             <div id="container">
                 <Header Username={""}/>
     
-    
-                        <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
-            
-            
-                            <div id="USER Questions HEAD" 
-                            style={{width:"80%", height: "9%", backgroundColor:"#FFF3CD", textAlign:"center", color:"#666666", paddingTop: "1%", borderStyle:"solid",borderWidth:"5px", borderColor:"#FFE5B4"}
-                            }>
-                                <h1>Minhas Perguntas</h1>
-                            </div>
-            
-            
-                            <div id="HOME-Questions" 
-                                style={{width: "80%", height: "80%", display: "flex", flexDirection: "row", justifyContent: "center", gap: "12.5%", paddingTop: "5%", paddingBottom: "2%", backgroundColor:"#FFFFFF"}
-                            }>
-                                
-                                            <Card_button width={20}  height={100} link="/QuizScreen"  bgcolor="9FF9FF"  text="Tópico"/>
-                                            <Card_button width={20}  height={100} link="/ExamScreen"  bgcolor="A8E6CF"  text="Perguntas Salvas"/>
-                                            <Card_button width={20}  height={100} link="/QuestionScreen"  bgcolor="A6BED0"  text="Perguntas da Comunidade"/>
-                            
-                            </div>
-            
-                            
-                        </div>     
+                {control_menu(current_option)}          
                 
                 <Quiz_master_footer/>    
                 

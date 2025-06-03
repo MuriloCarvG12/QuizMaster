@@ -163,8 +163,16 @@ export function Topics_screen_SubTopicSelection({ set_current_topic_state}:topic
 
 const sources = ["lugar1", "lugar2", "lugar3"];
 
+interface topics_screen_QuestionSourceSelection_interface
+{
+    set_picked_question_topics: (array: Array) => void
+    set_current_topic_state: (option: number) => void
+    set_current_option: (option: number) => void
+    set_current_page_status: (option: number) => void
+    set_current_page_status_value:number
+}
 
-export function Topics_screen_QuestionSourceSelection({set_picked_question_topics, set_current_topic_state}:topics_screen_interface)
+export function Topics_screen_QuestionSourceSelection({set_picked_question_topics, set_current_topic_state, set_current_page_status, set_current_page_status_value}:topics_screen_QuestionSourceSelection_interface)
 {
     const [selectedSources, setSelectedSources] = useState<string[]>([]);
     return(
@@ -214,7 +222,7 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                     </div>
 
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedSources); console.log("PICKED TOPICS ->", selectedSources);}}/>
+                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedSources); console.log("PICKED TOPICS ->", selectedSources); set_current_page_status(set_current_page_status_value)}}/>
                                     </div>
                                     
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>

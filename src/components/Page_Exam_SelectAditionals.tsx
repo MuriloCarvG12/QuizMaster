@@ -1,5 +1,6 @@
 import { useState } from "react"
 import App_Button from "./App_Button"
+import '.././index.css'
 
 export default function Page_Exam_SelectAditionals({set_current_step, set_current_step_option, set_current_option_start, set_timer}:any)
 {
@@ -19,9 +20,11 @@ export default function Page_Exam_SelectAditionals({set_current_step, set_curren
             ) 
     case 1:
       return(
-        <div style={{width: "100%" , height: "100%", display: "flex", flexDirection:"column"}}>
-          <h1 style={{color: "black"}}>Digite quantos minutos voce deseja!</h1>
-          <input value={current_time} onChange={e => { set_current_time(e.target.value); console.log("test -> " + e.target.value);}}/>
+        <div style={{width: "100%" , height: "100%", display: "flex", flexDirection:"column", alignContent:"center"}}>
+          <div style={{width: "100%" , height: "50%", display: "flex", flexDirection:"column", justifyContent:"space-evenly"}}>
+              <h1 style={{color:"#333333", textAlign:"center"}}>Digite quantos minutos voce deseja!</h1>
+              <input className="Text_Field" style={{height:"10%", alignSelf:"center"}}value={current_time} onChange={e => { set_current_time(e.target.value); console.log("test -> " + e.target.value);}}/>
+          </div>
           <div style={{width: "100%" , height: "33%", display: "flex", flexDirection:"column"}}>
               <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_current_option(0); set_timer(1)}} message={"Continuar"}/>
               <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {set_current_option(0); set_timer(0)}} message={"Cancelar"}/>

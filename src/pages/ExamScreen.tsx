@@ -13,6 +13,8 @@ export default function ExamScreen() {
     const [picked_question_source, set_picked_question_source] = useState("") // variable that stores the exam sources selected
     const[picked_question_topics, set_picked_question_topics] = useState([]) // variable that stores the topics selected
     const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
+    const [timer_on, set_timer_on] = useState(0) //variable that checks if the user wants to take the exam with a tiemr or not 1 - turned on and 0 - not turned on
+    const [show_score_during_exam, set_show_score_during_exam] = useState(0)
 
     function Select_Length(NPerguntas:number)
     {
@@ -38,18 +40,30 @@ export default function ExamScreen() {
                           switch(current_topic_state)
                               {
                                   case 0:
-                                      return(<>
-                                          <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} />
-                                          
-                                            </>
+                                      return(
+                                      <>
+                                        <div style={{width:"100%", paddingTop:"5%"}}>
+                                            <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} />
+                                        </div>    
+                                      </>
                                       )
                                   case 1:
                                       return (
-                                          <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state}/>
+                                      <>
+                                        <div style={{width:"100%", paddingTop:"5%"}}>
+                                            <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state}/>
+                                        </div>
+                                      </>
+                                          
                                       )
                                   case 2:
                                       return (
-                                          <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} set_current_page_status={set_current_step} set_current_page_status_value={2}/>
+                                        <>
+                                        <div style={{width:"100%", paddingTop:"5%"}}>
+                                            <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} set_current_page_status={set_current_step} set_current_page_status_value={2}/>
+                                        </div>
+                                      </>
+                                          
                                       )
                                   default:
                                       return(
@@ -60,7 +74,14 @@ export default function ExamScreen() {
                       }
           case 2:
             return(
-            <Page_Exam_SelectAditionals set_current_step={set_current_step} set_current_step_option={1} set_current_option_start={3}/>
+            <Page_Exam_SelectAditionals 
+            set_current_step={set_current_step} 
+            set_current_step_option={1} 
+            set_current_option_start={3} 
+            set_timer={set_timer_on} 
+            set_show_score_during_exam={set_show_score_during_exam} 
+            show_score_during_exam_value={show_score_during_exam}
+            />
           )
           case 3:
             return(

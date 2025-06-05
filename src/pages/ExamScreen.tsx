@@ -32,7 +32,7 @@ export default function ExamScreen() {
                 <App_Button bgcolor={"fce0d9"} bordercolor={"f2bcb1"}  borderhovercolor={"d1a097"} bghovercolor={"dec3bd"} onClick={() => {Select_Length(25); set_current_step(1)}} message={"Curto 25 perguntas"}/>
                 <App_Button bgcolor={"D4EDDA"} bordercolor={"ACCAB3"}  borderhovercolor={"93ad99"} bghovercolor={"b3c7b8"} onClick={() => {Select_Length(45); set_current_step(1)}} message={"Médio 45 perguntas"}/>
                 <App_Button bgcolor={"D1ECF1"} bordercolor={"B7D8DE"}  borderhovercolor={"a3c4c9"} bghovercolor={"b2d4db"} onClick={() => {Select_Length(90); set_current_step(1)}} message={"Longo 90 perguntas"}/>
-                <App_Button bgcolor={"FFF3CD"} bordercolor={"D5C799"}  borderhovercolor={"c4b88d"} bghovercolor={"d6cba7"} onClick={() => {Select_Length(1); set_current_step(1)}} message={"Customizado"}/>;
+                <App_Button bgcolor={"FFF3CD"} bordercolor={"D5C799"}  borderhovercolor={"c4b88d"} bghovercolor={"d6cba7"} onClick={() => {Select_Length(1); set_current_step(3)}} message={"Customizado"}/>;
               </>
             )
           case 1: 
@@ -65,6 +65,7 @@ export default function ExamScreen() {
                                       </>
                                           
                                       )
+                                
                                   default:
                                       return(
                                           console.log("this is broken!")
@@ -83,10 +84,38 @@ export default function ExamScreen() {
             show_score_during_exam_value={show_score_during_exam}
             />
           )
-          case 3:
+           case 3:
             return(
-              <h1>Sucesso!</h1>
-            )
+                 <>
+                  <h1 style={{color:"#666666", textAlign: "center", alignContent: "center"}}> Digite o numero de perguntas que você deseja!</h1>
+                  <input 
+                  className="Text_Field" 
+                  style={{height:"10%", alignSelf:"center"}} 
+                  value={length} 
+                  onChange={e => { set_length(e.target.value);  
+                 }}/>
+
+                  <div style={{width: "100%" , height: "60%", display: "flex", flexDirection:"column", alignContent:"center"}}>
+                   <App_Button 
+                      bgcolor={"D9F2E6"} 
+                      bordercolor={"a7d1bc"} 
+                      borderhovercolor={"91baa6"} 
+                      bghovercolor={"c1d9cd"} 
+                      onClick={() => {set_current_step(1); console.log("test -> " + length);}} 
+                      message={"Iniciar"}/>
+                                
+                    <App_Button 
+                      bgcolor={"f5abab"} 
+                      bordercolor={"db9797"} 
+                      borderhovercolor={"c78787"} 
+                      bghovercolor={"e39898"} 
+                      onClick={() => {set_current_step(0)}} 
+                      message={"Voltar"}/>
+                    </div>
+
+                </>
+
+          )
            
           default:
             return <p>Unknown status</p>;
@@ -106,9 +135,9 @@ export default function ExamScreen() {
     <div id="container">
         <Header Username={""}/>
         <div id="HOME-USER-OPTIONS-HEAD" 
-            style={{width: "60%", height: "5%", backgroundColor: "#B4FFFB", marginLeft: "auto", marginRight: "auto", borderStyle:"solid", borderWidth:"5px", borderColor:"#82D0D5"}}>
+            style={{width: "60%", height: "5%", backgroundColor: "#B4FFFB", marginLeft: "auto", marginRight: "auto", borderStyle:"solid", borderWidth:"5px", borderColor:"#82D0D5", paddingTop:40}}>
 
-            <h1 style={{color:"#333333", textAlign: "center", alignContent: "center"}}> {current_step == 0 ? "Selecione o Tamanho da Prova" : current_step == 1 ? "Selecione os Topicos da Prova" : current_step == 2 ? "Selecione Adicionais da Prova" : "Isso nao deveria ter ocorrido"}</h1>
+            <h1 style={{color:"#444444", textAlign: "center", alignContent: "center"}}> {current_step == 0 ? "Selecione o Tamanho da Prova" : current_step == 1 ? "Selecione os Topicos da Prova" : current_step == 2 ? "Selecione Adicionais da Prova"  : current_step == 3 ? "Escolha o numero de Perguntas da prova" : "Isso nao deveria ter ocorrido"}</h1>
         </div>
        
         <div id="HOME-USER-OPTIONS" className="User-Options" style={{width:"60%",height:"65%", borderStyle:"solid", borderWidth:"5px", borderColor:"#82D0D5", borderTop: "0px", justifyContent: "space-between", flexDirection:"column" }}>

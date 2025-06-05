@@ -43,7 +43,7 @@ export default function ExamScreen() {
                                       return(
                                       <>
                                         <div style={{width:"100%", paddingTop:"5%"}}>
-                                            <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} />
+                                            <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} header_bg_color="B4FFFB" border_color="82D0D5"/>
                                         </div>    
                                       </>
                                       )
@@ -51,7 +51,7 @@ export default function ExamScreen() {
                                       return (
                                       <>
                                         <div style={{width:"100%", paddingTop:"5%"}}>
-                                            <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state}/>
+                                            <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} header_bg_color="B4FFFB" border_color="82D0D5"/>
                                         </div>
                                       </>
                                           
@@ -60,7 +60,7 @@ export default function ExamScreen() {
                                       return (
                                         <>
                                         <div style={{width:"100%", paddingTop:"5%"}}>
-                                            <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} set_current_page_status={set_current_step} set_current_page_status_value={2}/>
+                                            <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_step} set_current_topic_state={set_current_topic_state} set_current_page_status={set_current_step} set_current_page_status_value={2} header_bg_color="B4FFFB" border_color="82D0D5"/>
                                         </div>
                                       </>
                                           

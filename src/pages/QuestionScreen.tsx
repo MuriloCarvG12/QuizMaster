@@ -39,15 +39,16 @@ export default function QuestionScreen() {
                     {
                         case 0:
                             return(
-                                <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} />
+                                <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} header_bg_color="aadaf2" border_color="96c1d6"/>
+                                          
                             )
                         case 1:
                             return (
-                                <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_SubTopicSelection set_picked_question_topics={() => { } } set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} header_bg_color="aadaf2" border_color="96c1d6" />
                             )
                         case 2:
                             return (
-                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} header_bg_color="aadaf2" border_color="96c1d6"/>
                             )
                         default:
                             return(

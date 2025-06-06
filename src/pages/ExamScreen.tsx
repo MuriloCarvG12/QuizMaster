@@ -142,7 +142,7 @@ export default function ExamScreen() {
         />
       );
 
-    case 3:
+     case 3:
       switch (custom_length_switch) {
         case 0:
           return (
@@ -197,17 +197,63 @@ export default function ExamScreen() {
               </div>
             </>
           );
+
+        case 1:
+          switch (current_topic_state) {
+            case 0:
+              return (
+                <div style={{ width: "100%", paddingTop: "5%" }}>
+                  <Topics_screen_MainTopicSelection
+                    set_picked_question_topics={set_picked_question_topics}
+                    set_current_page_status={set_custom_length_switch}
+                    set_current_component_status={set_current_topic_state}
+                    set_current_page_status_value={0}
+                    header_bg_color="B4FFFB"
+                    border_color="82D0D5"
+                  />
+                </div>
+              );
+
+            case 1:
+              return (
+                <div style={{ width: "100%", paddingTop: "5%" }}>
+                  <Topics_screen_SubTopicSelection
+                    set_picked_question_topics={() => {}}
+                    set_current_component_status={set_current_topic_state}
+                    header_bg_color="B4FFFB"
+                    border_color="82D0D5"
+                    set_current_page_status_value={0}
+                  />
+                </div>
+              );
+
+            case 2:
+              return (
+                <div style={{ width: "100%", paddingTop: "5%" }}>
+                  <Topics_screen_QuestionSourceSelection
+                    set_picked_question_topics={set_picked_question_source}
+                    set_current_component_status={set_current_topic_state}
+                    header_bg_color="B4FFFB"
+                    border_color="82D0D5"
+                    set_current_option={() => {
+                      throw new Error("Function not implemented.");
+                    }}
+                    set_current_page_status={() => {
+                      throw new Error("Function not implemented.");
+                    }}
+                  />
+                </div>
+              );
+
+            default:
+              console.error("Invalid topic state: ", current_topic_state);
+              return <p>Erro inesperado na seleção de tópicos.</p>;
+          }
+
         default:
           console.error("Invalid custom_length_switch: ", custom_length_switch);
           return <p>Erro inesperado no modo customizado.</p>;
-      }
-
-    default:
-      console.error("Invalid status: ", status);
-      return <p>Status inválido</p>;
-  }
-}
-
+    }}}
     return (
     
     <>

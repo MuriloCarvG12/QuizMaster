@@ -4,10 +4,14 @@ import Quiz_master_footer from "../components/Footer";
 import Header from "../components/Header_navigation";
 
 import { useState } from "react";
-import { Control_menu,  Topics_screen_MainTopicSelection, Topics_screen_QuestionSourceSelection, Topics_screen_SubTopicSelection } from "../components/Page_Question_Screen";
+
 
 import { Saved_question_screen, Saved_question_subtopics_screen, Saved_source_question_subtopics_screen } from "../components/Page_Question_SavedSubScreen";
 import { CommunityButton } from "../components/Page_Question_Community_Button";
+import Control_menu from "../components/Page_Question_Screen";
+import { Topics_screen_MainTopicSelection } from "../components/QuestionsSubScreenComponents/MainTopicSelection";
+import { Topics_screen_QuestionSourceSelection } from "../components/QuestionsSubScreenComponents/QuestionSourceSelection";
+import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/SubTopicSelection";
 
 
 export default function QuestionScreen() {
@@ -17,11 +21,34 @@ export default function QuestionScreen() {
     const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
     const [current_saved_topic_state, set_current_saved_topic_state] = useState(0) // variable that controles the saved questions submenu
     
-
-
-
-
     function control_menu(current_option:number)
+    {
+        return( <>
+        </>)
+    }
+
+
+
+   
+
+    return (
+    <>
+    
+            <div id="container">
+                <Header Username={""}/>
+    
+                {control_menu(current_option)}          
+                
+                <Quiz_master_footer/>    
+                
+                    
+            </div>
+    </>
+
+)
+}
+
+/***function control_menu(current_option:number)
     {
         switch(current_option)
         {
@@ -39,15 +66,16 @@ export default function QuestionScreen() {
                     {
                         case 0:
                             return(
-                                <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} />
+                                <Topics_screen_MainTopicSelection set_picked_question_topics={set_picked_question_topics} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} header_bg_color="aadaf2" border_color="96c1d6"/>
+                                          
                             )
                         case 1:
                             return (
-                                <Topics_screen_SubTopicSelection set_picked_question_topics={() => {}} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_SubTopicSelection set_picked_question_topics={() => { } } set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} header_bg_color="aadaf2" border_color="96c1d6" />
                             )
                         case 2:
                             return (
-                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state}/>
+                                <Topics_screen_QuestionSourceSelection set_picked_question_topics={set_picked_question_source} set_current_option={set_current_option} set_current_topic_state={set_current_topic_state} header_bg_color="aadaf2" border_color="96c1d6"/>
                             )
                         default:
                             return(
@@ -91,21 +119,4 @@ export default function QuestionScreen() {
        
     }
 
-
-
-    return (
-    <>
-    
-            <div id="container">
-                <Header Username={""}/>
-    
-                {control_menu(current_option)}          
-                
-                <Quiz_master_footer/>    
-                
-                    
-            </div>
-    </>
-
-)
-}
+ */

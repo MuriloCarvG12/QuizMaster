@@ -5,16 +5,15 @@ const sources = ["lugar1", "lugar2", "lugar3"];
 
 interface topics_screen_QuestionSourceSelection_interface
 {
-    set_picked_question_topics: (array: Array) => void
+     set_picked_question_sources: (array: any[]) => void;
     set_current_component_status: (option: number) => void
-    set_current_option: (option: number) => void
-    set_current_page_status: (option: number) => void
-    
+ 
+   
     border_color :string
     header_bg_color :string
 }
 
-export function Topics_screen_QuestionSourceSelection({set_picked_question_topics, set_current_component_status, border_color, header_bg_color}:topics_screen_QuestionSourceSelection_interface)
+export function Topics_screen_QuestionSourceSelection({set_picked_question_sources, set_current_component_status, border_color, header_bg_color}:topics_screen_QuestionSourceSelection_interface)
 {
     const [selectedSources, setSelectedSources] = useState<string[]>([]);
     return(
@@ -64,7 +63,7 @@ export function Topics_screen_QuestionSourceSelection({set_picked_question_topic
                                     </div>
 
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_topics(selectedSources); console.log("PICKED TOPICS ->", selectedSources);}}/>
+                                            <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => {set_picked_question_sources(selectedSources); console.log("PICKED TOPICS ->", selectedSources);}}/>
                                     </div>
                                     
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>

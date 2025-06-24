@@ -10,7 +10,7 @@ interface I_CustomLengthExam
     set_current_option: (option: number) => void
     set_current_page_status: (option: number) => void
     set_current_topic_state: (option: number) => void
-    set_picked_question_source: (option: string) => void
+    set_picked_question_source: (array: Array) => void
     set_picked_question_topics: (array: Array) => void
     current_topic_state:number
     Select_Length: (NPerguntas:number) => void
@@ -18,7 +18,16 @@ interface I_CustomLengthExam
 
 }
 
-export default function CustomLengthExam({custom_length_switch, set_custom_length_switch,set_current_page_status, set_picked_question_topics,set_current_topic_state,current_topic_state,set_picked_question_source,Select_Length}:I_CustomLengthExam)
+export default function CustomLengthExam(
+  {custom_length_switch, 
+    set_custom_length_switch,
+    set_current_page_status, 
+    set_picked_question_topics,
+    set_current_topic_state,
+    current_topic_state,
+    set_picked_question_source,
+    Select_Length
+  }:I_CustomLengthExam)
 {
     switch (custom_length_switch) {
             case 0:
@@ -74,7 +83,7 @@ export default function CustomLengthExam({custom_length_switch, set_custom_lengt
                   </div>
                 </>
               );
-    
+             
             case 1:
               switch (current_topic_state) {
                 case 0:
@@ -99,7 +108,7 @@ export default function CustomLengthExam({custom_length_switch, set_custom_lengt
                         set_current_component_status={set_current_topic_state}
                         header_bg_color="B4FFFB"
                         border_color="82D0D5"
-                        set_current_page_status_value={0}
+                      
                       />
                     </div>
                   );
@@ -108,7 +117,7 @@ export default function CustomLengthExam({custom_length_switch, set_custom_lengt
                   return (
                     <div style={{ width: "100%", paddingTop: "5%" }}>
                       <Topics_screen_QuestionSourceSelection
-                        set_picked_question_topics={set_picked_question_source}
+                        set_picked_question_sources={set_picked_question_source}
                         set_current_component_status={set_current_topic_state}
                         header_bg_color="B4FFFB"
                         border_color="82D0D5"

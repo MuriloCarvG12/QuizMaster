@@ -144,7 +144,7 @@ export default function ExamScreen() {
       );
 
     case 3:
-      //TODO FIX THIS FUCKING MESS!!!!!
+     
       return(
       <CustomLengthExam 
         custom_length_switch={custom_length_switch}

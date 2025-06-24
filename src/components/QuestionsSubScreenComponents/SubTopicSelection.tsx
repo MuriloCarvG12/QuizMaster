@@ -5,7 +5,7 @@ interface Topics_screen_SubTopicSelection
     set_picked_question_topics: (array: Array) => void
     
     set_current_component_status: (option: number) => void
-    set_current_page_status_value :number
+
    
     border_color :string
     header_bg_color :string

@@ -144,7 +144,8 @@ export default function ExamScreen() {
       );
 
     case 3:
-      //TODO FIX THIS FUCKING MESS!!!!!
+     
+      return(
       <CustomLengthExam 
         custom_length_switch={custom_length_switch}
         set_custom_length_switch={set_custom_length_switch}
@@ -153,12 +154,11 @@ export default function ExamScreen() {
         set_current_topic_state={set_current_topic_state}
         current_topic_state={current_topic_state}
         set_picked_question_source={set_picked_question_source}
-        Select_Length={Select_Length} 
-        set_current_component_status={set_current_component_status} 
-        set_current_option={function (option: number): void {
-          throw new Error("Function not implemented.");
-        } }      />
+        Select_Length={set_exam_length} 
+        set_current_component_status={set_current_topic_state} 
+        set_current_option={() => {}}      /> )
     }}
+ 
 
     return (
     <>

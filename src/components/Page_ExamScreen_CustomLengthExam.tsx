@@ -121,12 +121,7 @@ export default function CustomLengthExam(
                         set_current_component_status={set_current_topic_state}
                         header_bg_color="B4FFFB"
                         border_color="82D0D5"
-                        set_current_option={() => {
-                          throw new Error("Function not implemented.");
-                        }}
-                        set_current_page_status={() => {
-                          throw new Error("Function not implemented.");
-                        }}
+                      
                       />
                     </div>
                   );

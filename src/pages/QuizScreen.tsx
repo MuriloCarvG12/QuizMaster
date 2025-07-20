@@ -8,7 +8,7 @@ export default function QuizScreen() {
     const [New_Quiz_Status, Set_New_Quiz_Status] = useState(0)
     const [new_quiz_topics, set_new_quiz_topics] = useState([])
     const [new_quiz_questions, set_new_quiz_questions] = useState([])
-
+    const topics = ["Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia"];
     function control_quiz_page(current_quizpage_status:number)
     {
         switch(current_quizpage_status)
@@ -58,9 +58,41 @@ export default function QuizScreen() {
                             </div>
 
 
-                            <div id="USER QUIZES" style={{display:"flex", flexDirection: "row", gap: "5%", width:"80%", height: "50%", backgroundColor:"#FDFDFD", borderStyle:"solid",borderWidth:"5px",borderTopWidth:"0px", borderColor:"#E2E2E2"}}>
-                                <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar Tópicos"} onClick={() => Set_New_Quiz_Status(1)}/>
-                                <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_quizpage_status(0)}/>
+                            <div id="USER QUIZES" 
+                                style=
+                                {{
+                                    display:"flex", flexDirection: "column", gap: "5%", width:"80%", height: "900px", backgroundColor:"#FDFDFD", borderStyle:"solid",borderWidth:"5px",borderTopWidth:"0px", borderColor:"#E2E2E2"
+                                    
+                                }}>
+
+                                
+                                        <div className="question_screen_selection_grid" style={{marginTop: "40px", height:"20%"}}>
+                                            {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
+                                            {topics.map(topic => (
+                                            
+                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
+                                                <input
+                                                    type="checkbox"
+                                                    value={topic}
+                                                    className="question_screen_selection_checkbox"
+                                                    //checked={'a'}
+                                                    onChange={() => {}}/>
+                                                    <h3 style={{textAlign:"center"}}>{topic}</h3>
+                                                </label>  
+                                                                 
+                                        ))}
+                                        
+                                        
+                                        </div> 
+
+                                <div style={{ width:"100%", height:"8%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10%", marginBottom: "10%"}}>
+                                    <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar Tópicos"} onClick={() => Set_New_Quiz_Status(1)}/>
+                                </div>
+
+                                <div style={{ width:"100%", height:"8%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                                    <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_quizpage_status(0)}/>
+                                </div>
+
                             </div>
 
 
@@ -69,7 +101,7 @@ export default function QuizScreen() {
                     
                     case 1:
                       return (
-                      <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center"}}>
+                      <div style={{display:"flex", flexDirection:"column", width:"100%", height:"70%", minHeight:"60%", justifyItems:"center", alignItems: "center"}}>
 
 
                             <div id="USER QUIZES HEAD" 
@@ -79,9 +111,19 @@ export default function QuizScreen() {
                             </div>
 
 
-                            <div id="USER QUIZES" style={{display:"flex", flexDirection: "row", gap: "5%", width:"80%", height: "50%", backgroundColor:"#FDFDFD", borderStyle:"solid",borderWidth:"5px",borderTopWidth:"0px", borderColor:"#E2E2E2"}}>
-                                <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Publicar Quiz"} onClick={() => Set_New_Quiz_Status(1)}/>
-                                <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => Set_New_Quiz_Status(0)}/>
+                            <div id="USER QUIZES" 
+                                style=
+                                {{display:"flex", flexDirection: "column" ,width:"80%", height: "100%", backgroundColor:"#FDFDFD", borderStyle:"solid",borderWidth:"5px",borderTopWidth:"0px", borderColor:"#E2E2E2",}}>
+                                  
+
+                                    <div style={{ width:"100%", height:"10%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10%", marginBottom: "10%"}}>
+                                        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Publicar Quiz"} onClick={() => Set_New_Quiz_Status(1)}/>
+                                    </div>
+
+                                    <div style={{ width:"100%", height:"10%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => Set_New_Quiz_Status(0)}/>
+                                    </div>   
+                           
                             </div>
 
 

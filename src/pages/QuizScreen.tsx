@@ -8,7 +8,7 @@ export default function QuizScreen() {
     const [New_Quiz_Status, Set_New_Quiz_Status] = useState(0)
     const [new_quiz_topics, set_new_quiz_topics] = useState([])
     const [new_quiz_questions, set_new_quiz_questions] = useState([])
-    const topics = ["Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia"];
+    const topics = ["Matemática", "História", "Biologia"];
     function control_quiz_page(current_quizpage_status:number)
     {
         switch(current_quizpage_status)
@@ -107,14 +107,62 @@ export default function QuizScreen() {
                             <div id="USER QUIZES HEAD" 
                             style={{width:"80%", height: "9%", backgroundColor:"#FDE4CF", textAlign:"center", color:"#666666", paddingTop: "1%", borderStyle:"solid",borderWidth:"5px", borderColor:"#EBD5C3"}
                             }>
-                                <h1>Perguntas do Quiz</h1>
+                                <h1>Insira a sua pergunta</h1>
                             </div>
 
 
                             <div id="USER QUIZES" 
                                 style=
                                 {{display:"flex", flexDirection: "column" ,width:"80%", height: "100%", backgroundColor:"#FDFDFD", borderStyle:"solid",borderWidth:"5px",borderTopWidth:"0px", borderColor:"#E2E2E2",}}>
-                                  
+                                    
+
+                                    <div id="USER INPUT" style={{display:"flex", flexDirection: "column", alignItems: "center", justifyItems:"center" ,width:"100%", height: "100%",gap: "10%"}}>
+                                    
+                                            <div style={{width:"80%", height:"40%",display:"flex", flexDirection: "column", alignItems: "center"}}>
+
+                                                <h3 style={{color: "#666666", fontSize: 30, textAlign:"center"}}>Enunciado</h3>
+                                                <input className="Text_Field" placeholder="Insira o enunciado da pergunta"></input> 
+
+                                            </div>
+
+                                            <div style={{width:"80%", height:"40%",display:"flex", flexDirection: "column", alignItems: "center"}}>
+
+                                                <h3 style={{color: "#666666", fontSize: 30, textAlign:"center"}}>Alternativa A</h3>
+                                                <input className="Text_Field" placeholder="Insira a alternativa A"></input>
+
+                                            </div>
+
+                                            <div style={{width:"80%", height:"40%",display:"flex", flexDirection: "column", alignItems: "center"}}>
+
+                                                <h3 style={{color: "#666666", fontSize: 30, textAlign:"center"}}>Alternativa B</h3>
+                                                <input className="Text_Field" placeholder="Insira a alternativa B"></input>
+
+                                            </div>
+
+                                            <div style={{width:"80%", height:"40%",display:"flex", flexDirection: "column", alignItems: "center"}}>
+
+                                                <h3 style={{color: "#666666", fontSize: 30, textAlign:"center"}}>Alternativa C</h3>
+                                                <input className="Text_Field" placeholder="Insira a alternativa C"></input> 
+
+                                            </div>
+
+                                            <div style={{width:"80%", height:"40%",display:"flex", flexDirection: "column", alignItems: "center"}}>
+
+                                                <h3 style={{color: "#666666", fontSize: 30, textAlign:"center"}}>Alternativa D</h3>
+                                                <input className="Text_Field" placeholder="Insira a alternativa D"></input> 
+                                             
+                                            </div>
+                                            
+                                            <div style={{ width:"100%", height:"10%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10%", marginBottom: "10%"}}>
+                                                 <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Adicionar Pergunta"} onClick={() => Set_New_Quiz_Status(1)}/>
+                                            </div>
+
+                                            <div style={{ width:"100%", height:"10%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10%", marginBottom: "10%"}}>
+                                                <App_Button bgcolor={"FFFFFF"} bordercolor={"FFFFFF"} borderhovercolor={"FFFFFF"} bghovercolor={"FFFFFF"} message={"Limpar Pergunta"} onClick={() => Set_New_Quiz_Status(1)}/>
+                                            </div>
+                                            
+                                            
+                                    </div>
 
                                     <div style={{ width:"100%", height:"10%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10%", marginBottom: "10%"}}>
                                         <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Publicar Quiz"} onClick={() => Set_New_Quiz_Status(1)}/>

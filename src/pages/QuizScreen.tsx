@@ -143,17 +143,17 @@ export default function QuizScreen() {
 
                                     <div id="USER INPUT" style={{display:"flex", flexDirection: "column", alignItems: "center", justifyItems:"center" ,width:"100%", height: "100%",gap: "2%"}}>
 
-                                            <div style={{height: "10%"}}>
-                                                <div className="question_screen_selection_grid" style={{marginTop: "40px", height:"100%"}}>
+                                            <div style={{height: "10%", width:"100%"}}>
+                                                <div className="question_screen_selection_grid" style={{display:"flex",marginTop: "40px", height:"100%", width: "100%", justifyContent:"center"}}>
                                                 {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
                                                 {new_quiz_questions.map(topic => (
                                             
-                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
+                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black"}} >                                                          
                                                 <input
                                                     type="checkbox"
                                                     value={topic}
                                                     className="question_screen_selection_checkbox"
-                                                    //checked={'a'}
+                                                    onClick={/***Implement method to load the question info here!! */}
                                                     onChange={() => {}}/>
                                                     <h3 style={{textAlign:"center"}}>{topic}</h3>
                                                 </label>  

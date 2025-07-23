@@ -1,20 +1,21 @@
 import App_Button from "../components/App_Button"
 import Header from "../components/Header_navigation"
 import { useState } from "react";
-
+import interface_quiz_question from "../interfaces/quiz_question";
 
 export default function QuizScreen() {
     const [current_quizpage_status, set_current_quizpage_status] = useState(0)
     const [New_Quiz_Status, Set_New_Quiz_Status] = useState(0)
     const [new_quiz_topics, set_new_quiz_topics] = useState([])
-    const [new_quiz_questions, set_new_quiz_questions] = useState([""])
+    const [new_quiz_questions, set_new_quiz_questions] = useState<interface_quiz_question[]>([])
+    const [quizQuestion, setQuizQuestion] = useState<interface_quiz_question>({question_text: '', question_alternative_a: '', question_alternative_b: '', question_alternative_c: '', question_alternative_d: ''});
     const topics = ["Matemática", "História", "Biologia"];
 
     const [Question_Text, Set_Question_Text] = useState("");
-    const [Question_Alternative_A, Set_Question_Alternative_A] = useState("Insira a alternativa C");
-    const [Question_Alternative_B, Set_Question_Alternative_B] = useState("Insira a alternativa B");
-    const [Question_Alternative_C, Set_Question_Alternative_C] = useState("Insira a alternativa C");
-    const [Question_Alternative_D, Set_Question_Alternative_D] = useState("Insira a alternativa D");
+    const [Question_Alternative_A, Set_Question_Alternative_A] = useState("");
+    const [Question_Alternative_B, Set_Question_Alternative_B] = useState("");
+    const [Question_Alternative_C, Set_Question_Alternative_C] = useState("");
+    const [Question_Alternative_D, Set_Question_Alternative_D] = useState("");
     
    
     function clear_quiz_question()
@@ -29,9 +30,28 @@ export default function QuizScreen() {
 
     function add_new_question()
     {
-        set_new_quiz_questions(prev => [...prev, Question_Text]);
+        const new_question = {
+            question_text: Question_Text,
+            question_alternative_a: Question_Alternative_A,
+            question_alternative_b: Question_Alternative_B,
+            question_alternative_c: Question_Alternative_C,
+            question_alternative_d: Question_Alternative_D,
+        };
+
+        setQuizQuestion(new_question);
+
+        set_new_quiz_questions(prev => [...prev, quizQuestion]);
         
-        console.log("question added")
+        console.log(quizQuestion)
+    }
+
+    function load_question(question:interface_quiz_question)
+    {
+        Set_Question_Text(question.question_text)  
+        Set_Question_Alternative_A(question.question_alternative_a)
+        Set_Question_Alternative_B(question.question_alternative_b)
+        Set_Question_Alternative_C(question.question_alternative_c)
+        Set_Question_Alternative_D(question.question_alternative_d)
     }
 
     function control_quiz_page(current_quizpage_status:number)
@@ -100,7 +120,7 @@ export default function QuizScreen() {
                                                     type="checkbox"
                                                     value={topic}
                                                     className="question_screen_selection_checkbox"
-                                                    //checked={'a'}
+                                                    //checked={}
                                                     onChange={() => {}}/>
                                                     <h3 style={{textAlign:"center"}}>{topic}</h3>
                                                 </label>  
@@ -146,25 +166,25 @@ export default function QuizScreen() {
                                             <div style={{height: "10%", width:"100%"}}>
                                                 <div className="question_screen_selection_grid" style={{display:"flex",marginTop: "40px", height:"100%", width: "100%", justifyContent:"center"}}>
                                                 {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
-                                                {new_quiz_questions.map(topic => (
-                                            
-                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black"}} >                                                          
-                                                <input
-                                                    type="checkbox"
-                                                    value={topic}
-                                                    className="question_screen_selection_checkbox"
-                                                    onClick={/***Implement method to load the question info here!! */}
-                                                    onChange={() => {}}/>
-                                                    <h3 style={{textAlign:"center"}}>{topic}</h3>
-                                                </label>  
-                                                                 
+                                                
+                                                {(new_quiz_questions.length > 0) && new_quiz_questions.map(topic => (
+                                                        topic.question_text != '' &&
+                                                                <label key={topic.question_text} style={{ display: 'flex', flexDirection:"column", color:"black"}} >                                                          
+                                                                <input
+                                                                type="checkbox"
+                                                                value={topic.question_text}
+                                                                className="question_screen_selection_checkbox"
+                                                                onClick={() => {load_question(topic)}}
+                                                                onChange={() => {}}/>
+                                                                <h3 style={{textAlign:"center"}}>{topic.question_text}</h3>
+                                                                </label>                                                            
                                                 ))}
                                                 </div>
                                             </div>
                                             <div style={{width:"80%", height:"10%",display:"flex", flexDirection: "column", alignItems: "center"}}>
 
                                                 <h3 style={{color: "#666666", fontSize: 30, textAlign:"center"}}>Enunciado</h3>
-                                                <input id="Question_Text" className="Text_Field" placeholder="Insira o enunciado da pergunta" value={Question_Text} onChange={(e) => Set_Question_Text(e.target.value)}></input> 
+                                                <input id="Question_Text" className="Text_Field" placeholder="Insira o enunciado da pergunta" value={Question_Text} onChange={(e) => {Set_Question_Text(e.target.value); console.log(`test current value of question_text = ${Question_Text}`)}}></input> 
 
                                             </div>
 

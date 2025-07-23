@@ -16,8 +16,7 @@ export default function QuizScreen() {
     const [Question_Alternative_C, Set_Question_Alternative_C] = useState("Insira a alternativa C");
     const [Question_Alternative_D, Set_Question_Alternative_D] = useState("Insira a alternativa D");
     
-    const quiz_questions = [""];
-
+   
     function clear_quiz_question()
     {
             /***id="Question_Text" id="Question_Alternative_A" */
@@ -31,7 +30,7 @@ export default function QuizScreen() {
     function add_new_question()
     {
         set_new_quiz_questions(prev => [...prev, Question_Text]);
-        quiz_questions.push("Question_Text");
+        
         console.log("question added")
     }
 

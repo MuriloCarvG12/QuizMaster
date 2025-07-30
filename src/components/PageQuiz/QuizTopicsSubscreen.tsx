@@ -1,7 +1,9 @@
 import quiz_topics_subscreen from "../../interfaces/quiz_topics_array";
 import App_Button from "../App_Button";
 
-export default function QuizTopicsSubscreen({topics, Set_New_Quiz_Status, set_current_quizpage_status}: quiz_topics_subscreen)
+
+
+export default function QuizTopicsSubscreen({topics, Set_New_Quiz_Status, set_current_quizpage_status, add_new_topic,new_quiz_topics}: quiz_topics_subscreen)
 
 { 
 return(
@@ -33,7 +35,7 @@ return(
                                                     value={topic}
                                                     className="question_screen_selection_checkbox"
                                                     //checked={}
-                                                    onChange={() => {}}/>
+                                                    onChange={() => {add_new_topic(topic); console.log(new_quiz_topics)}}/>
                                                     <h3 style={{textAlign:"center"}}>{topic}</h3>
                                                 </label>  
                                                                  

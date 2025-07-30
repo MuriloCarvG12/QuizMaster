@@ -6,6 +6,7 @@ export default interface quiz_topics_subscreen
     QuestionWarning: string;
     selectedQuestion: string;   
     new_quiz_questions: interface_quiz_question[];
+    set_current_quizpage_status: React.Dispatch<React.SetStateAction<number>>;
     setSelectedQuestion: React.Dispatch<React.SetStateAction<string>>;
     clear_quiz_question: () => void;
     load_question(question: interface_quiz_question): void;

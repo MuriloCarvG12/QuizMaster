@@ -3,7 +3,7 @@ import App_Button from "../App_Button";
 
 
 
-export default function QuizTopicsSubscreen({topics, Set_New_Quiz_Status, set_current_quizpage_status, add_new_topic,new_quiz_topics}: quiz_topics_subscreen)
+export default function QuizTopicsSubscreen({topics, Set_New_Quiz_Status, set_current_quizpage_status, add_new_topic, new_quiz_topics, Message, set_Message, remove_topic}: quiz_topics_subscreen)
 
 { 
 return(
@@ -14,6 +14,7 @@ return(
                             style={{width:"80%", height: "9%", backgroundColor:"#FDE4CF", textAlign:"center", color:"#666666", paddingTop: "1%", borderStyle:"solid",borderWidth:"5px", borderColor:"#EBD5C3"}
                             }>
                                 <h1>Tópicos do Quiz</h1>
+                                <h1>{Message}</h1>
                             </div>
 
 
@@ -27,25 +28,34 @@ return(
                                 
                                         <div className="question_screen_selection_grid" style={{marginTop: "40px", height:"20%"}}>
                                             {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
-                                            {topics.map(topic => (
+
+                                            {
+                                            topics.map(topic => {
+                                                const selected_topic = new_quiz_topics.includes(topic);
+                                                return(
                                             
-                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
-                                                <input
-                                                    type="checkbox"
-                                                    value={topic}
-                                                    className="question_screen_selection_checkbox"
-                                                    //checked={}
-                                                    onChange={() => {add_new_topic(topic); console.log(new_quiz_topics)}}/>
-                                                    <h3 style={{textAlign:"center"}}>{topic}</h3>
-                                                </label>  
-                                                                 
-                                        ))}
+                                                    <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
+                                                    <input
+                                                        style={{backgroundColor: selected_topic ? '#7AA9E4' : '#ffffff'}}
+                                                        type="checkbox"
+                                                        value={topic}
+                                                        className="question_screen_selection_checkbox"
+                                                      
+                                                        onChange={() => selected_topic ? 
+                                                                        //replace me with a filter logic!
+                                                                        (remove_topic(topic),
+                                                                        console.log(new_quiz_topics))
+                                                                        : (add_new_topic(topic), console.log(new_quiz_topics))}/>
+                                                        <h3 style={{textAlign:"center"}}>{topic}</h3>
+                                                    </label>  
+                                                )})
+                                            }
                                         
                                         
                                         </div> 
 
                                 <div style={{ width:"100%", height:"8%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10%", marginBottom: "10%"}}>
-                                    <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar Tópicos"} onClick={() => Set_New_Quiz_Status(1)}/>
+                                    <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar Tópicos"} onClick={() => new_quiz_topics.filter(t => t.trim() !== '').length > 0 ? Set_New_Quiz_Status(1) : set_Message('Por Favor selecione pelo menos 1 tópico! ')}/>
                                 </div>
 
                                 <div style={{ width:"100%", height:"8%", display: "flex", alignItems: "center", justifyContent: "center"}}>

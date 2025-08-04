@@ -2,7 +2,7 @@ import interface_quiz_question from "./quiz_question";
 
 export default interface quiz_topics_subscreen
 {
-
+    setQuestionWarning: React.Dispatch<React.SetStateAction<string>>
     QuestionWarning: string;
     selectedQuestion: string;   
     new_quiz_questions: interface_quiz_question[];

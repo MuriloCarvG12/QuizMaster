@@ -2,7 +2,7 @@ import quiz_topics_subscreen from "../../interfaces/quiz_question_subscreen";
 import App_Button from "../App_Button";
 
 export default function QuizQuestionsSubScreen(
-    {QuestionWarning, selectedQuestion,new_quiz_questions, set_current_quizpage_status, setSelectedQuestion, clear_quiz_question, load_question, add_new_question, Set_New_Quiz_Status,Question_Text,
+    {QuestionWarning,setQuestionWarning, selectedQuestion,new_quiz_questions, set_current_quizpage_status, setSelectedQuestion, clear_quiz_question, load_question, add_new_question, Set_New_Quiz_Status,Question_Text,
         Question_Alternative_A,Question_Alternative_B,Question_Alternative_C,Question_Alternative_D,Set_Question_Text,
         Set_Question_Alternative_A,Set_Question_Alternative_B,Set_Question_Alternative_C,Set_Question_Alternative_D
     }:quiz_topics_subscreen){
@@ -120,7 +120,8 @@ export default function QuizQuestionsSubScreen(
                                 
                                     </div>
                                     <div style={{ width:"100%", height:"5%", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "1%", marginBottom: "5%"}}>
-                                                <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Avançar"} onClick={() => set_current_quizpage_status(2)}/>
+
+                                                <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Avançar"} onClick={() => new_quiz_questions.filter(t => t.question_text.trim() !== '').length > 0 ? set_current_quizpage_status(2) : setQuestionWarning('Por favor insira pelo menos 1 pergunta!')}/>
                                     </div>
 
                                     <div style={{ width:"100%", height:"5%", display: "flex", alignItems: "center", justifyContent: "center"}}>

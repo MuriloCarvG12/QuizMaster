@@ -1,11 +1,11 @@
 import Header from "../components/Header_navigation";
 import App_Button from "../components/App_Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Page_Exam_SelectAditionals from "../components/Page_Exam_SelectAditionals";
 import { Topics_screen_MainTopicSelection } from "../components/QuestionsSubScreenComponents/MainTopicSelection";
 import { Topics_screen_QuestionSourceSelection } from "../components/QuestionsSubScreenComponents/QuestionSourceSelection";
-import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/SubTopicSelection";
+import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/TopicsSelection";
 import CustomLengthExam from "../components/Page_ExamScreen_CustomLengthExam";
 
 /***
@@ -13,7 +13,96 @@ import CustomLengthExam from "../components/Page_ExamScreen_CustomLengthExam";
  * TODO TRANSFORM CUSTOM LENGTH SUBSCRENE INTO ITS OWN COMPONENT SO WE ACN HAVE PROPER NAVIGATION
  */
 
+
+interface subject
+{
+    Id : number,
+    SubjectName : string
+}
+
+interface topic
+{
+  Id : number,
+  TopicName : String,
+  SubjectId: number
+}
+
+interface subtopic
+{
+  Id: Number,
+  SubTopicName: String,
+  TopicId: Number
+}
+
+async function FetchSubject(SetSubject :React.Dispatch<React.SetStateAction<subject[]>>)
+{
+    const url = "http://localhost:3000/Subject/GetSubjects";
+    const response = await fetch(url);
+    const data: subject[] = await response.json();
+    SetSubject(data);
+    
+}
+
+async function FetchTopics(set_topics :React.Dispatch<React.SetStateAction<topic[]>>,subjects: subject[])
+{
+  const Topics : topic[] = [];
+  const Subject_ids: number[] = [];
+  ///TODO CHANGE THIS SO WE DONT CALL THE ENDPOINT ONCE PER ITERATION
+
+  console.log("the subjects we have are ", subjects)
+  for (const subject of subjects) {
+    const url = "http://localhost:3000/Subject/GetSubject";
+    const response =
+
+    await fetch
+    (url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ SubjectName: subject }),
+    })
+
+    let Subject_Id: subject = await response.json();
+    Subject_ids.push(Subject_Id.Id);
+    
+  }
+
+
+
+  const url = "http://localhost:3000/Topic/GetTopics";
+  const response =
+
+  await fetch(url)
+
+  const data: topic[] = await response.json();
+
+    
+
+  data.forEach(
+    (Item) => {if (Subject_ids.includes(Item.SubjectId)) 
+    {
+      Topics.push(Item);
+    }})
+
+  set_topics(Topics)
+}
+
+async function fetchSubTopics(topics: topic[])
+{
+  const subTopics: subtopic[] = [];
+  const topicIds : number[] = [];
+
+
+}
+
+
 export default function ExamScreen() {
+
+  
+    const [subjects, setSubjects] = useState<subject[]>([]);
+    const [selected_subjects, set_selected_subjects] = useState<subject[]>([]);
+    const [selected_topics, set_selected_topics] = useState<topic[]>([]);
+    const [selected_subtopics, set_selected_subtopics] = useState<subtopic[]>([]);
+
 
     const [current_page_status, set_current_page_status] = useState(0)// controls the current state of page
     const [exam_length, set_exam_length] = useState(0)
@@ -23,11 +112,33 @@ export default function ExamScreen() {
     const [current_topic_state, set_current_topic_state] = useState(0) // variable that controles the topic submenu shownd
     const [timer_on, set_timer_on] = useState(0) //variable that checks if the user wants to take the exam with a tiemr or not 1 - turned on and 0 - not turned on
     const [show_score_during_exam, set_show_score_during_exam] = useState(0)
+    
+    //fecth all subjects
+    useEffect(() => {
+      FetchSubject(setSubjects);
+
+    }, []);
+
+    useEffect(() => {
+    }, [current_topic_state]);
 
     function Select_Length(NPerguntas:number)
     {
         set_exam_length(NPerguntas)
     }
+
+    //fetch all the topics related to the subjects chosen
+    const [topics, set_topics] = useState<topic[]>([]);
+
+    useEffect(() => {
+    }, [current_topic_state]);
+
+    //after we get into the topics selection screen do this!
+    useEffect(() => {
+    if (current_topic_state === 1) {
+      FetchTopics(set_topics, selected_subjects);
+    }
+  }, [current_topic_state]);
 
     // this funciton lets our program know which status of the exam generation the user is in
   function RenderStatus(status: number) {
@@ -94,17 +205,26 @@ export default function ExamScreen() {
                 set_current_page_status_value={0}
                 header_bg_color="B4FFFB"
                 border_color="82D0D5"
+                subjects = {subjects}
+                set_selected_subjects = {set_selected_subjects}
               />
+
             </div>
           );
         case 1:
+          
           return (
+           
             <div style={{ width: "100%", paddingTop: "5%" }}>
+              
               <Topics_screen_SubTopicSelection
                 set_picked_question_topics={() => {}}
                 set_current_component_status={set_current_topic_state}
                 header_bg_color="B4FFFB"
                 border_color="82D0D5"
+                topics = {topics}
+                set_selected_topics = {set_selected_topics}
+
                 set_current_page_status_value={0}
               />
             </div>

@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 
 import Page_Exam_SelectAditionals from "../components/Page_Exam_SelectAditionals";
 import { Topics_screen_MainTopicSelection } from "../components/QuestionsSubScreenComponents/MainTopicSelection";
-import { Topics_screen_QuestionSourceSelection } from "../components/QuestionsSubScreenComponents/QuestionSourceSelection";
-import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/TopicsSelection";
+import { Topics_screen_TopicSelection } from "../components/QuestionsSubScreenComponents/TopicsSelection";
 import CustomLengthExam from "../components/Page_ExamScreen_CustomLengthExam";
+import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/SubTopicSelection";
+
 
 /***
  * 
@@ -23,15 +24,15 @@ interface subject
 interface topic
 {
   Id : number,
-  TopicName : String,
+  TopicName : string,
   SubjectId: number
 }
 
 interface subtopic
 {
-  Id: Number,
-  SubTopicName: String,
-  TopicId: Number
+  Id: number,
+  SubTopicName: string,
+  TopicId: number
 }
 
 async function FetchSubject(SetSubject :React.Dispatch<React.SetStateAction<subject[]>>)
@@ -86,11 +87,43 @@ async function FetchTopics(set_topics :React.Dispatch<React.SetStateAction<topic
   set_topics(Topics)
 }
 
-async function fetchSubTopics(topics: topic[])
+async function fetchSubTopics(set_subtopics: React.Dispatch<React.SetStateAction<subtopic[]>>, topics: topic[])
 {
   const subTopics: subtopic[] = [];
   const topicIds : number[] = [];
 
+  for (const topic of topics) 
+  {
+    const url = "http://localhost:3000/Topic/GetTopic";
+    const response =
+
+    await fetch
+    (url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ TopicName: topic }),
+    })
+
+    let topic_Id: topic = await response.json();
+    topicIds.push(topic_Id.Id);
+  }
+
+  const url = "http://localhost:3000/SubTopic/GetSubTopics";
+  const response =
+
+  await fetch(url)
+
+  const data: subtopic[] = await response.json();
+
+    
+
+  data.forEach(
+    (Item) => {if (topicIds.includes(Item.TopicId)) 
+    {
+      subTopics.push(Item);
+    }})
+
+  set_subtopics(subTopics)
 
 }
 
@@ -99,6 +132,9 @@ export default function ExamScreen() {
 
   
     const [subjects, setSubjects] = useState<subject[]>([]);
+    const [topics, set_topics] = useState<topic[]>([]);
+    const [subtopics, set_subtopics] = useState<subtopic[]>([]);
+
     const [selected_subjects, set_selected_subjects] = useState<subject[]>([]);
     const [selected_topics, set_selected_topics] = useState<topic[]>([]);
     const [selected_subtopics, set_selected_subtopics] = useState<subtopic[]>([]);
@@ -127,8 +163,8 @@ export default function ExamScreen() {
         set_exam_length(NPerguntas)
     }
 
-    //fetch all the topics related to the subjects chosen
-    const [topics, set_topics] = useState<topic[]>([]);
+    
+    
 
     useEffect(() => {
     }, [current_topic_state]);
@@ -138,7 +174,16 @@ export default function ExamScreen() {
     if (current_topic_state === 1) {
       FetchTopics(set_topics, selected_subjects);
     }
-  }, [current_topic_state]);
+    }, [current_topic_state]);
+
+      useEffect(() => {
+      if (current_topic_state === 2) {
+        fetchSubTopics(set_subtopics, selected_topics);
+      }
+    }, [current_topic_state]);
+
+      useEffect(() => {
+    }, [current_topic_state]);
 
     // this funciton lets our program know which status of the exam generation the user is in
   function RenderStatus(status: number) {
@@ -217,7 +262,7 @@ export default function ExamScreen() {
            
             <div style={{ width: "100%", paddingTop: "5%" }}>
               
-              <Topics_screen_SubTopicSelection
+              <Topics_screen_TopicSelection
                 set_picked_question_topics={() => {}}
                 set_current_component_status={set_current_topic_state}
                 header_bg_color="B4FFFB"
@@ -229,23 +274,22 @@ export default function ExamScreen() {
               />
             </div>
           );
+         
         case 2:
           return (
             <div style={{ width: "100%", paddingTop: "5%" }}>
-              <Topics_screen_QuestionSourceSelection
-                set_picked_question_topics={set_picked_question_source}
+              <Topics_screen_SubTopicSelection
+                set_picked_question_topics={set_picked_question_topics}
                 set_current_component_status={set_current_topic_state}
                 header_bg_color="B4FFFB"
                 border_color="82D0D5"
-                set_current_option={() => {
-                  throw new Error("Function not implemented.");
-                }}
-                set_current_page_status={() => {
-                  throw new Error("Function not implemented.");
-                }}
+                subtopics = {subtopics}
+                set_current_page_status_value={0}
+                set_selected_subtopics={set_selected_subtopics}
               />
             </div>
           );
+          
         default:
           console.error("Invalid topic state: ", current_topic_state);
           return <p>Erro inesperado na seleção de tópicos.</p>;

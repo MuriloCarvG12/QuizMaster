@@ -10,7 +10,7 @@ interface topic
 
 interface Topics_screen_SubTopicSelection
 {
-    set_picked_question_topics: (array: Array) => void
+    
     
     set_current_component_status: (option: number) => void
     topics: topic[];
@@ -20,7 +20,7 @@ interface Topics_screen_SubTopicSelection
 }
 
 
-export function Topics_screen_SubTopicSelection({ set_current_component_status, border_color , header_bg_color, topics, set_selected_topics}:Topics_screen_SubTopicSelection)
+export function Topics_screen_TopicSelection({ set_current_component_status, border_color , header_bg_color, topics, set_selected_topics}:Topics_screen_SubTopicSelection)
 {
     const [selectedTopics, setSelectedTopics] = useState<topic[]>([]);
 

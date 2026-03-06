@@ -3,31 +3,31 @@ import App_Button from "../App_Button"
 
 interface subtopic
 {
-  Id: Number,
-  SubTopicName: String,
-  TopicId: Number
+  Id: number,
+  SubTopicName: string,
+  TopicId: number
 }
 
 
 interface Topics_screen_SubTopicSelection
 {
-    set_picked_question_topics: (array: Array) => void
+    set_picked_question_topics: (array: subtopic[]) => void
     
     set_current_component_status: (option: number) => void
-    topics: topic[];
-    set_selected_topics: React.Dispatch<React.SetStateAction<topic[]>>;
+    subtopics: subtopic[];
+    set_selected_subtopics: React.Dispatch<React.SetStateAction<subtopic[]>>;
     border_color :string
     header_bg_color :string
 }
 
 
-export function Topics_screen_SubTopicSelection({ set_current_component_status, border_color , header_bg_color, topics, set_selected_topics}:Topics_screen_SubTopicSelection)
+export function Topics_screen_SubTopicSelection({ set_current_component_status, border_color , header_bg_color, subtopics, set_selected_subtopics}:Topics_screen_SubTopicSelection)
 {
-    const [selectedTopics, setSelectedTopics] = useState<topic[]>([]);
+    const [selectedSubTopics, setSelectedSubTopics] = useState<subtopic[]>([]);
 
     useEffect(() => {
-        set_selected_topics(selectedTopics)
-    }, [selectedTopics]);
+        set_selected_subtopics(selectedSubTopics)
+    }, [selectedSubTopics]);
 
     return(
                         <>
@@ -44,25 +44,25 @@ export function Topics_screen_SubTopicSelection({ set_current_component_status, 
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
                                         
                                         <div className="question_screen_selection_grid">
-                                            {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
+                                            {/*** ITERATING OVER EVERY ITEM IN OUR SUBTOPICS ARRAY! */}
                                         
-                                            {(topics).map(topic => (
+                                            {(subtopics).map(subtopics => (
                                             
-                                                <label key={topic.TopicName} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
+                                                <label key={subtopics.SubTopicName} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
                                                 <input
                                                     type="checkbox"
-                                                    value={topic.TopicName}
+                                                    value={subtopics.SubTopicName}
                                                     className="question_screen_selection_checkbox"
-                                                    checked={selectedTopics.some(t => t.TopicName === topic.TopicName)}
+                                                    checked={selectedSubTopics.some(t => t.SubTopicName === subtopics.SubTopicName)}
 
                                                     onChange={(e) => {
                                                         if (e.target.checked) {
-                                                            setSelectedTopics(prev => [...prev, topic]);
+                                                            setSelectedSubTopics(prev => [...prev, subtopics]);
                                                         } else {
-                                                            setSelectedTopics(prev => prev.filter(t => t.TopicName !== topic.TopicName));
+                                                            setSelectedSubTopics(prev => prev.filter(t => t.SubTopicName !== subtopics.SubTopicName));
                                                         }
                                                     }}/>
-                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{topic.TopicName}</h3>
+                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{subtopics.SubTopicName}</h3>
                                                 </label>  
                                                                  
                                         ))}

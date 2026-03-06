@@ -101,11 +101,13 @@ async function fetchSubTopics(set_subtopics: React.Dispatch<React.SetStateAction
     (url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ TopicName: topic }),
+      body: JSON.stringify({ TopicName: topic.TopicName }),
     })
 
     let topic_Id: topic = await response.json();
+    
     topicIds.push(topic_Id.Id);
+    
   }
 
   const url = "http://localhost:3000/SubTopic/GetSubTopics";
@@ -124,6 +126,7 @@ async function fetchSubTopics(set_subtopics: React.Dispatch<React.SetStateAction
     }})
 
   set_subtopics(subTopics)
+
 
 }
 
@@ -183,7 +186,8 @@ export default function ExamScreen() {
     }, [current_topic_state]);
 
       useEffect(() => {
-    }, [current_topic_state]);
+        console.log("the subtopics are", )
+    }, []);
 
     // this funciton lets our program know which status of the exam generation the user is in
   function RenderStatus(status: number) {

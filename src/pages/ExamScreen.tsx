@@ -8,6 +8,7 @@ import { Topics_screen_TopicSelection } from "../components/QuestionsSubScreenCo
 import CustomLengthExam from "../components/Page_ExamScreen_CustomLengthExam";
 import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/SubTopicSelection";
 
+import RenderExamQuestions from "../components/questionRenderer";
 
 /***
  * 
@@ -33,6 +34,29 @@ interface subtopic
   Id: number,
   SubTopicName: string,
   TopicId: number
+}
+
+interface fetched_json
+{
+  SubTopicName: string,
+  Json: question [],
+  JsonLength : number;
+}
+
+interface question {
+    Id: number;
+    QuestionId: string;
+    QuestionText: string;
+    QuestionPrompt: string;
+    QuestionAltA: string;
+    QuestionAltB: string;
+    QuestionAltC: string;
+    QuestionAltD: string;
+    QuestionAltE: string;
+    CorrectAlternative: string;
+    SubjectId: number;
+    TopicId: number;
+    SubTopicId: number;
 }
 
 async function FetchSubject(SetSubject :React.Dispatch<React.SetStateAction<subject[]>>)
@@ -89,26 +113,7 @@ async function FetchTopics(set_topics :React.Dispatch<React.SetStateAction<topic
 
 async function fetchSubTopics(set_subtopics: React.Dispatch<React.SetStateAction<subtopic[]>>, topics: topic[])
 {
-  const subTopics: subtopic[] = [];
-  const topicIds : number[] = [];
-
-  for (const topic of topics) 
-  {
-    const url = "http://localhost:3000/Topic/GetTopic";
-    const response =
-
-    await fetch
-    (url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ TopicName: topic.TopicName }),
-    })
-
-    let topic_Id: topic = await response.json();
-    
-    topicIds.push(topic_Id.Id);
-    
-  }
+  const subTopics : subtopic[] = [];
 
   const url = "http://localhost:3000/SubTopic/GetSubTopics";
   const response =
@@ -117,19 +122,109 @@ async function fetchSubTopics(set_subtopics: React.Dispatch<React.SetStateAction
 
   const data: subtopic[] = await response.json();
 
-    
-
-  data.forEach(
-    (Item) => {if (topicIds.includes(Item.TopicId)) 
-    {
-      subTopics.push(Item);
-    }})
-
-  set_subtopics(subTopics)
+  data.forEach((Item) => {
+  if (topics.some(t => t.Id === Item.TopicId)) {
+    subTopics.push(Item);
+  }
+});
+  set_subtopics(subTopics);
 
 
 }
 
+
+async function FetchQuestions(selected_subtopics : subtopic[], exam_length: number)
+{
+  // loop through all subtopics select fetch the current subtopic info and then do a query, store the used question ids in an array so in case
+  //we loop through the subtopic again theres no risk of picking the same question twice or more if the user selected more subtopics than the exam length block it in front
+  // keep looping till we fill the exams question length change it so the loop is done with the exam length
+  const topicUrl = "http://localhost:3000/Topic/getTopicById"
+  const url = "http://localhost:3000/Question/getQuestionBySubjectAndIds";
+  let current_question_number = 0;
+  let current_subtopic_index : number = 0;
+  let number_of_subtopics = selected_subtopics.length;
+
+  //fetch the json array response for every subtopic the user picked
+  const fetched_jsons :fetched_json[] = [];
+  
+  for (let subtopic of selected_subtopics)
+    {
+        
+        const current_subtopicId = subtopic.Id;
+        const current_topicId = subtopic.TopicId;
+
+        const topicResponse =
+        await fetch
+        (topicUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            TopicId: current_topicId,
+           
+          }),
+        })
+        
+        const topicResult = await topicResponse.json() as topic;
+
+        const current_subjectId = topicResult.SubjectId;  
+
+        const response =
+        await fetch
+        (url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            SubjectId: current_subjectId,
+            TopicId: current_topicId,
+            SubTopicId: current_subtopicId 
+          }),
+        })
+
+        const result = await response.json();
+
+        const current_json: fetched_json = {
+          SubTopicName: subtopic.SubTopicName,
+          Json: result,
+          JsonLength: result.length
+        };
+
+        fetched_jsons.push(current_json);
+    }
+
+  const questions :question[] = [];
+
+  while( current_question_number < exam_length)
+    {
+        // looped through all subtopics reset to the first one again and keep on going
+        if(current_subtopic_index >= number_of_subtopics)
+          {
+            current_subtopic_index = 0;
+          }
+        
+        const current_subtopic : subtopic = selected_subtopics[current_subtopic_index];    
+        const currentJsonUsed = fetched_jsons.find(item => item.SubTopicName == current_subtopic.SubTopicName)
+          
+        const number_of_questions = currentJsonUsed.JsonLength;
+
+        let picked_result_question_index = Math.floor(Math.random() * number_of_questions);
+
+        let found_question :question = currentJsonUsed.Json[picked_result_question_index];
+
+        while (questions.some(q => q == found_question)) 
+        {
+            found_question = currentJsonUsed.Json.find(item => !(questions.includes(item)))
+          
+            
+        }
+        questions.push(found_question)
+        current_question_number++;
+
+    }
+    
+    
+    console.log("the questions are ", questions )
+    return questions;
+}
 
 export default function ExamScreen() {
 
@@ -141,6 +236,7 @@ export default function ExamScreen() {
     const [selected_subjects, set_selected_subjects] = useState<subject[]>([]);
     const [selected_topics, set_selected_topics] = useState<topic[]>([]);
     const [selected_subtopics, set_selected_subtopics] = useState<subtopic[]>([]);
+    const [questions, set_questions] = useState<question[]>([]);
 
 
     const [current_page_status, set_current_page_status] = useState(0)// controls the current state of page
@@ -185,9 +281,17 @@ export default function ExamScreen() {
       }
     }, [current_topic_state]);
 
-      useEffect(() => {
-        console.log("the subtopics are", )
-    }, []);
+
+     useEffect(() => {
+      if (current_page_status === 2) {
+        const loadQuestions = async () => {
+          const result = await FetchQuestions(selected_subtopics, exam_length);
+          set_questions(result);
+        };
+        loadQuestions();
+       
+      }
+    }, [current_page_status]);
 
     // this funciton lets our program know which status of the exam generation the user is in
   function RenderStatus(status: number) {
@@ -288,7 +392,7 @@ export default function ExamScreen() {
                 header_bg_color="B4FFFB"
                 border_color="82D0D5"
                 subtopics = {subtopics}
-                set_current_page_status_value={0}
+                set_current_page_status={set_current_page_status}
                 set_selected_subtopics={set_selected_subtopics}
               />
             </div>
@@ -301,13 +405,9 @@ export default function ExamScreen() {
 
     case 2:
       return (
-        <Page_Exam_SelectAditionals
-          set_current_step={current_page_status}
-          set_current_step_option={1}
-          set_current_option_start={3}
-          set_timer={set_timer_on}
-          set_show_score_during_exam={set_show_score_during_exam}
-          show_score_during_exam_value={show_score_during_exam}
+        <RenderExamQuestions
+          question={questions}
+          
         />
       );
 

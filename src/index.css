@@ -239,11 +239,11 @@ input.question_screen_selection_checkbox:checked {
 
 .arrow-chevron-left:hover {
   border-color: #111;
-  transform: rotate(50deg) scale(1.1);
+  transform: rotate(50deg) scale(0.85);
 }
 
 .arrow-chevron-left:active {
-  transform: rotate(50deg) scale(0.95);
+  transform: rotate(50deg) scale(0.85);
 }
 
 .arrow-chevron-right {
@@ -259,9 +259,25 @@ input.question_screen_selection_checkbox:checked {
 
 .arrow-chevron-right:hover {
   border-color: #111;
-  transform: rotate(230deg) scale(1.1);
+  transform: rotate(230deg) scale(0.85);
 }
 
 .arrow-chevron-right:active {
-  transform: rotate(230deg) scale(0.95);
+  transform: rotate(230deg) scale(0.85);
+}
+
+.ExamAlternativeSelectButton
+{
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.ExamAlternativeSelectButton:hover
+{
+  background-color: blue;
+  cursor: pointer;
 }

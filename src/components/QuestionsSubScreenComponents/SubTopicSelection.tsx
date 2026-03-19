@@ -61,14 +61,19 @@ export function Topics_screen_SubTopicSelection({ set_current_component_status, 
                                                     value={subtopics}
                                                     className="question_screen_selection_checkbox"
                                                     checked={selectedSubTopics.some(t => t === subtopics)}
-
+                                                    
                                                     onChange={(e) => {
                                                         if (e.target.checked) {
-                                                            setSelectedSubTopics(prev => [...prev, subtopics]);
+                                                            const updated = [...selectedSubTopics, subtopics];
+                                                            setSelectedSubTopics(updated);
+                                                            set_selected_subtopics(updated);
                                                         } else {
-                                                            setSelectedSubTopics(prev => prev.filter(t => t !== subtopics));
+                                                            const updated = selectedSubTopics.filter(t => t !== subtopics);
+                                                            setSelectedSubTopics(updated);
+                                                            set_selected_subtopics(updated);
                                                         }
-                                                    }}/>
+                                                    }}
+                                                    />
                                                     <h3 style={{textAlign:"center", marginTop: 10}}>{subtopics.SubTopicName}</h3>
                                                 </label>  
                                                                  

@@ -23,7 +23,7 @@ interface question_answers
   AlternativeAssigned :String
 }
 
-export default function RenderQuestions({ question, set_question_answers, current_question_index }: { question: question, set_question_answers: React.Dispatch<React.SetStateAction<question_answers[]>>, current_question_index: number}) { 
+export default function RenderQuestions({ question, set_question_answers, current_question_index, question_answers }: { question: question, set_question_answers: React.Dispatch<React.SetStateAction<question_answers[]>>, current_question_index: number, question_answers: question_answers[]}) { 
   
   return (
     <>
@@ -31,11 +31,11 @@ export default function RenderQuestions({ question, set_question_answers, curren
         <h3>{question.QuestionText}</h3>
         <p>{question.QuestionPrompt}</p>
         <div style={{ width: "100%", height: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
-          <ExamAlternativeSelectButton message={question.QuestionAltA}  set_question_answers={set_question_answers} current_question_index={current_question_index}/>
-          <ExamAlternativeSelectButton message={question.QuestionAltB}  set_question_answers={set_question_answers} current_question_index={current_question_index}/>
-          <ExamAlternativeSelectButton message={question.QuestionAltC}  set_question_answers={set_question_answers} current_question_index={current_question_index}/>
-          <ExamAlternativeSelectButton message={question.QuestionAltD}  set_question_answers={set_question_answers} current_question_index={current_question_index}/>
-          {question.QuestionAltE !== "" && <ExamAlternativeSelectButton message={question.QuestionAltE}  set_question_answers={set_question_answers} current_question_index={current_question_index}/>}
+          <ExamAlternativeSelectButton message={question.QuestionAltA}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'A'}/>
+          <ExamAlternativeSelectButton message={question.QuestionAltB}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'B'}/>
+          <ExamAlternativeSelectButton message={question.QuestionAltC}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'C'}/>
+          <ExamAlternativeSelectButton message={question.QuestionAltD}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'D'}/>
+          {question.QuestionAltE !== "" && <ExamAlternativeSelectButton message={question.QuestionAltE}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'E'}/>}
 
           
       

@@ -27,13 +27,37 @@ interface ExamAlternativeSelectButtonInterface
 {
     message: String,  
     set_question_answers: React.Dispatch<React.SetStateAction<question_answers[]>>, 
-    current_question_index: number
+    current_question_index: number,
+    question_answers: question_answers[],
+    alternativeValue : String
 }
 
-function ExamAlternativeSelectButton({message,  set_question_answers, current_question_index}: ExamAlternativeSelectButtonInterface) { 
+
+function updateAnswers(  question_answers: question_answers[],
+    current_question_index: number,
+    set_question_answers: React.Dispatch<React.SetStateAction<question_answers[]>>,
+    alternativeValue: String ) 
+    {
+  if (!question_answers.some(answer => answer.ExamQuestionNumber === current_question_index)) {
+    set_question_answers(prev => [
+      ...prev,
+      { ExamQuestionNumber: current_question_index, AlternativeAssigned: alternativeValue }
+    ]);
+  } else {
+    set_question_answers(prev =>
+      prev.map(answer =>
+        answer.ExamQuestionNumber === current_question_index
+          ? { ...answer, AlternativeAssigned: alternativeValue }
+          : answer
+      )
+    );
+  }
+}
+
+function ExamAlternativeSelectButton({message,  set_question_answers, current_question_index, alternativeValue, question_answers}: ExamAlternativeSelectButtonInterface) { 
   return (
     <div className="ExamAlternativeSelectButton">
-           <button style={{width:"100%", height:"100%", opacity: 0}} onClick={() => (set_question_answers(prev => [...prev, { ExamQuestionNumber: current_question_index, AlternativeAssigned: message }]))}></button>
+           <button className="questionbutton" onClick={() => {updateAnswers(question_answers, current_question_index, set_question_answers, alternativeValue)}}></button>
             <h2>{message}</h2>
     </div>
  

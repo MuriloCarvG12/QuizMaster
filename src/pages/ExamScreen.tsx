@@ -11,6 +11,7 @@ import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScree
 import RenderExamQuestions from "../components/questionRenderer";
 
 import questionsTest from "./test";
+import ShowExamResults from "../components/showExamResults";
 
 /***
  * 
@@ -59,6 +60,12 @@ interface question {
     SubjectId: number;
     TopicId: number;
     SubTopicId: number;
+}
+
+interface question_answers 
+{
+  ExamQuestionNumber : Number;
+  AlternativeAssigned :String
 }
 
 async function FetchSubject(SetSubject :React.Dispatch<React.SetStateAction<subject[]>>)
@@ -238,7 +245,7 @@ export default function ExamScreen() {
     const [selected_topics, set_selected_topics] = useState<topic[]>([]);
     const [selected_subtopics, set_selected_subtopics] = useState<subtopic[]>([]);
     const [questions, set_questions] = useState<question[]>([]);
-
+    const [answers, set_answers] = useState<question_answers[]>([]);
 
     const [current_page_status, set_current_page_status] = useState(0)// controls the current state of page
     const [exam_length, set_exam_length] = useState(0)
@@ -301,12 +308,22 @@ export default function ExamScreen() {
   console.log("questions changed :", questions);
 }, [questions]);
 
+      useEffect(() => {
+      if (current_page_status === 4) {
+        console.log("question_answers -> ", answers)
+        
+        set_current_page_status(5)
+       
+      }
+    }, [current_page_status]);
+
     // this funciton lets our program know which status of the exam generation the user is in
   function RenderStatus(status: number) {
   switch (status) {
     case 0:
       return (
         <>
+          
           <App_Button
             bgcolor={"fce0d9"}
             bordercolor={"f2bcb1"}
@@ -417,25 +434,23 @@ export default function ExamScreen() {
         <div style={{width: "100%", height: "auto", display: "flex", flexDirection:"column", alignContent:"center", justifyContent:"center"}}>
             <RenderExamQuestions
             questions ={questions}
+            set_current_page_status={set_current_page_status}
+            set_answers={set_answers}
             />
         </div>
    
       );
 
-    case 4:
-     
-      return(
-      <CustomLengthExam 
-        custom_length_switch={custom_length_switch}
-        set_custom_length_switch={set_custom_length_switch}
-        set_current_page_status={set_current_page_status}
-        set_picked_question_topics={set_picked_question_topics}
-        set_current_topic_state={set_current_topic_state}
-        current_topic_state={current_topic_state}
-        set_picked_question_source={set_picked_question_source}
-        Select_Length={set_exam_length} 
-        set_current_component_status={set_current_topic_state} 
-        set_current_option={() => {}}      /> )
+    case 5:
+      if (!answers || answers.length === 0) return null;
+      return (
+        <ShowExamResults
+          questions={questions}
+          questions_answers={answers}
+          examLength={exam_length}
+          set_current_page_status={set_current_page_status}
+        />
+      );
     }}
  
 

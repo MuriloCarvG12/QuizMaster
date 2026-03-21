@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import RenderQuestions from "./questionDisplay";
+import App_Button from "./App_Button";
 
 interface question {
     Id: number;
@@ -23,9 +24,11 @@ interface question_answers
   AlternativeAssigned :String
 }
 
-const RenderExamQuestions = memo(function RenderExamQuestions({ questions   }: { questions  : question[] }) {
+const RenderExamQuestions = memo(function RenderExamQuestions({ questions, set_current_page_status, set_answers   }: { questions  : question[], set_current_page_status: React.Dispatch<React.SetStateAction<number>>, set_answers: React.Dispatch<React.SetStateAction<question_answers[]>>}) {
   const [current_question, set_current_question] = useState(0);
   const [question_answers, set_question_answers] = useState<question_answers[]>([]);
+
+  useEffect(() => {set_answers(question_answers), [question_answers]})
 
   return (
     <div style={{ width: "100%", height: "auto", minHeight: "60%", display: "flex", flexDirection: "row", justifyContent:"center", alignContent:"center", gap: "10px" }}>
@@ -41,7 +44,7 @@ const RenderExamQuestions = memo(function RenderExamQuestions({ questions   }: {
           <h2>Pergunta {current_question + 1}/{questions.length}</h2>
         </div>
         <div style={{ width: "100%", height: "90%", alignSelf: "center", display: "flex", flexDirection: "column", alignItems: "center"  }}>
-          <RenderQuestions question={questions[current_question]} current_question_index={current_question}/>
+          <RenderQuestions question={questions[current_question]} set_question_answers={set_question_answers} current_question_index={current_question}  question_answers={question_answers} />
         </div>
       </div>
 
@@ -51,6 +54,8 @@ const RenderExamQuestions = memo(function RenderExamQuestions({ questions   }: {
           onClick={() => { if (current_question < questions  .length - 1) set_current_question(current_question + 1); }}
         />
       </div>
+      {current_question + 1 === questions.length && <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => set_current_page_status(4)}/>}
+
     </div>
   );
 });

@@ -4,37 +4,29 @@ import App_Button from "../App_Button"
 interface topic
 {
   Id : number,
-  TopicName : string,
+  TopicName : String,
   SubjectId: number
 }
 
-interface subtopic
-{
-  Id: number,
-  SubTopicName: string,
-  Topic: topic
-}
-
-
 interface Topics_screen_SubTopicSelection
 {
-    set_picked_question_topics: (array: subtopic[]) => void
-    set_current_page_status: React.Dispatch<React.SetStateAction<number>>
+    
+    
     set_current_component_status: (option: number) => void
-    subtopics: subtopic[];
-    set_selected_subtopics: React.Dispatch<React.SetStateAction<subtopic[]>>;
+    topics: topic[];
+    set_selected_topics: React.Dispatch<React.SetStateAction<topic[]>>;
     border_color :string
     header_bg_color :string
 }
 
 
-export function Topics_screen_SubTopicSelection({ set_current_component_status, set_current_page_status, border_color , header_bg_color, subtopics, set_selected_subtopics}:Topics_screen_SubTopicSelection)
+export function Topics_screen_TopicSelection({ set_current_component_status, border_color , header_bg_color, topics, set_selected_topics}:Topics_screen_SubTopicSelection)
 {
-    const [selectedSubTopics, setSelectedSubTopics] = useState<subtopic[]>([]);
+    const [selectedTopics, setSelectedTopics] = useState<topic[]>([]);
 
     useEffect(() => {
-        set_selected_subtopics(selectedSubTopics)
-    }, [selectedSubTopics]);
+        set_selected_topics(selectedTopics)
+    }, [selectedTopics]);
 
     return(
                         <>
@@ -51,30 +43,25 @@ export function Topics_screen_SubTopicSelection({ set_current_component_status, 
                                     <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
                                         
                                         <div className="question_screen_selection_grid">
-                                            {/*** ITERATING OVER EVERY ITEM IN OUR SUBTOPICS ARRAY! */}
+                                            {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
                                         
-                                            {(subtopics as subtopic[]).map(subtopics => (
+                                            {(topics).map(topic => (
                                             
-                                                <label key={subtopics.SubTopicName} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
+                                                <label key={topic.TopicName} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
                                                 <input
                                                     type="checkbox"
-                                                    value={subtopics}
+                                                    value={topic.TopicName}
                                                     className="question_screen_selection_checkbox"
-                                                    checked={selectedSubTopics.some(t => t === subtopics)}
-                                                    
+                                                    checked={selectedTopics.some(t => t.TopicName === topic.TopicName)}
+
                                                     onChange={(e) => {
                                                         if (e.target.checked) {
-                                                            const updated = [...selectedSubTopics, subtopics];
-                                                            setSelectedSubTopics(updated);
-                                                            set_selected_subtopics(updated);
+                                                            setSelectedTopics(prev => [...prev, topic]);
                                                         } else {
-                                                            const updated = selectedSubTopics.filter(t => t !== subtopics);
-                                                            setSelectedSubTopics(updated);
-                                                            set_selected_subtopics(updated);
+                                                            setSelectedTopics(prev => prev.filter(t => t.TopicName !== topic.TopicName));
                                                         }
-                                                    }}
-                                                    />
-                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{subtopics.SubTopicName}</h3>
+                                                    }}/>
+                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{topic.TopicName}</h3>
                                                 </label>  
                                                                  
                                         ))}
@@ -84,10 +71,10 @@ export function Topics_screen_SubTopicSelection({ set_current_component_status, 
                                         
                                     </div>
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => set_current_page_status(2)}/>
+                                        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => set_current_component_status(2)}/>
                                     </div>
                                     <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_component_status(1)}/>
+                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_component_status(0)}/>
                                     </div>
                                 </div>
                             </div>

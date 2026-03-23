@@ -1,6 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import App_Button from "../App_Button"
 
+
+interface subject
+{
+    Id : number,
+    SubjectName : string
+}
 interface topics_screen_interface
 {
     set_picked_question_topics: (array: Array) => void
@@ -10,17 +16,23 @@ interface topics_screen_interface
    
     border_color :string
     header_bg_color :string
+    subjects : subject[];
+    set_selected_subjects: React.Dispatch<React.SetStateAction<string[]>>;
 }
-
-const topics = ["Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia", "História", "Biologia13","Matemática", "História", "Biologia","Matemática", "História", "Biologia1","Matemática", "História", "Biologia","Matemática", "História", "Biologia","Matemática", "História", "Biologia", "História", "Biologia13","Matemática", "História", "Biologia","Matemática", "História", "Biologia1"];
 
 
 
 // COMPONENTES RELACIONADOS A SUBTELA TOPICOS SALVOS
 
-export  function Topics_screen_MainTopicSelection({set_picked_question_topics, set_current_page_status , set_current_component_status, border_color, header_bg_color}:topics_screen_interface)
+export function Topics_screen_MainTopicSelection({set_picked_question_topics, set_current_page_status , set_current_component_status, border_color, header_bg_color, subjects, set_selected_subjects}:topics_screen_interface)
 {
+
     const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+    
+    useEffect(() => {
+        set_selected_subjects(selectedTopics);
+    }, [selectedTopics]);
+
     return(
                         <>
                              <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
@@ -38,22 +50,24 @@ export  function Topics_screen_MainTopicSelection({set_picked_question_topics, s
 
                                         <div className="question_screen_selection_grid">
                                             {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}
-                                            {topics.map(topic => (
+                                        
+                                            {(subjects).map(topic => (
                                             
-                                                <label key={topic} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
+                                                <label key={topic.SubjectName} style={{ display: 'flex', flexDirection:"column", color:"black", justifyContent:"center", alignContent: "center"}} >                                                          
                                                 <input
                                                     type="checkbox"
-                                                    value={topic}
+                                                    value={topic.SubjectName}
                                                     className="question_screen_selection_checkbox"
-                                                    checked={selectedTopics.includes(topic)}
+                                                    checked={selectedTopics.includes(topic.SubjectName)}
                                                     onChange={(e) => {
                                                         if (e.target.checked) {
-                                                        setSelectedTopics(prev => [...prev, topic]);
+                                                        setSelectedTopics(prev => [...prev, topic.SubjectName]);
+                                    
                                                         } else {
-                                                        setSelectedTopics(prev => prev.filter(t => t !== topic));
+                                                        setSelectedTopics(prev => prev.filter(t => t !== topic.SubjectName));
                                                         }
                                                     }}/>
-                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{topic}</h3>
+                                                    <h3 style={{textAlign:"center", marginTop: 10}}>{topic.SubjectName}</h3>
                                                 </label>  
                                                                  
                                         ))}

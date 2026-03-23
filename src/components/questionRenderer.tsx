@@ -24,7 +24,13 @@ interface question_answers
   AlternativeAssigned :String
 }
 
-const RenderExamQuestions = memo(function RenderExamQuestions({ questions, set_current_page_status, set_answers   }: { questions  : question[], set_current_page_status: React.Dispatch<React.SetStateAction<number>>, set_answers: React.Dispatch<React.SetStateAction<question_answers[]>>}) {
+interface imageInfo
+{
+  QuestionId: number;
+  ImageUrl: String
+}
+
+const RenderExamQuestions = memo(function RenderExamQuestions({ questions, set_current_page_status, set_answers, questionImages   }: { questions  : question[], set_current_page_status: React.Dispatch<React.SetStateAction<number>>, set_answers: React.Dispatch<React.SetStateAction<question_answers[]>> , questionImages: imageInfo[]}) {
   const [current_question, set_current_question] = useState(0);
   const [question_answers, set_question_answers] = useState<question_answers[]>([]);
 
@@ -44,7 +50,7 @@ const RenderExamQuestions = memo(function RenderExamQuestions({ questions, set_c
           <h2>Pergunta {current_question + 1}/{questions.length}</h2>
         </div>
         <div style={{ width: "100%", height: "90%", alignSelf: "center", display: "flex", flexDirection: "column", alignItems: "center"  }}>
-          <RenderQuestions question={questions[current_question]} set_question_answers={set_question_answers} current_question_index={current_question}  question_answers={question_answers} />
+          <RenderQuestions question={questions[current_question]} set_question_answers={set_question_answers} current_question_index={current_question}  question_answers={question_answers} questionImages={questionImages.flat()} />
         </div>
       </div>
 

@@ -54,10 +54,17 @@ function updateAnswers(  question_answers: question_answers[],
   }
 }
 
+function checkIfAlternativeIsSelected(question_answers: question_answers[], alternativeValue: String, current_question_index: Number)
+{
+  return (question_answers.some(answer => {answer.ExamQuestionNumber === current_question_index && answer.AlternativeAssigned === alternativeValue} ))
+}
+
 function ExamAlternativeSelectButton({message,  set_question_answers, current_question_index, alternativeValue, question_answers}: ExamAlternativeSelectButtonInterface) { 
   return (
     <div className="ExamAlternativeSelectButton">
-           <button className="questionbutton" onClick={() => {updateAnswers(question_answers, current_question_index, set_question_answers, alternativeValue)}}></button>
+           <button className="questionbutton" 
+           style={{backgroundColor: checkIfAlternativeIsSelected(question_answers, alternativeValue, current_question_index) ? "lightblue" : "blue"}}
+           onClick={() => {updateAnswers(question_answers, current_question_index, set_question_answers, alternativeValue)}}></button>
             <h2>{message}</h2>
     </div>
  

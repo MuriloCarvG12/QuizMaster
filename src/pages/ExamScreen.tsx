@@ -9,8 +9,6 @@ import CustomLengthExam from "../components/Page_ExamScreen_CustomLengthExam";
 import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/SubTopicSelection";
 
 import RenderExamQuestions from "../components/questionRenderer";
-
-import questionsTest from "./test";
 import ShowExamResults from "../components/showExamResults";
 
 /***
@@ -66,6 +64,12 @@ interface question_answers
 {
   ExamQuestionNumber : Number;
   AlternativeAssigned :String
+}
+
+interface imageInfo
+{
+  QuestionId: number;
+  ImageUrl: String
 }
 
 async function FetchSubject(SetSubject :React.Dispatch<React.SetStateAction<subject[]>>)
@@ -141,8 +145,20 @@ async function fetchSubTopics(set_subtopics: React.Dispatch<React.SetStateAction
 
 }
 
+async function FetchQuestionImage(question_id :number)
+{
+  const url = "http://localhost:3000/Image/GetImageQuestionId";
+  const imageResponse = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ QuestionId: question_id }),
+    });
 
-async function FetchQuestions(selected_subtopics: subtopic[], exam_length: number) {
+    const convertedResponse  = await imageResponse.json() as imageInfo;
+    return convertedResponse;
+}
+
+async function FetchQuestions(selected_subtopics: subtopic[], exam_length: number, set_exam_length: React.Dispatch<React.SetStateAction<number>>, set_questionImages: React.Dispatch<React.SetStateAction<imageInfo[]>>) {
   const url = "http://localhost:3000/Question/getQuestionBySubjectAndIds";
   const topicUrl = "http://localhost:3000/Topic/getTopicById";
 
@@ -220,17 +236,27 @@ async function FetchQuestions(selected_subtopics: subtopic[], exam_length: numbe
     const found_question = currentJsonUsed.Json[nextIndex];
     used_indices.set(current_subtopic.SubTopicName, nextIndex + 1);
 
+    
     questions.push(found_question);
+    const imagesFound = await FetchQuestionImage(found_question.Id);
+
+    if(imagesFound)
+      {
+        set_questionImages(prev => [...prev, imagesFound]);
+      }
+    
+    
     current_subtopic_index++;
   }
 
   if (questions.length < exam_length) {
     console.warn(
       `Not enough questions: requested ${exam_length}, got ${questions.length}`
-    );
+    )
+    set_exam_length(questions.length);
+    
   }
 
-  console.log("the questions are", questions);
   return questions;
 }
 
@@ -245,6 +271,7 @@ export default function ExamScreen() {
     const [selected_topics, set_selected_topics] = useState<topic[]>([]);
     const [selected_subtopics, set_selected_subtopics] = useState<subtopic[]>([]);
     const [questions, set_questions] = useState<question[]>([]);
+    const [questionImages, set_questionImages] = useState<imageInfo[]>([]);
     const [answers, set_answers] = useState<question_answers[]>([]);
 
     const [current_page_status, set_current_page_status] = useState(0)// controls the current state of page
@@ -293,7 +320,7 @@ export default function ExamScreen() {
      useEffect(() => {
       if (current_page_status === 2) {
         const loadQuestions = async () => {
-          const result = await FetchQuestions(selected_subtopics, exam_length);
+          const result = await FetchQuestions(selected_subtopics, exam_length, set_exam_length, set_questionImages);
           set_questions(result);
           set_current_page_status(3);
           console.log("the result is -> ", result)
@@ -307,6 +334,11 @@ export default function ExamScreen() {
     useEffect(() => {
   console.log("questions changed :", questions);
 }, [questions]);
+
+    useEffect(() => {
+  console.log("images changed :", questionImages);
+}, [questionImages]);
+
 
       useEffect(() => {
       if (current_page_status === 4) {
@@ -436,6 +468,7 @@ export default function ExamScreen() {
             questions ={questions}
             set_current_page_status={set_current_page_status}
             set_answers={set_answers}
+            questionImages={questionImages}
             />
         </div>
    

@@ -38,12 +38,12 @@ console.log("current question.QuestionId:", question.QuestionId, "as Number:", N
 console.log("questionImage found:", questionImages);
   return (
     <>
-    <div style={{width:"100%", height:"auto", textAlign: "center", display: "flex", flexDirection: "column", gap: "20%", color: "black" }}>
-        <h3>{question.QuestionText}</h3>
+    <div style={{width:"100%", height:"auto", textAlign: "center", display: "flex", flexDirection: "column", gap: "40%", color: "black" }}>
+        <h3 style={{marginBottom: "15px"}}>{question.QuestionText}</h3>
          {questionImage !== "" && <img src={questionImage.toString()} alt="Question illustration" style={{ maxWidth: "100%", height: "auto", margin: "0 auto" }}/>}
 
         <p>{question.QuestionPrompt}</p>
-        <div style={{ width: "100%", height: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ width: "100%", height: "auto", display: "flex", flexDirection: "column", gap: "30px", marginTop: "20px"}}>
           <ExamAlternativeSelectButton message={question.QuestionAltA}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'A'}/>
           <ExamAlternativeSelectButton message={question.QuestionAltB}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'B'}/>
           <ExamAlternativeSelectButton message={question.QuestionAltC}  set_question_answers={set_question_answers} current_question_index={current_question_index} question_answers={question_answers} alternativeValue={'C'}/>

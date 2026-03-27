@@ -497,13 +497,27 @@ export default function ExamScreen() {
      */}
     <div id="container">
         <Header Username={""}/>
-        <div id="HOME-USER-OPTIONS-HEAD" 
-            style={{width: "60%", height: "5%", backgroundColor: "#B4FFFB", marginLeft: "auto", marginRight: "auto", borderStyle:"solid", borderWidth:"5px", borderColor:"#82D0D5", paddingTop:40}}>
+        <div id="HOME-USER-OPTIONS-HEAD"/>
+          <div id="HOME-USER-OPTIONS" className="User-Options" style={{
+                width: "60%",
+                height: "20vh",       
+                overflowY: "auto",    
+                borderStyle: "solid",
+                borderWidth: "5px",
+                borderColor: "#82D0D5",
+                backgroundColor: "#82D0D5",
+                borderTop: "0px",
+                display:"flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center"
+
+            }}>
 
             <h1 style={{color:"#444444", textAlign: "center", alignContent: "center"}}> {current_topic_state == 0 ? "Selecione o Tamanho da Prova" : current_topic_state == 1 ? "Selecione os Topicos da Prova" : current_topic_state == 2 ? "Selecione Adicionais da Prova"  : current_topic_state == 3 ? "Escolha o numero de Perguntas da prova" : "Isso nao deveria ter ocorrido"}</h1>
         </div>
        
-        <div id="HOME-USER-OPTIONS" className="User-Options" style={{width:"60%",height:"65%", borderStyle:"solid", borderWidth:"5px", borderColor:"#82D0D5", borderTop: "0px", justifyContent: "space-between", flexDirection:"column" }}>
+        <div id="HOME-USER-OPTIONS" className="User-Options" style={{width:"60%",height:"55%", borderStyle:"solid", borderWidth:"5px", borderColor:"#82D0D5", borderTop: "0px", justifyContent: "space-between", flexDirection:"column", overflowY: "auto"}}>
             
             {
                 RenderStatus(current_page_status)    

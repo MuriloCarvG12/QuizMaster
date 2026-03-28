@@ -153,7 +153,7 @@
 .question_screen_head
 {
   width: 90%;
-  min-height: 15%;
+  height: auto;
   background-color:#D9F2E6;
   text-align: center;
   color: #666666; 
@@ -170,7 +170,7 @@
 .question_screen_body
 {
   width: 90%;
-  height: 80%;
+  height: auto;
   background-color: #FFFFFF;
 
   display: flex;

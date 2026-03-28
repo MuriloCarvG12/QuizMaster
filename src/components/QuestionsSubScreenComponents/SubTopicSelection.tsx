@@ -43,7 +43,7 @@ export function Topics_screen_SubTopicSelection({ set_current_component_status, 
                                 
                                 <div id="USER Questions HEAD" className="question_screen_head" style={{backgroundColor: `#${header_bg_color}`, borderColor:`#${border_color}`}}>
                                     <h1>Sub-Topicos</h1>
-                                    <h2 style={{fontSize: 28}}> Selecione os subtopicos</h2>
+                                    <h2 style={{fontSize: 28}}> Selecione os sub-tópicos do simulado </h2>
                                 </div>
                     
                     
@@ -83,11 +83,12 @@ export function Topics_screen_SubTopicSelection({ set_current_component_status, 
                                         </div>           
                                         
                                     </div>
-                                    <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Selecionar"} onClick={() => set_current_page_status(2)}/>
+                                    <div style={{width:"80%", height:"7%", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                                        <App_Button bgcolor={"FFFFFF"} bordercolor={"C0C8F0"} borderhovercolor={"6677DD"} bghovercolor={"EEF2FF"} message={"Selecionar"} onClick={() => { set_current_page_status(2)}}/>
                                     </div>
-                                    <div style={{width:"100%", height:"5%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <App_Button bgcolor={"f5abab"} bordercolor={"db9797"} borderhovercolor={"c78787"} bghovercolor={"e39898"} message={"Voltar"} onClick={() => set_current_component_status(1)}/>
+
+                                    <div style={{width:"80%", height:"7%", display:"flex", alignContent:"center", justifyContent:"center", marginBottom: "5%"}}>
+                                        <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Voltar"} onClick={() => set_current_component_status(1)}/>
                                     </div>
                                 </div>
                             </div>

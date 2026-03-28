@@ -44,29 +44,12 @@ function updateAnswers(
     ]);
 }
 
-function checkIfAlternativeIsSelected(question_answers: question_answers[], alternativeValue: string, current_question_index: number) {
-  if(question_answers.some(answer => (answer.ExamQuestionNumber === current_question_index && answer.AlternativeAssigned === alternativeValue)))
-    {
-      console.log("true")
-      return true;
-    }
-  else
-    {
-      console.log("false")
-      return false
-    }
-
-}
-
 function ExamAlternativeSelectButton({message, set_question_answers, current_question_index, alternativeValue, question_answers}: ExamAlternativeSelectButtonInterface) { 
-  console.log("RENDER - question:", current_question_index, "alt:", alternativeValue, "answers:", JSON.stringify(question_answers))
-  
+ 
   const isSelected = question_answers.some(
     answer => answer.ExamQuestionNumber === current_question_index 
            && answer.AlternativeAssigned === alternativeValue
   );
-
-  console.log("isSelected:", isSelected)
 
   return (
     <div className="ExamAlternativeSelectButton"  style={{backgroundColor: isSelected ? "#EEF2FF" : "#ffffff"}}>

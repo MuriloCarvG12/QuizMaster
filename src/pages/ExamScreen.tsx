@@ -11,6 +11,7 @@ import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScree
 import RenderExamQuestions from "../components/questionRenderer";
 import ShowExamResults from "../components/showExamResults";
 import ExamCustomLength from "../components/examCustomLength";
+import ShowExamCorrection from "../components/ShowExamCorrection";
 
 /***
  * 
@@ -286,8 +287,9 @@ export default function ExamScreen() {
 
     const ExamSelectLength = 0;
     const ExamSelectSource = 1;
-    const RenderExam = 2;
+    const RenderExam = 3;
     const RenderExamResults = 5;
+    const RenderExamCorrection = 6;
     const RenderCustomLength = 8;
 
     
@@ -475,7 +477,7 @@ export default function ExamScreen() {
       );
 
     case RenderExamResults:
-      if (!answers || answers.length === 0) return null;
+      
       return (
         <ShowExamResults
           questions={questions}
@@ -485,6 +487,15 @@ export default function ExamScreen() {
         />
       );
     
+      case RenderExamCorrection:
+        return (
+          <ShowExamCorrection
+            questions={questions}
+            questions_answers={answers}
+            set_current_page_status={set_current_page_status}
+            exam_length={exam_length}
+          />
+        )
 
     case RenderCustomLength: 
       return (

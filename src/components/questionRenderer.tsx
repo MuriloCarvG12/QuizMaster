@@ -54,7 +54,7 @@ function RenderExamQuestions({ questions, set_current_page_status, set_answers, 
 
     {current_question + 1 === questions.length && (
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "24px", marginBottom: "10%", width: "100%", height: "5%" }}>
-        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Finalizar Simulado"} onClick={() => set_current_page_status(4)} />
+        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Finalizar Simulado"} onClick={() => set_current_page_status(5)} />
       </div>
     )}
   </div>

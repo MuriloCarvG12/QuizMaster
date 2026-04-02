@@ -1,14 +1,22 @@
 import { useState } from "react"
+import questionInterface from "../../interfaces/question_exam"
 
-export default function QuestionCard()
+
+interface questionCardInterface
+{
+    question: questionInterface
+}
+
+export default function QuestionCard({question}: questionCardInterface)
 {
     const [questionCode, setQuestionCode] = useState("Digite o Código da Questão")
     return(
     <>
         <div style={{
             padding: "20px",
-            width: "380px",
-            height: "380px",
+            width: "280px",
+            height: "280px",
+            maxWidth: "280px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -16,28 +24,21 @@ export default function QuestionCard()
             backgroundColor: "orange"
             
         }}>
-            <div style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                alignContent: "center"}}>
-                <h1 style={{ color: "#333333", margin: 0 }}>Local</h1>
-                <h1 style={{ color: "#333333", margin: 0 }}>Titulo Pergunta</h1>
-            </div>
-            
-            <div style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "left",
-                fontSize: "large"
-            }}>
-                <p style={{ color: "#333333", margin: 0 }}>Assunto:</p>
-                <p style={{ color: "#333333", margin: 0 }}>Tópico:</p>
-                <p style={{ color: "#333333", margin: 0 }}>Subtópico:</p>
-            </div>
-            
+            <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center"}}>
+                <div style={{display:"flex", flexDirection: "column", height: "160px", marginBottom: "60px"}}>
+                    <h1 style={{ color: "#333333", margin: 0 , marginBottom: "20px"}}>Questão: {question.QuestionId}</h1>
+                    <h3 style={{
+                        whiteSpace: "wrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        width: "100%"
+                    }}>
+                        {question.QuestionPrompt}
+                    </h3>
+                </div>
+                
+                <h4>Código Questão: {question.Id}</h4>
+            </div>      
         </div>
     </>
     )

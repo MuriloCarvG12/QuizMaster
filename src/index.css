@@ -169,17 +169,17 @@
 
 .question_screen_body
 {
-  width: 90%;
+  padding: 0px;
+  margin: 0px;
+  width: 90vw;
   height: auto;
   background-color: #FFFFFF;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   
-  justify-content: center;
-  
-  gap: 12.5%;
+   gap: 20px;
   padding-top: 5%;
   padding-bottom: 2%;
   border-style: solid;

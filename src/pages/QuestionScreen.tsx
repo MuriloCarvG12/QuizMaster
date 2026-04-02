@@ -152,9 +152,7 @@ export default function QuestionScreen() {
             <div id="container">
                 <Header Username={""}/>
     
-                {control_menu(current_option)}          
-                
-                <Quiz_master_footer/>    
+                {control_menu(current_option)}            
                 
                     
             </div>

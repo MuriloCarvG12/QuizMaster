@@ -2,6 +2,8 @@
 import QuestionSearch from "../PageQuestions/questionSearch";
 import App_Button from "../App_Button";
 import QuestionCard from "../PageQuestions/QuestionCard";
+import questionInterface from "../../interfaces/question_exam";
+
 
 
 /***
@@ -27,9 +29,163 @@ type ControlMenuProps = {
 
 export function Control_menu({set_current_option}:ControlMenuProps)
 {
+    const mockQuestions: questionInterface[] = [
+    {
+        Id: 1,
+        QuestionId: "Q001",
+        QuestionText: "Vestibular UNICAMP 2023",
+        QuestionPrompt: "Qual é o resultado da integral definida de x² no intervalo de 0 a 3?",
+        QuestionAltA: "6",
+        QuestionAltB: "9",
+        QuestionAltC: "12",
+        QuestionAltD: "27",
+        QuestionAltE: "3",
+        CorrectAlternative: "B",
+        SubjectId: 1,
+        TopicId: 1,
+        SubTopicId: 1
+    },
+    {
+        Id: 2,
+        QuestionId: "Q002",
+        QuestionText: "FUVEST 2022",
+        QuestionPrompt: "A célula procariótica difere da eucariótica pois não possui:",
+        QuestionAltA: "Membrana plasmática",
+        QuestionAltB: "Material genético",
+        QuestionAltC: "Núcleo definido",
+        QuestionAltD: "Ribossomos",
+        QuestionAltE: "Parede celular",
+        CorrectAlternative: "C",
+        SubjectId: 2,
+        TopicId: 4,
+        SubTopicId: 9
+    },
+    {
+        Id: 3,
+        QuestionId: "Q003",
+        QuestionText: "ENEM 2023",
+        QuestionPrompt: "Sobre a Revolução Francesa, é correto afirmar que um de seus principais ideais era:",
+        QuestionAltA: "A manutenção da monarquia absolutista",
+        QuestionAltB: "A escravidão como base econômica",
+        QuestionAltC: "Liberdade, igualdade e fraternidade",
+        QuestionAltD: "O fortalecimento da Igreja Católica",
+        QuestionAltE: "A expansão do feudalismo",
+        CorrectAlternative: "C",
+        SubjectId: 3,
+        TopicId: 7,
+        SubTopicId: 14
+    },
+    {
+        Id: 4,
+        QuestionId: "Q004",
+        QuestionText: "Vestibular FUVEST 2023",
+        QuestionPrompt: "Em um circuito elétrico simples, ao dobrar a tensão mantendo a resistência constante, a corrente elétrica:",
+        QuestionAltA: "Permanece a mesma",
+        QuestionAltB: "É reduzida à metade",
+        QuestionAltC: "É quadruplicada",
+        QuestionAltD: "Dobra",
+        QuestionAltE: "É zerada",
+        CorrectAlternative: "D",
+        SubjectId: 1,
+        TopicId: 2,
+        SubTopicId: 5
+    },
+    {
+        Id: 5,
+        QuestionId: "Q005",
+        QuestionText: "UNICAMP 2022",
+        QuestionPrompt: "A função f(x) = 2x³ - 3x² - 12x + 5 possui ponto de máximo local em x =",
+        QuestionAltA: "x = 2",
+        QuestionAltB: "x = 0",
+        QuestionAltC: "x = -1",
+        QuestionAltD: "x = 3",
+        QuestionAltE: "x = -2",
+        CorrectAlternative: "C",
+        SubjectId: 1,
+        TopicId: 1,
+        SubTopicId: 3
+    },
+    {
+        Id: 1,
+        QuestionId: "Q001",
+        QuestionText: "Vestibular UNICAMP 2023",
+        QuestionPrompt: "Qual é o resultado da integral definida de x² no intervalo de 0 a 3?",
+        QuestionAltA: "6",
+        QuestionAltB: "9",
+        QuestionAltC: "12",
+        QuestionAltD: "27",
+        QuestionAltE: "3",
+        CorrectAlternative: "B",
+        SubjectId: 1,
+        TopicId: 1,
+        SubTopicId: 1
+    },
+    {
+        Id: 2,
+        QuestionId: "Q002",
+        QuestionText: "FUVEST 2022",
+        QuestionPrompt: "A célula procariótica difere da eucariótica pois não possui:",
+        QuestionAltA: "Membrana plasmática",
+        QuestionAltB: "Material genético",
+        QuestionAltC: "Núcleo definido",
+        QuestionAltD: "Ribossomos",
+        QuestionAltE: "Parede celular",
+        CorrectAlternative: "C",
+        SubjectId: 2,
+        TopicId: 4,
+        SubTopicId: 9
+    },
+    {
+        Id: 3,
+        QuestionId: "Q003",
+        QuestionText: "ENEM 2023",
+        QuestionPrompt: "Sobre a Revolução Francesa, é correto afirmar que um de seus principais ideais era:",
+        QuestionAltA: "A manutenção da monarquia absolutista",
+        QuestionAltB: "A escravidão como base econômica",
+        QuestionAltC: "Liberdade, igualdade e fraternidade",
+        QuestionAltD: "O fortalecimento da Igreja Católica",
+        QuestionAltE: "A expansão do feudalismo",
+        CorrectAlternative: "C",
+        SubjectId: 3,
+        TopicId: 7,
+        SubTopicId: 14
+    },
+    {
+        Id: 4,
+        QuestionId: "Q004",
+        QuestionText: "Vestibular FUVEST 2023",
+        QuestionPrompt: "Em um circuito elétrico simples, ao dobrar a tensão mantendo a resistência constante, a corrente elétrica:",
+        QuestionAltA: "Permanece a mesma",
+        QuestionAltB: "É reduzida à metade",
+        QuestionAltC: "É quadruplicada",
+        QuestionAltD: "Dobra",
+        QuestionAltE: "É zerada",
+        CorrectAlternative: "D",
+        SubjectId: 1,
+        TopicId: 2,
+        SubTopicId: 5
+    },
+    {
+        Id: 5,
+        QuestionId: "Q005",
+        QuestionText: "UNICAMP 2022",
+        QuestionPrompt: "A função f(x) = 2x³ - 3x² - 12x + 5 possui ponto de máximo local em x =",
+        QuestionAltA: "x = 2",
+        QuestionAltB: "x = 0",
+        QuestionAltC: "x = -1",
+        QuestionAltD: "x = 3",
+        QuestionAltE: "x = -2",
+        CorrectAlternative: "C",
+        SubjectId: 1,
+        TopicId: 1,
+        SubTopicId: 3
+    }
+    
+
+];
     return(
                             <>
-                                <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+                            <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
                                 
                                 
                                 <div id="USER Questions HEAD" className="question_screen_head" style={{marginTop: "5%"}}>
@@ -38,13 +194,23 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                     
                     
                                 <div id="HOME-Questions" className="question_screen_body">
-    
-                                    <div style={{width:"100%", height:"15%", display:"flex", alignContent:"center", justifyContent:"center", marginBottom: "10%"}}>
+                                    
+                                    <div style={{width:"100%", height:"15%", display:"flex", alignContent:"center", justifyContent:"space-evel", marginBottom: "5%"}}>
                                        <QuestionSearch /> 
                                     </div>
 
-                                    <div style={{width:"100%", height:"100%", display:"flex", alignContent:"center", justifyContent:"center"}}>
-                                        <QuestionCard/>
+                                     <div style={{
+                                        display: "grid",
+                                        gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                                        gap: "25px",
+                                        width: "100%",
+                                        alignContent: "start",
+                                        padding: "16px",
+                                        boxSizing: "border-box"
+                                    }}>
+                                        {mockQuestions.map(question => (
+                                            <QuestionCard question={question} />
+                                        ))}
                                     </div>
                                                                                                                                
                                 </div>

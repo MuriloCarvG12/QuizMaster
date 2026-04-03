@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export default function QuestionSearch()
+export default function QuestionSearch({set_question_filter}: {set_question_filter: React.Dispatch<React.SetStateAction<string>>})
 {
-    const [questionCode, setQuestionCode] = useState("Digite o Código da Questão")
+    const [questionCode, setQuestionCode] = useState("")
     return(
     <>
         <div style={{
@@ -16,7 +16,7 @@ export default function QuestionSearch()
         }}>
         <h1 style={{ color: "#333333", margin: 0 }}>Procurar Questão</h1>
             
-        <input placeholder={questionCode}
+        <input placeholder={"Digite o Código da Questão"}
         style={{
             width: "60%",
             padding: "12px 16px",
@@ -28,12 +28,16 @@ export default function QuestionSearch()
             backgroundColor: "#FFFFFF",
             boxSizing: "border-box",
             textAlign: "center",
-            
         }}
+        onChange={(e) => {
+            const value = e.target.value;
+            setQuestionCode(value);
+            set_question_filter(value);
+            }}
         
         />
 
-            <h1>App - QuizMaster</h1>
+            
         </div>
     </>
     )

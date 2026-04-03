@@ -190,6 +190,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
     const [pageStatus, setPageStatus]= useState(0);
     const [selectedQuestion, setSelectedQuestion] = useState<questionInterface>()
     const [pickedQuestionAlternative, setPickedQuestionAlternative] = useState("");
+    const [FilteredQuestion, setFilteredQuestion] = useState("");
 
     function control_question_page(pageStatus:number)    
     {
@@ -207,8 +208,16 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                     padding: "16px",
                     boxSizing: "border-box"
                     }}>
-                        {mockQuestions.map(question => (
-                        <QuestionCard question={question}  setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion}/> ))}
+                        {FilteredQuestion == "" ? 
+                            mockQuestions.map(question => (
+                            <QuestionCard question={question}  setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion}/> ))
+                            :
+                            mockQuestions
+                            .filter(question => question.QuestionId.includes(FilteredQuestion))
+                            .map(question => (
+                            <QuestionCard question={question} setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion} />
+                            ))   
+                        }
                 </div>
                 </>)
             case 1:
@@ -251,7 +260,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
             <div id="HOME-Questions" className="question_screen_body">
                 
                 <div style={{width:"100%", height:"15%", display:"flex", alignContent:"center", justifyContent:"space-evel", marginBottom: "5%"}}>
-                    <QuestionSearch /> 
+                    <QuestionSearch set_question_filter={setFilteredQuestion}/> 
                 </div>
                     {control_question_page(pageStatus)}                                                                                  
             </div>

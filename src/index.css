@@ -306,3 +306,25 @@ input.question_screen_selection_checkbox:checked {
   border-color: #e9f5f8;
 
 }
+
+.question_card
+{
+  padding: 20px;
+  width: 280px;
+  height: 280px;
+  max-width: 280px;
+  display: flex;
+  flex-Direction: column;
+  align-Items: center;
+  justify-Content: space-evenly;
+  border-Style: solid;
+  border-Width: 3px;
+  border-Color: #E8E8FF;
+}
+
+.question_card :hover
+{
+  border-color: #6677DD;
+  background-color: #EEF2FF;
+  cursor: pointer;
+}

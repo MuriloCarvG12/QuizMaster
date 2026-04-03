@@ -1,0 +1,68 @@
+import { useState } from "react";
+import App_Button from "../App_Button";
+
+
+interface question {
+    Id: number;
+    QuestionId: string;
+    QuestionText: string;
+    QuestionPrompt: string;
+    QuestionAltA: string;
+    QuestionAltB: string;
+    QuestionAltC: string;
+    QuestionAltD: string;
+    QuestionAltE: string;
+    CorrectAlternative: string;
+    SubjectId: number;
+    TopicId: number;
+    SubTopicId: number;
+}
+
+
+
+
+interface ShowExamResultsProps {
+  question: question;
+  questions_answer: string;
+  exam_length: number;
+  setPageStatus: React.Dispatch<React.SetStateAction<number>>;
+
+}
+
+
+
+export default function ShowQuestionCorrection({ question, questions_answer, setPageStatus }: ShowExamResultsProps) { 
+    const [current_question, set_current_question] = useState(0);
+  return (
+    <>
+    <div style={{width:"100%", height:"auto", display: "flex", flexDirection: "column", gap: "20%", color: "black"}}>
+        <div style={{width:"100%", height:"auto", display: "flex", flexDirection: "column", gap: "20px", color: "black" , textAlign: "center",marginTop: "10%" }}>
+         
+            <div style={{width:"100%", height: "20%"}}>
+                {question.QuestionPrompt}
+            </div>
+            
+            <div style={{width:"100%", height: "20%"}}>
+                {question.QuestionText}
+            </div>
+
+            <div style={{width:"100%", height: "20%", backgroundColor: "#FFF3F3", border: "1px solid #FFAAAA", borderRadius: "8px", padding: "10px"}}>
+                <strong>Sua resposta:</strong> {questions_answer != null && (questions_answer)}
+            </div>
+
+            <div style={{width:"100%", height: "20%", backgroundColor: "#F3FFF3", border: "1px solid #AAFFAA", borderRadius: "8px", padding: "10px"}}>
+                <strong>Resposta correta:</strong> {question != null && (question.CorrectAlternative)}
+            </div>
+            
+        </div>
+        <div style={{width:"100%", height:"auto", display: "flex", flexDirection: "column", gap: "10%", justifyContent: "center", alignItems: "center"}}>
+                                                  
+            <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Voltar para a pergunta"} onClick={() => {setPageStatus(1)}}/>
+                <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Sair da Pergunta"} onClick={() => {setPageStatus(0)}}/>
+        
+        </div>
+    </div>
+ 
+    </>
+)
+}

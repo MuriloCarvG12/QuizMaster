@@ -33,9 +33,7 @@ interface imageInfo
 export default function RenderQuestions({ question, set_question_answers, current_question_index, question_answers, questionImages }: { question: question, set_question_answers: React.Dispatch<React.SetStateAction<question_answers[]>>, current_question_index: number, question_answers: question_answers[], questionImages:imageInfo[]}) { 
 
   const questionImage = questionImages.find(img => img.QuestionId === question.Id)?.ImageUrl ?? "";
-  console.log("questionImages array:", questionImages);
-console.log("current question.QuestionId:", question.QuestionId, "as Number:", Number(question.QuestionId));
-console.log("questionImage found:", questionImages);
+
   return (
     <>
     <div style={{width:"100%", height:"auto", textAlign: "center", display: "flex", flexDirection: "column", gap: "40%", color: "black" }}>

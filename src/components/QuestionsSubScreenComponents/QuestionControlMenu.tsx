@@ -1,8 +1,12 @@
 
 import QuestionSearch from "../PageQuestions/questionSearch";
 import App_Button from "../App_Button";
-import QuestionCard from "../PageQuestions/QuestionCard";
+
 import questionInterface from "../../interfaces/question_exam";
+import { useState } from "react";
+import QuestionCard from "../PageQuestions/questionCard";
+import RenderSingleQuestion from "../PageQuestions/singleQuestionRender";
+import ShowQuestionCorrection from "../PageQuestions/ShowSingleQuestionResult";
 
 
 
@@ -183,41 +187,79 @@ export function Control_menu({set_current_option}:ControlMenuProps)
     
 
 ];
-    return(
-                            <>
-                            <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
-                                
-                                
-                                <div id="USER Questions HEAD" className="question_screen_head" style={{marginTop: "5%"}}>
-                                    <h1>Perguntas</h1>
-                                </div>
-                    
-                    
-                                <div id="HOME-Questions" className="question_screen_body">
-                                    
-                                    <div style={{width:"100%", height:"15%", display:"flex", alignContent:"center", justifyContent:"space-evel", marginBottom: "5%"}}>
-                                       <QuestionSearch /> 
-                                    </div>
+    const [pageStatus, setPageStatus]= useState(0);
+    const [selectedQuestion, setSelectedQuestion] = useState<questionInterface>()
+    const [pickedQuestionAlternative, setPickedQuestionAlternative] = useState("");
 
-                                     <div style={{
-                                        display: "grid",
-                                        gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                                        gap: "25px",
-                                        width: "100%",
-                                        alignContent: "start",
-                                        padding: "16px",
-                                        boxSizing: "border-box"
-                                    }}>
-                                        {mockQuestions.map(question => (
-                                            <QuestionCard question={question} />
-                                        ))}
-                                    </div>
-                                                                                                                               
-                                </div>
-                    
-                                
-                            </div>     
-                            </>)
+    function control_question_page(pageStatus:number)    
+    {
+        switch(pageStatus)
+        {
+            case 0:
+                return(
+                <>
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                    gap: "25px",
+                    width: "100%",
+                    alignContent: "start",
+                    padding: "16px",
+                    boxSizing: "border-box"
+                    }}>
+                        {mockQuestions.map(question => (
+                        <QuestionCard question={question}  setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion}/> ))}
+                </div>
+                </>)
+            case 1:
+                return(
+                    <>
+                    <div style={{
+                        display:"flex",
+                        flexDirection: "column",
+                        marginTop: "2%",
+                        height: "50%"
+                    }}>
+                        <RenderSingleQuestion question={selectedQuestion} set_page_status={setPageStatus} setPickedQuestionAlternative={setPickedQuestionAlternative}/>
+          
+                    </div>
+                        
+                    </>
+                )
+            case 2: 
+                return(
+                    <>
+                    <div>
+                        <ShowQuestionCorrection question={selectedQuestion} questions_answer={pickedQuestionAlternative} setPageStatus={setPageStatus} />    
+                    </div>
+                    </>
+                )
+
+        }
+
+    }
+    return(
+        <>
+        <div style={{display:"flex", flexDirection:"column", width:"100%", height:"50%", justifyItems:"center", alignItems: "center", marginBottom: "19%"}}>
+            
+            
+            <div id="USER Questions HEAD" className="question_screen_head" style={{marginTop: "5%"}}>
+                <h1>Perguntas</h1>
+            </div>
+
+
+            <div id="HOME-Questions" className="question_screen_body">
+                
+                <div style={{width:"100%", height:"15%", display:"flex", alignContent:"center", justifyContent:"space-evel", marginBottom: "5%"}}>
+                    <QuestionSearch /> 
+                </div>
+                    {control_question_page(pageStatus)}                                                                                  
+            </div>
+
+            
+        </div>     
+        </>
+    )   
 }
 
 

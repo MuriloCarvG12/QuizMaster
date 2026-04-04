@@ -41,15 +41,16 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
         
 
         <p>{question.QuestionPrompt}</p>
-        <div style={{ width: "80%", height: "50%", display: "flex", flexDirection: "column", alignItems: "center",  margin: "0 auto", gap: "10px"}}>
+        <div style={{ width: "80%", height: "90%", display: "flex", flexDirection: "column", alignItems: "center",  margin: "0 auto", gap: "10px"}}>
             <ExamAlternativeSelectButton message={question.QuestionAltA}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'A'}/>
             <ExamAlternativeSelectButton message={question.QuestionAltB}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'B'}/>
             <ExamAlternativeSelectButton message={question.QuestionAltC}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'C'}/>
             <ExamAlternativeSelectButton message={question.QuestionAltD}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'D'}/>
             {question.QuestionAltE !== "" && <ExamAlternativeSelectButton message={question.QuestionAltE}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'E'}/>}
         </div>
-
-        <div style={{width:"30%", height: "auto", display: "flex", flexDirection:"column", alignItems: "center", margin: "0 auto"}}>
+      
+    </div>
+       <div style={{width:"35%", height: "40%", display: "flex", flexDirection:"column", alignItems: "center", margin: "0 auto"}}>
             <App_Button 
             bgcolor={"FFFFFF"}
             bordercolor={"E8E8FF"}
@@ -69,8 +70,6 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
             />
 
         </div>
-      
-    </div>
  
     </>
   );

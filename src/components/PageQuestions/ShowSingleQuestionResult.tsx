@@ -55,10 +55,10 @@ export default function ShowQuestionCorrection({ question, questions_answer, set
             </div>
             
         </div>
-        <div style={{width:"100%", height:"auto", display: "flex", flexDirection: "column", gap: "10%", justifyContent: "center", alignItems: "center"}}>
+        <div style={{width:"40%", height:"40%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", margin: "0 auto"}}>
                                                   
-            <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Voltar para a pergunta"} onClick={() => {setPageStatus(1)}}/>
-                <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Sair da Pergunta"} onClick={() => {setPageStatus(0)}}/>
+            <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Voltar para a pergunta"} onClick={() => {setPageStatus(2)}}/>
+            <App_Button bgcolor={"FFFFFF"} bordercolor={"E0E0E0"} borderhovercolor={"999999"} bghovercolor={"F5F5F5"} message={"Sair da Pergunta"} onClick={() => {setPageStatus(1)}}/>
         
         </div>
     </div>

@@ -16,7 +16,7 @@ export default function QuestionCard({question, setQuestionPageStatus, setSelect
     <>
         <div className="question_card">
 
-            <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center"}} onClick={() => {setQuestionPageStatus(1); setSelectedQuestion(question);}}>
+            <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center"}} onClick={() => {setQuestionPageStatus(2); setSelectedQuestion(question); }}>
                 <div style={{display:"flex", flexDirection: "column", height: "160px", marginBottom: "60px"}}>
                     <h2 style={{ color: "#333333", margin: 0 , marginBottom: "20px"}}>Questão: {question.QuestionId}</h2>
                     <h3 style={{

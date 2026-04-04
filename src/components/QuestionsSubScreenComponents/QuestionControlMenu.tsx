@@ -346,9 +346,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
         let currentQuestionIndex: number;
         console.log(mockQuestions.length)
         for(currentQuestionIndex = currentQuestionLowerBound; currentQuestionIndex < currentQuestionUpperBound; currentQuestionIndex++)
-        {
-            console.log(currentQuestionIndex)
-            
+        {  
             foundQuestions.push(mockQuestions[currentQuestionIndex]);
         }
 
@@ -377,8 +375,6 @@ export function Control_menu({set_current_option}:ControlMenuProps)
         const found = FindQuestions(currentQuestionLowerBound, currentQuestionUpperBound, mockQuestions);
         setPageStatus(1)
         UpdateQuestions(found, setCurrentQuestions);
-        console.log("uptaded questions")
-        console.log(found);
     }, [currentQuestionLowerBound, currentQuestionUpperBound]);
     
     function control_question_page(pageStatus:number)    
@@ -454,21 +450,25 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                     {control_question_page(pageStatus)}       
                 <div style={{width:"100%", height:"20%", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"space-evenly"}}>
                    
-                    <div className="arrow-chevron-left">
-                    <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer",position: "absolute" }}
-                        onClick={() => {if (currentQuestionLowerBound > 0) {
-                            setCurrentQuestionLowerBound(currentQuestionLowerBound - 10);
-                            setCurrentQuestionUpperBound(currentQuestionUpperBound - 10);
-                        }}}
-                        />
-                    </div>
-                    
-                    <div className="arrow-chevron-right">
-                        <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer" ,position: "absolute"}}
-                        onClick={() => { setCurrentQuestionLowerBound(currentQuestionLowerBound + 10);  setCurrentQuestionUpperBound(currentQuestionUpperBound + 10)}}
-                        />
-                    </div>
-                </div>                                                                           
+                   {pageStatus == 1 &&
+                   <>
+                        <div className="arrow-chevron-left">
+                        <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer",position: "absolute" }}
+                            onClick={() => {if (currentQuestionLowerBound > 0) {
+                                setCurrentQuestionLowerBound(currentQuestionLowerBound - 10);
+                                setCurrentQuestionUpperBound(currentQuestionUpperBound - 10);
+                            }}}
+                            />
+                        </div>
+                        
+                        <div className="arrow-chevron-right">
+                            <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer" ,position: "absolute"}}
+                            onClick={() => { setCurrentQuestionLowerBound(currentQuestionLowerBound + 10);  setCurrentQuestionUpperBound(currentQuestionUpperBound + 10)}}
+                            />
+                        </div>  
+                    </> 
+                    }    
+                </div>                                                                   
             </div>
 
             

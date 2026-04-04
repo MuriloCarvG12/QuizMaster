@@ -41,7 +41,7 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
         
 
         <p>{question.QuestionPrompt}</p>
-        <div style={{ width: "100%", height: "60%", display: "flex", flexDirection: "column", gap: "10px"}}>
+        <div style={{ width: "80%", height: "50%", display: "flex", flexDirection: "column", alignItems: "center",  margin: "0 auto", gap: "10px"}}>
             <ExamAlternativeSelectButton message={question.QuestionAltA}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'A'}/>
             <ExamAlternativeSelectButton message={question.QuestionAltB}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'B'}/>
             <ExamAlternativeSelectButton message={question.QuestionAltC}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'C'}/>
@@ -49,15 +49,16 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
             {question.QuestionAltE !== "" && <ExamAlternativeSelectButton message={question.QuestionAltE}  set_question_answers={set_question_answers} current_question_index={0} question_answers={question_answers} alternativeValue={'E'}/>}
         </div>
 
-        <div style={{height: "50px"}}>
+        <div style={{width:"30%", height: "auto", display: "flex", flexDirection:"column", alignItems: "center", margin: "0 auto"}}>
             <App_Button 
             bgcolor={"FFFFFF"}
             bordercolor={"E8E8FF"}
             borderhovercolor={"6677DD"}
             bghovercolor={"EEF2FF"}
             message={"Responder"} 
-            onClick={() => {set_page_status(2); setPickedQuestionAlternative(String(question_answers[0].AlternativeAssigned));}}
+            onClick={() => {set_page_status(3); setPickedQuestionAlternative(String(question_answers[0].AlternativeAssigned));}}
             />
+
             <App_Button 
             bgcolor={"FFFFFF"} 
             bordercolor={"E0E0E0"} 
@@ -66,6 +67,7 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
             message={"Voltar"} 
             onClick={() => set_page_status(1)}
             />
+
         </div>
       
     </div>

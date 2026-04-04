@@ -64,7 +64,7 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
             borderhovercolor={"999999"} 
             bghovercolor={"F5F5F5"} 
             message={"Voltar"} 
-            onClick={() => set_page_status(0)}
+            onClick={() => set_page_status(1)}
             />
         </div>
       

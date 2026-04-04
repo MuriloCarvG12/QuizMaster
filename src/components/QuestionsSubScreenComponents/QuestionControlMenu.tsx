@@ -3,10 +3,11 @@ import QuestionSearch from "../PageQuestions/questionSearch";
 import App_Button from "../App_Button";
 
 import questionInterface from "../../interfaces/question_exam";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionCard from "../PageQuestions/questionCard";
 import RenderSingleQuestion from "../PageQuestions/singleQuestionRender";
 import ShowQuestionCorrection from "../PageQuestions/ShowSingleQuestionResult";
+import imageInfo from "../../interfaces/question_image";
 
 
 
@@ -183,20 +184,208 @@ export function Control_menu({set_current_option}:ControlMenuProps)
         SubjectId: 1,
         TopicId: 1,
         SubTopicId: 3
+    },
+    {
+        Id: 6,
+        QuestionId: "Q006",
+        QuestionText: "ENEM 2022",
+        QuestionPrompt: "A fotossíntese é um processo que ocorre nos cloroplastos e tem como produtos finais:",
+        QuestionAltA: "CO² e água",
+        QuestionAltB: "Glicose e oxigênio",
+        QuestionAltC: "ATP e CO²",
+        QuestionAltD: "Glicose e CO²",
+        QuestionAltE: "Água e ATP",
+        CorrectAlternative: "B",
+        SubjectId: 2,
+        TopicId: 4,
+        SubTopicId: 10
+    },
+    {
+        Id: 7,
+        QuestionId: "Q007",
+        QuestionText: "Vestibular UNICAMP 2022",
+        QuestionPrompt: "Qual é o valor de log₂(64)?",
+        QuestionAltA: "4",
+        QuestionAltB: "8",
+        QuestionAltC: "5",
+        QuestionAltD: "6",
+        QuestionAltE: "7",
+        CorrectAlternative: "D",
+        SubjectId: 1,
+        TopicId: 1,
+        SubTopicId: 2
+    },
+    {
+        Id: 8,
+        QuestionId: "Q008",
+        QuestionText: "FUVEST 2023",
+        QuestionPrompt: "A Independência do Brasil foi proclamada em:",
+        QuestionAltA: "7 de setembro de 1889",
+        QuestionAltB: "15 de novembro de 1822",
+        QuestionAltC: "7 de setembro de 1822",
+        QuestionAltD: "15 de novembro de 1889",
+        QuestionAltE: "13 de maio de 1888",
+        CorrectAlternative: "C",
+        SubjectId: 3,
+        TopicId: 7,
+        SubTopicId: 15
+    },
+    {
+        Id: 9,
+        QuestionId: "Q009",
+        QuestionText: "ENEM 2021",
+        QuestionPrompt: "Em química, o pH de uma solução neutra a 25°C é igual a:",
+        QuestionAltA: "0",
+        QuestionAltB: "14",
+        QuestionAltC: "5",
+        QuestionAltD: "7",
+        QuestionAltE: "10",
+        CorrectAlternative: "D",
+        SubjectId: 4,
+        TopicId: 10,
+        SubTopicId: 20
+    },
+    {
+        Id: 10,
+        QuestionId: "Q010",
+        QuestionText: "Vestibular FUVEST 2021",
+        QuestionPrompt: "Um objeto é lançado verticalmente para cima com velocidade inicial de 20 m/s. Considerando g = 10 m/s², a altura máxima atingida é:",
+        QuestionAltA: "10 m",
+        QuestionAltB: "40 m",
+        QuestionAltC: "20 m",
+        QuestionAltD: "5 m",
+        QuestionAltE: "30 m",
+        CorrectAlternative: "C",
+        SubjectId: 1,
+        TopicId: 2,
+        SubTopicId: 6
+    },
+    {
+        Id: 11,
+        QuestionId: "Q011",
+        QuestionText: "UNICAMP 2021",
+        QuestionPrompt: "O processo de osmose ocorre quando há movimento de:",
+        QuestionAltA: "Soluto do meio hipertônico para o hipotônico",
+        QuestionAltB: "Solvente do meio hipertônico para o hipotônico",
+        QuestionAltC: "Solvente do meio hipotônico para o hipertônico",
+        QuestionAltD: "Soluto do meio hipotônico para o hipertônico",
+        QuestionAltE: "Proteínas através da membrana",
+        CorrectAlternative: "C",
+        SubjectId: 2,
+        TopicId: 4,
+        SubTopicId: 11
+    },
+    {
+        Id: 12,
+        QuestionId: "Q012",
+        QuestionText: "ENEM 2023",
+        QuestionPrompt: "Na língua portuguesa, a função da conjunção 'embora' em 'Embora estivesse chovendo, ele saiu' é:",
+        QuestionAltA: "Causal",
+        QuestionAltB: "Consecutiva",
+        QuestionAltC: "Concessiva",
+        QuestionAltD: "Condicional",
+        QuestionAltE: "Temporal",
+        CorrectAlternative: "C",
+        SubjectId: 5,
+        TopicId: 13,
+        SubTopicId: 25
+    },
+    {
+        Id: 13,
+        QuestionId: "Q013",
+        QuestionText: "FUVEST 2022",
+        QuestionPrompt: "A equação da reta que passa pelos pontos (0, 3) e (2, 7) é:",
+        QuestionAltA: "y = x + 3",
+        QuestionAltB: "y = 3x + 1",
+        QuestionAltC: "y = 2x + 3",
+        QuestionAltD: "y = 2x + 1",
+        QuestionAltE: "y = 4x - 1",
+        CorrectAlternative: "C",
+        SubjectId: 1,
+        TopicId: 1,
+        SubTopicId: 4
+    },
+    {
+        Id: 14,
+        QuestionId: "Q014",
+        QuestionText: "UNICAMP 2023",
+        QuestionPrompt: "O elemento químico de número atômico 11, o sódio, pertence ao grupo:",
+        QuestionAltA: "Halogênios",
+        QuestionAltB: "Gases nobres",
+        QuestionAltC: "Metais alcalinos terrosos",
+        QuestionAltD: "Metais alcalinos",
+        QuestionAltE: "Metais de transição",
+        CorrectAlternative: "D",
+        SubjectId: 4,
+        TopicId: 10,
+        SubTopicId: 21
+    },
+    {
+        Id: 15,
+        QuestionId: "Q015",
+        QuestionText: "ENEM 2022",
+        QuestionPrompt: "O movimento operário do século XIX resultou na conquista de diversos direitos trabalhistas. Qual dos seguintes foi uma conquista desse período?",
+        QuestionAltA: "Vale transporte",
+        QuestionAltB: "Jornada de trabalho de 8 horas",
+        QuestionAltC: "13º salário",
+        QuestionAltD: "FGTS",
+        QuestionAltE: "Seguro desemprego",
+        CorrectAlternative: "B",
+        SubjectId: 3,
+        TopicId: 8,
+        SubTopicId: 16
     }
+    
     
 
 ];
+    function FindQuestions(currentQuestionLowerBound: number, currentQuestionUpperBound: number, mockQuestions: questionInterface[])
+    {
+
+        let foundQuestions : questionInterface[] = [];
+        let currentQuestionIndex: number;
+        console.log(mockQuestions.length)
+        for(currentQuestionIndex = currentQuestionLowerBound; currentQuestionIndex < currentQuestionUpperBound; currentQuestionIndex++)
+        {
+            console.log(currentQuestionIndex)
+            
+            foundQuestions.push(mockQuestions[currentQuestionIndex]);
+        }
+
+        return foundQuestions;
+    }
+
+    //TODO FETCH QUESTION IMAGES
+    function UpdateQuestions(foundQuestions : questionInterface[], setCurrentQuestions :React.Dispatch<React.SetStateAction<questionInterface[]>>) 
+    {
+        setCurrentQuestions(foundQuestions);
+    }
+
+    const [currentQuestions, setCurrentQuestions] = useState<questionInterface[]>([]);
+
+    //used to fetch questions by their id
+    const [currentQuestionLowerBound, setCurrentQuestionLowerBound] = useState(0);
+    const [currentQuestionUpperBound, setCurrentQuestionUpperBound] = useState(10);
+    //
+
     const [pageStatus, setPageStatus]= useState(0);
     const [selectedQuestion, setSelectedQuestion] = useState<questionInterface>()
     const [pickedQuestionAlternative, setPickedQuestionAlternative] = useState("");
     const [FilteredQuestion, setFilteredQuestion] = useState("");
 
+    useEffect(() => {
+        const found = FindQuestions(currentQuestionLowerBound, currentQuestionUpperBound, mockQuestions);
+        setPageStatus(1)
+        UpdateQuestions(found, setCurrentQuestions);
+        console.log("uptaded questions")
+        console.log(found);
+    }, [currentQuestionLowerBound, currentQuestionUpperBound]);
+    
     function control_question_page(pageStatus:number)    
     {
         switch(pageStatus)
         {
-            case 0:
+            case 1:
                 return(
                 <>
                 <div style={{
@@ -209,10 +398,10 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                     boxSizing: "border-box"
                     }}>
                         {FilteredQuestion == "" ? 
-                            mockQuestions.map(question => (
+                            currentQuestions.map(question => (
                             <QuestionCard question={question}  setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion}/> ))
                             :
-                            mockQuestions
+                            currentQuestions
                             .filter(question => question.QuestionId.includes(FilteredQuestion))
                             .map(question => (
                             <QuestionCard question={question} setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion} />
@@ -220,7 +409,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                         }
                 </div>
                 </>)
-            case 1:
+            case 2:
                 return(
                     <>
                     <div style={{
@@ -235,7 +424,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                         
                     </>
                 )
-            case 2: 
+            case 3: 
                 return(
                     <>
                     <div>
@@ -262,7 +451,24 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                 <div style={{width:"100%", height:"15%", display:"flex", alignContent:"center", justifyContent:"space-evel", marginBottom: "5%"}}>
                     <QuestionSearch set_question_filter={setFilteredQuestion}/> 
                 </div>
-                    {control_question_page(pageStatus)}                                                                                  
+                    {control_question_page(pageStatus)}       
+                <div style={{width:"100%", height:"20%", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"space-evenly"}}>
+                   
+                    <div className="arrow-chevron-left">
+                    <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer",position: "absolute" }}
+                        onClick={() => {if (currentQuestionLowerBound > 0) {
+                            setCurrentQuestionLowerBound(currentQuestionLowerBound - 10);
+                            setCurrentQuestionUpperBound(currentQuestionUpperBound - 10);
+                        }}}
+                        />
+                    </div>
+                    
+                    <div className="arrow-chevron-right">
+                        <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer" ,position: "absolute"}}
+                        onClick={() => { setCurrentQuestionLowerBound(currentQuestionLowerBound + 10);  setCurrentQuestionUpperBound(currentQuestionUpperBound + 10)}}
+                        />
+                    </div>
+                </div>                                                                           
             </div>
 
             

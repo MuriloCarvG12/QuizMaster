@@ -39,8 +39,8 @@ export function Topics_screen_TopicSelection({ set_current_component_status, bor
                                 </div>
                     
                     
-                                <div id="HOME-Questions" className="question_screen_body" style={{flexDirection:"column", height: "100%", borderColor:`#${border_color}`}}>
-                                    <div className="question_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
+                                <div id="HOME-Questions" className="question_exam_screen_body" style={{flexDirection:"column", height: "100%", borderColor:`#${border_color}`}}>
+                                    <div className="question_exam_screen_body" style={{backgroundColor:"#F4FAFF",width:"95%",height:"100%", flexDirection:"column", borderStyle: "none"}}>                                                                                             
                                         
                                         <div className="question_screen_selection_grid">
                                             {/*** ITERATING OVER EVERY ITEM IN OUR TOPICS ARRAY! */}

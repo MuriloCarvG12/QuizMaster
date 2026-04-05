@@ -34,6 +34,28 @@ type ControlMenuProps = {
 
 export function Control_menu({set_current_option}:ControlMenuProps)
 {
+    async function FindFilteredQuestions(currentFilter: string, setFilteredQuestions: React.Dispatch<React.SetStateAction<questionInterface[]>>)
+    {
+        let foundQuestions : questionInterface[] = [];
+        const url = "http://localhost:3000/Question/filterQuestionByUniversity";
+        
+ 
+        const response =
+        await fetch
+            (url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ UniversityName: currentFilter }),
+            })
+
+        let question: questionInterface[] = await response.json();
+
+       
+
+        setFilteredQuestions(question);
+    }
+    
+
     async function FindQuestions(currentQuestionLowerBound: number, currentQuestionUpperBound: number)
     {
         
@@ -66,6 +88,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
     }
 
     const [currentQuestions, setCurrentQuestions] = useState<questionInterface[]>([]);
+    const [filteredQuestions, setFilteredQuestions] = useState<questionInterface[]>([]);
 
     //used to fetch questions by their id
     const [currentQuestionLowerBound, setCurrentQuestionLowerBound] = useState(1);
@@ -85,6 +108,19 @@ export function Control_menu({set_current_option}:ControlMenuProps)
         }
         fetchQuestions();
     }, [currentQuestionLowerBound, currentQuestionUpperBound]);
+
+    useEffect(() => {
+    if (FilteredQuestion === "") {
+        setFilteredQuestions([]);
+        return;
+    }
+
+    const debounceTimer = setTimeout(() => {
+        FindFilteredQuestions(FilteredQuestion, setFilteredQuestions);
+    }, 500); // waits 500ms after user stops typing
+
+    return () => clearTimeout(debounceTimer); // cancels if user keeps typing
+}, [FilteredQuestion]);
     
     function control_question_page(pageStatus:number)    
     {
@@ -103,14 +139,20 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                     boxSizing: "border-box"
                     }}>
                         {FilteredQuestion == "" ? 
+                        //TODO CHANGE ME SO IF THERES A FILTER GOING WE SAVE THE JSON OBJECT IN A LIST VARIABLE THEN WITH A FOR LOOP WE RENDER A QUESTION CARD FROM LOWER BOUND VARIABLE TO UPPER BOUDN VARIABLE
                             currentQuestions.map(question => (
                             <QuestionCard question={question}  setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion}/> ))
-                            :
-                            currentQuestions
-                            .filter(question => question.QuestionId.includes(FilteredQuestion))
-                            .map(question => (
-                            <QuestionCard question={question} setQuestionPageStatus={setPageStatus} setSelectedQuestion={setSelectedQuestion} />
-                            ))   
+                             :
+                            filteredQuestions
+                                .slice(currentQuestionLowerBound, currentQuestionUpperBound)
+                                .map(question => (
+                                    <QuestionCard 
+                                        key={question.Id}
+                                        question={question} 
+                                        setQuestionPageStatus={setPageStatus} 
+                                        setSelectedQuestion={setSelectedQuestion}
+                                    />
+                            ))
                         }
                 </div>
                 </>)
@@ -170,7 +212,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                    <>
                         <div className="arrow-chevron-left">
                         <button style={{ width: "100%", height: "80%", opacity: 0, cursor: "pointer",position: "absolute" }}
-                            onClick={() => {if (currentQuestionLowerBound > 0) {
+                            onClick={() => {if (currentQuestionLowerBound > 1) {
                                 setCurrentQuestionLowerBound(currentQuestionLowerBound - 10);
                                 setCurrentQuestionUpperBound(currentQuestionUpperBound - 10);
                             }}}

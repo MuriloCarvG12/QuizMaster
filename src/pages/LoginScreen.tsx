@@ -7,12 +7,12 @@ import { useState } from "react";
 import UserObject from "../interfaces/userobject";
 
 export default function LoginScreen() {
-    const navigate = useNavigate(); // ✅ top level
+    const navigate = useNavigate(); 
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
     const [feedback, setFeedback] = useState<{message: string, success: boolean} | null>(null);
 
-    async function HandleLogin() { // ✅ top level, no params needed
+    async function HandleLogin() { 
         if (Email === "" || Password === "") {
             setFeedback({ message: "Email ou Senha vazios!", success: false });
             return;
@@ -26,7 +26,7 @@ export default function LoginScreen() {
                 body: JSON.stringify({ Email }),
             });
 
-            const object = await response.json() as UserObject; // ✅ only once
+            const object = await response.json() as UserObject; 
 
             if (!response.ok) {
                 setFeedback({ message: "Email ou Senha incorretos!", success: false });

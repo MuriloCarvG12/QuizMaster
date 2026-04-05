@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function LoginScreen() {
-    function Navigate(Page:string) {
+    function NavButton(Page:string, Message:string, bgColor:string, bghovercolor:string, bordercolor:string, borderhovercolor:string) {
         const navigate = useNavigate();  
 
         const handleLoginClick = () => {
@@ -15,11 +15,11 @@ export default function LoginScreen() {
       
         return (
           <App_Button
-            bgcolor="94D3A2"
-            bghovercolor="89C095"
-            bordercolor="7AAD85"
-            borderhovercolor="7eb68a"
-            message="Entrar!"
+            bgcolor={bgColor}
+            bghovercolor={bghovercolor}
+            bordercolor={bordercolor}
+            borderhovercolor={borderhovercolor}
+            message={Message}
             onClick={handleLoginClick}
           />
         
@@ -55,23 +55,23 @@ export default function LoginScreen() {
                 </div>
 
                 <div className="login_card_body">
+                <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%", marginBottom: "5%", alignSelf: "center"}}>
+                    <input className="Text_Field" placeholder="Insira o seu nome" />
+                </div>
+                <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%", marginBottom: "5%", alignSelf: "center"}}>
+                    <input className="Text_Field" placeholder="Insira a sua senha" />
+                </div>
 
-                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
-                        <input className="Text_Field" placeholder="Insira o seu nome"></input>
-                    </div>
+                {/* Buttons container */}
+                <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: "8%", marginTop: "5%", marginBottom: "10%"}}>
+                    <div style={{width: "80%"}}>
+                        {NavButton("Home", "Entrar", "4A90D9", "2F78C5", "2563A8", "1A4F8F")}
 
-                    <div style={{width: "100%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center"}}>
-                        <input className="Text_Field" placeholder="Insira a sua senha"></input>
                     </div>
-
-                    <div style={{width: "100%", height: "8%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                        {Navigate("Home")}
+                    <div style={{width: "50%"}}>
+                        {NavButton("Register", "Registrar", "E8EEF5", "D0DCF0", "A0B4CC", "7A96B8")}
                     </div>
-
-                    <div style={{width: "50%", height: "5%", display: "flex", justifyContent: "center", marginTop: "10%",marginBottom:"10%", alignSelf: "center", justifyItems:"center",}}>
-                        {Navigate("Cadastrar")} 
-                    </div>
-                    
+                </div>
                 </div>
 
               </div>

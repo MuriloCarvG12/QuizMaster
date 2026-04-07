@@ -1,8 +1,6 @@
-
-export default interface UserObject {
-    Id :number;
+export default interface UserInfo {
+    Id: number;
     Email: string;
-    Password: string;
     Name: String;
     QuestionsCompleted: number;
     ExamsCompleted: number;

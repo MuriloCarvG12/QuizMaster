@@ -4,13 +4,20 @@ import examImage from '../images/ExameCardImage.png';
 import userImage from '../images/UserCardImage.png';
 import Header from "../components/Header"
 import Card_button from "../components/Card_Button"
+import { useLocation } from "react-router-dom";
+import UserInfo from '../interfaces/user_info';
 
 
 export default function HomeScreen() {
+    const location = useLocation();
+    const { userInfo } = location.state as { userInfo: UserInfo } || {};
+
     return (
+
+
       <>
         <div id="container">
-            <Header Username={""}  User_Completed_Questions={0} User_Completed_Exams={0}  />
+            <Header Username={userInfo.Name}  User_Completed_Questions={userInfo.QuestionsCompleted} User_Completed_Exams={userInfo.ExamsCompleted}  />
 
             <div id="HOME-CARDS" style={{
               width: "100%",
@@ -23,9 +30,9 @@ export default function HomeScreen() {
               marginTop: "10%"
             }}>
 
-                <Card_button width={20} height={100} link="/ExamScreen" bgcolor="B4FFFB" text="Simulados" img_source={examImage}  />
-                <Card_button width={20} height={100} link="/QuestionScreen" bgcolor="D9F2E6" text="Perguntas" img_source={questoesImage}  />
-                <Card_button width={20} height={100} link="/UserScreen" bgcolor="FFF3CD" text="Usuário" img_source={userImage}  />
+                <Card_button width={20} height={100} userId={userInfo.Id} link="/ExamScreen" bgcolor="B4FFFB"  text="Simulados" img_source={examImage}  />
+                <Card_button width={20} height={100} userId={userInfo.Id} link="/QuestionScreen" bgcolor="D9F2E6" text="Perguntas" img_source={questoesImage}  />
+                <Card_button width={20} height={100} userId={userInfo.Id} link="/UserScreen" bgcolor="FFF3CD" text="Usuário" img_source={userImage}  />
 
             </div>
         </div>

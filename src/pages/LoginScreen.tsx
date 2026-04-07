@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import loginInterface from "../interfaces/login";
 import { useState } from "react";
 import UserObject from "../interfaces/userobject";
+import UserInfo from "../interfaces/user_info";
 
 export default function LoginScreen() {
     const navigate = useNavigate(); 
@@ -38,8 +39,18 @@ export default function LoginScreen() {
                 return;
             }
 
+            let userInfo :UserInfo = 
+            {
+                Id: object.Id,
+                Email: object.Email,
+                Name: object.Name,
+                QuestionsCompleted: object.QuestionsCompleted,
+                ExamsCompleted: object.ExamsCompleted
+            };
+
             setFeedback({ message: "Login efetuado com sucesso!", success: true });
-            navigate("/Home")
+            navigate("/Home", { state: { userInfo } });
+
 
         } catch (error) {
             setFeedback({ message: "Erro de conexão com o servidor.", success: false });

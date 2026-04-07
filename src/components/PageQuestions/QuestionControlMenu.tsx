@@ -29,10 +29,11 @@ import imageInfo from "../../interfaces/question_image";
 
 type ControlMenuProps = {
   set_current_option: (option: number) => void;
+  userId: number
 };
 
 
-export function Control_menu({set_current_option}:ControlMenuProps)
+export function Control_menu({set_current_option , userId}:ControlMenuProps)
 {
     async function FindFilteredQuestions(currentFilter: string, setFilteredQuestions: React.Dispatch<React.SetStateAction<questionInterface[]>>)
     {
@@ -164,7 +165,7 @@ export function Control_menu({set_current_option}:ControlMenuProps)
                         flexDirection: "column",
                         height: "50%"
                     }}>
-                        <RenderSingleQuestion question={selectedQuestion} set_page_status={setPageStatus} setPickedQuestionAlternative={setPickedQuestionAlternative}/>
+                        <RenderSingleQuestion question={selectedQuestion} set_page_status={setPageStatus} setPickedQuestionAlternative={setPickedQuestionAlternative} userId={userId}/>
           
                     </div>
                         

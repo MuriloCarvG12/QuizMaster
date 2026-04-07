@@ -6,11 +6,25 @@ import Header from "../components/Header"
 import Card_button from "../components/Card_Button"
 import { useLocation } from "react-router-dom";
 import UserInfo from '../interfaces/user_info';
+import { useEffect, useState } from 'react';
 
 
 export default function HomeScreen() {
     const location = useLocation();
-    const { userInfo } = location.state as { userInfo: UserInfo } || {};
+    const { userId } = location.state;
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const response = await fetch(`http://localhost:3000/User/getUserById/${userId}`);
+            const data = await response.json();
+            setUserInfo(data);
+        };
+
+        if (userId) fetchUser();
+    }, [userId]);
+
+    while (!userInfo) return <div>Loading...</div>; 
 
     return (
 

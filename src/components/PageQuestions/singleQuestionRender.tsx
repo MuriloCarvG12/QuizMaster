@@ -32,8 +32,24 @@ interface imageInfo
 }
 
 
-export default function RenderSingleQuestion({ question, set_page_status, setPickedQuestionAlternative } : { question: question, set_page_status: React.Dispatch<React.SetStateAction<number>>, setPickedQuestionAlternative: React.Dispatch<React.SetStateAction<string>>}) { 
+export default function RenderSingleQuestion({ question, set_page_status, setPickedQuestionAlternative, userId} : { question: question, set_page_status: React.Dispatch<React.SetStateAction<number>>, setPickedQuestionAlternative: React.Dispatch<React.SetStateAction<string>>, userId: number}) { 
   const [question_answers, set_question_answers] = useState<question_answers[]>([]);
+
+  async function HandleFinishQuestion( { set_page_status, userId, setPickedQuestionAlternative , alternativeValue} :{set_page_status: React.Dispatch<React.SetStateAction<number>>, userId:number, setPickedQuestionAlternative: React.Dispatch<React.SetStateAction<string>>, alternativeValue : String})
+  {
+    const response = await fetch("http://localhost:3000/User/UpdateUserQuestionsCompleted/" + userId, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" }
+    });
+
+    if (response.ok) {
+        set_page_status(3);
+        setPickedQuestionAlternative(alternativeValue as string)
+    } else {
+        console.error("Request failed with status:", response.status);
+    }
+  }
+
   return (
     <>
     <div style={{width:"100%", height:"auto", textAlign: "center", display: "flex", flexDirection: "column", color: "black" }}>
@@ -57,7 +73,12 @@ export default function RenderSingleQuestion({ question, set_page_status, setPic
             borderhovercolor={"6677DD"}
             bghovercolor={"EEF2FF"}
             message={"Responder"} 
-            onClick={() => {set_page_status(3); setPickedQuestionAlternative(String(question_answers[0].AlternativeAssigned));}}
+            onClick={() => HandleFinishQuestion({
+              set_page_status,
+              userId,
+              setPickedQuestionAlternative,
+              alternativeValue: String(question_answers[0].AlternativeAssigned)
+            })}
             />
 
             <App_Button 

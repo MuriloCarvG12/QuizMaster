@@ -65,11 +65,6 @@ export default function ShowExamResults({ questions, questions_answers, examLeng
         <div style={{width:"100%", height:"auto", display: "flex", flexDirection: "column", gap: "10%", justifyContent: "center", alignItems: "center"}}>
             <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Outro simulado"} onClick={() => set_current_page_status(0)}/>
             <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Correção"} onClick={() => set_current_page_status(6)}/>
-            <div className={"App_Button_Modified"} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Link to="http://localhost:5173/Home" style={{ textDecoration: 'none', color: 'inherit', textAlign: 'center' , fontSize: "medium", width: "100%", height: "100%"}}>
-                    <h1>Home</h1>
-                </Link>
-            </div>
             
         </div>
 

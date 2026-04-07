@@ -29,7 +29,22 @@ interface imageInfo
   QuestionId: number;
   ImageUrl: String
 }
-function RenderExamQuestions({ questions, set_current_page_status, set_answers, questionImages   }: { questions  : question[], set_current_page_status: React.Dispatch<React.SetStateAction<number>>, set_answers: React.Dispatch<React.SetStateAction<question_answers[]>> , questionImages: imageInfo[]}) {
+
+async function HandleFinishExam( { set_current_page_status, userId } :{set_current_page_status: React.Dispatch<React.SetStateAction<number>>, userId:number })
+{
+  const response = await fetch("http://localhost:3000/User/UpdateUserExamsCompleted/" + userId, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" }
+  });
+
+  if (response.ok) {
+      set_current_page_status(5);
+  } else {
+      console.error("Request failed with status:", response.status);
+  }
+}
+
+function RenderExamQuestions({ questions, set_current_page_status, set_answers, questionImages, userId   }: { questions  : question[], set_current_page_status: React.Dispatch<React.SetStateAction<number>>, set_answers: React.Dispatch<React.SetStateAction<question_answers[]>> , questionImages: imageInfo[], userId:number}) {
   const [current_question, set_current_question] = useState(0);
   const [question_answers, set_question_answers] = useState<question_answers[]>([]);
 
@@ -54,7 +69,7 @@ function RenderExamQuestions({ questions, set_current_page_status, set_answers, 
 
     {current_question + 1 === questions.length && (
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "24px", marginBottom: "10%", width: "100%", height: "5%" }}>
-        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Finalizar Simulado"} onClick={() => set_current_page_status(5)} />
+        <App_Button bgcolor={"D9F2E6"} bordercolor={"a7d1bc"} borderhovercolor={"91baa6"} bghovercolor={"c1d9cd"} message={"Finalizar Simulado"} onClick={() => HandleFinishExam({set_current_page_status, userId})} />
       </div>
     )}
   </div>

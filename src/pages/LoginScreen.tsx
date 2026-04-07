@@ -39,17 +39,10 @@ export default function LoginScreen() {
                 return;
             }
 
-            let userInfo :UserInfo = 
-            {
-                Id: object.Id,
-                Email: object.Email,
-                Name: object.Name,
-                QuestionsCompleted: object.QuestionsCompleted,
-                ExamsCompleted: object.ExamsCompleted
-            };
-
+            const userId: number = object.Id;
+    
             setFeedback({ message: "Login efetuado com sucesso!", success: true });
-            navigate("/Home", { state: { userInfo } });
+            navigate("/Home", { state: { userId} });
 
 
         } catch (error) {

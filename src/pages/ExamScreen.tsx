@@ -12,6 +12,8 @@ import RenderExamQuestions from "../components/questionRenderer";
 import ShowExamResults from "../components/showExamResults";
 import ExamCustomLength from "../components/examCustomLength";
 import ShowExamCorrection from "../components/ShowExamCorrection";
+import { useLocation } from "react-router-dom";
+import AlternativeHeader from "../components/PageQuestions/alternativeHeader";
 
 /***
  * 
@@ -264,7 +266,9 @@ async function FetchQuestions(selected_subtopics: subtopic[], exam_length: numbe
 
 export default function ExamScreen() {
 
-  
+    const location = useLocation();
+    const { userId } = location.state as { userId: number } || {};
+    
     const [subjects, setSubjects] = useState<subject[]>([]);
     const [topics, set_topics] = useState<topic[]>([]);
     const [subtopics, set_subtopics] = useState<subtopic[]>([]);
@@ -471,6 +475,7 @@ export default function ExamScreen() {
             set_current_page_status={set_current_page_status}
             set_answers={set_answers}
             questionImages={questionImages}
+            userId={userId}
             />
         </div>
    
@@ -512,7 +517,8 @@ export default function ExamScreen() {
      * 
      */}
     <div id="container">
-        <Header Username={""}/>
+        <AlternativeHeader userId={userId}/>
+        
         <div id="HOME-USER-OPTIONS-HEAD"/>
           <div id="HOME-USER-OPTIONS" className="User-Options" style={{
                 width: "60%",

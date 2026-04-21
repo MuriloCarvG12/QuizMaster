@@ -9,6 +9,7 @@ import CommunityScreen from './pages/CommunityScreen';
 import QuestionScreen from './pages/QuestionScreen';
 import ExamScreen from './pages/ExamScreen';
 import QuizScreen from './pages/QuizScreen';
+import RegisterScreen from './pages/RegisterScreen';
 
 
 const router = createBrowserRouter(
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
     { path: '/QuestionScreen', element: < QuestionScreen />, },
     { path: '/ExamScreen', element: < ExamScreen />, },
     { path: '/QuizScreen', element: < QuizScreen />, },
-
+    { path: '/Register', element: < RegisterScreen />, },
   ]
 ) 
 

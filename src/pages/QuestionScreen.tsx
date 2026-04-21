@@ -8,10 +8,12 @@ import { useState } from "react";
 
 
 import { CommunityButton } from "../components/Page_Question_Community_Button";
-import {Control_menu} from "../components/QuestionsSubScreenComponents/QuestionControlMenu";
+import {Control_menu} from "../components/PageQuestions/QuestionControlMenu";
 import { Topics_screen_MainTopicSelection } from "../components/QuestionsSubScreenComponents/MainTopicSelection";
 import { Topics_screen_QuestionSourceSelection } from "../components/QuestionsSubScreenComponents/QuestionSourceSelection";
 import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScreenComponents/SubTopicSelection";
+import { useLocation } from "react-router-dom";
+import AlternativeHeader from "../components/PageQuestions/alternativeHeader";
 
 /**
  * 
@@ -21,6 +23,9 @@ import { Topics_screen_SubTopicSelection } from "../components/QuestionsSubScree
  */
 
 export default function QuestionScreen() {
+    const location = useLocation();
+    const { userId } = location.state as { userId: number } || {};
+    
     const [current_option, set_current_option] = useState(0) // variable controls the sub menu shown
     const [picked_question_source, set_picked_question_source] = useState("") // variable that stores the exam sources selected
     const[picked_question_topics, set_picked_question_topics] = useState([]) // variable that stores the topics selected
@@ -34,7 +39,7 @@ export default function QuestionScreen() {
             case 0: // sub-tela inicial da pagina perguntas
                 {
                     return(
-                    <Control_menu set_current_option={set_current_option}/>
+                    <Control_menu set_current_option={set_current_option} userId={userId}/>
                 )
                     
                 }
@@ -150,11 +155,9 @@ export default function QuestionScreen() {
     <>
     
             <div id="container">
-                <Header Username={""}/>
+                <AlternativeHeader userId={userId}/>
     
-                {control_menu(current_option)}          
-                
-                <Quiz_master_footer/>    
+                {control_menu(current_option)}            
                 
                     
             </div>

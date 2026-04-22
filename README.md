@@ -1,54 +1,85 @@
-# React + TypeScript + Vite
+# QuizMaster - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web do projeto QuizMaster, onde os usuários podem criar, responder quizzes e visualizar resultados.
 
-Currently, two official plugins are available:
+## Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* React
+* TypeScript
+* CSS / Tailwind (se aplicável)
+* Axios
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* Login e cadastro de usuários
+* Dashboard com quizzes
+* Criação de quizzes
+* Responder quizzes
+* Visualização de resultados
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Estrutura do Projeto
+
+```
+src/
+ ├── components/
+ ├── pages/
+ ├── services/
+ ├── hooks/
+ ├── contexts/
+ └── styles/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Configuração do Ambiente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone o repositório:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+git clone https://github.com/MuriloCarvG12/QuizMaster
 ```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Crie um arquivo `.env`:
+
+```env
+REACT_APP_API_URL=http://localhost:3000
+```
+
+4. Inicie o projeto:
+
+```bash
+npm start
+```
+
+## Integração com Backend
+
+Certifique-se de que o backend esteja rodando em:
+
+```
+http://localhost:3000
+```
+
+## Telas Principais
+
+* Login / Registro
+* Dashboard
+* Criar Quiz
+* Responder Quiz
+* Resultados
+
+## Melhorias Futuras
+
+* Responsividade aprimorada
+* Dark mode
+* Melhor UX/UI
+* Testes com Jest/RTL
+
+## Autor
+
+Murilo Carvalho
+
+
